@@ -6,10 +6,9 @@ public class CarWheel : Component
 	[Property] public ModelRenderer WheelModel { get; set; }
 	[Property] public bool FlipWheelSpinRotation { get; set; } = false;
 
-	// https://www.youtube.com/watch?v=CdPYlj5uZeI
-
 	private SceneTraceResult WheelTrace { get; set; }
-	private float WheelHeight => WheelModel.Model.Bounds.Size.z * WheelModel.WorldScale.z / 2;
+	private float WheelRadius => WheelModel.Model.Bounds.Size.z * WheelModel.WorldScale.z / 2;
+	private float WheelWidth => WheelModel.Model.Bounds.Size.y * WheelModel.WorldScale.y;
 	private float CarryingMass => CarController.Local.Rigidbody.Mass / 4;
 
 	public bool HandbrakeApplied { get; set; }
@@ -26,98 +25,74 @@ public class CarWheel : Component
 
 		var car = CarController.Local;
 
-		WheelTrace = Scene.Trace.Ray( WorldPosition, WorldPosition + WorldTransform.Down * WheelHeight )
+		var traceDist = car.SuspensionHeight + WheelRadius;
+		var startPos = WorldPosition;
+		var endPos = WorldPosition + WorldRotation.Down * traceDist;
+
+		// Rotate cylinder 90 degrees to align axis with axle
+		WheelTrace = WheelTrace = Scene.Trace.Cylinder( WheelRadius, WheelRadius / 2, startPos, endPos )
+			.Rotated( Rotation.LookAt( WorldRotation.Down, WheelModel.WorldRotation.Right ) )
+			.IgnoreGameObjectHierarchy( car.GameObject )
+			.UseHitPosition()
 			.Run();
-		// Log.Info( WheelTrace.GameObject );
 
 		if ( !WheelTrace.Hit )
 			return;
 
-		var wheelForce = 0f; // New: Store for use as normal in friction
+		var springDirection = WorldRotation.Up;
+		var wheelOffset = car.SuspensionHeight - WheelTrace.Distance; // Adjust offset to place wheel bottom at ground
 
-		// Suspension
-		// Spring = (Offset x Strength) - (Velocity x Damping)
-		{
-			// World space direction of the spring force
-			var springDirection = WorldRotation.Up;
+		var wheelWorldVelocity = car.Rigidbody.GetVelocityAtPoint( WorldPosition );
+		var wheelVelocity = Vector3.Dot( springDirection, wheelWorldVelocity );
 
-			// Calculate wheel offset from the raycast
-			var wheelOffset = car.SuspensionHeight + WheelHeight / 2 - WheelTrace.Distance;
+		var wheelForce = wheelOffset * (car.SuspensionStrength * CarryingMass) - wheelVelocity *
+			(car.SuspensionDamping * CarryingMass);
 
-			// World space velocity of this tyre
-			var wheelWorldVelocity = car.Rigidbody.GetVelocityAtPoint( WorldPosition );
+		wheelForce = MathF.Max( 0f, wheelForce );
 
-			// Calculate velocity along the spring direction, springDir is a normal so this returns the magnitude 
-			// of wheelWorldVelocity projected onto springDirection
-			var wheelVelocity = Vector3.Dot( springDirection, wheelWorldVelocity );
-
-			// Calculate the magnitude of the dampened spring force
-			wheelForce = wheelOffset * (car.SuspensionStrength * CarryingMass) - wheelVelocity *
-				(car.SuspensionDamping * CarryingMass);
-
-			// New: Clamp to prevent negative forces (suspension doesn't pull down)
-			wheelForce = MathF.Max( 0f, wheelForce );
-
-			car.Rigidbody.ApplyForceAt( WorldPosition, springDirection * wheelForce );
-		}
-
+		car.Rigidbody.ApplyForceAt( WorldPosition, springDirection * wheelForce );
 		BlockSliding( wheelForce );
 
 		// Position wheel models
 		if ( WheelModel.IsValid() )
 		{
-			WheelModel.WorldPosition = WorldPosition.WithZ( WheelTrace.EndPosition.z + WheelHeight );
+			WheelModel.WorldPosition = WheelTrace.EndPosition + Vector3.Up * WheelRadius / 2;
 
-			// Don't spin wheels if the handbrake is applied.
 			if ( HandbrakeApplied )
 				return;
 
-			var wheelVelocity = car.Rigidbody.GetVelocityAtPoint( WorldPosition );
+			var wheelVelocityModel = car.Rigidbody.GetVelocityAtPoint( WheelModel.WorldPosition );
 
 			WheelModel.LocalRotation *=
-				Rotation.From( wheelVelocity.Length * Time.Delta * (FlipWheelSpinRotation ? -1f : 1f), 0, 0 );
+				Rotation.From( wheelVelocityModel.Length * Time.Delta * (FlipWheelSpinRotation ? -1f : 1f), 0, 0 );
 		}
 	}
 
 	private void BlockSliding( float wheelForce )
 	{
-		if ( !WheelTrace.Hit || wheelForce <= 0f ) // New: No friction without compression
+		if ( wheelForce <= 0f )
 			return;
-
-		// Steering
-		// Force = Mass x Acceleration
-		// Acceleration = Change in Velocity / Time
 
 		var car = CarController.Local;
 
-		// World space direction of the spring force
 		var steeringDirection = FlipWheelSpinRotation ? WorldRotation.Backward : WorldRotation.Forward;
 
-		// World space velocity of the suspension
 		var wheelVelocity = car.Rigidbody.GetVelocityAtPoint( WorldPosition );
 
-		// What is the tyres velocity in the steering direction?
-		// Steering direction is a normal, so this will return the magnitude of wheelVelocity projected
-		// onto steeringDirection
 		var steeringVelocity = Vector3.Dot( steeringDirection, wheelVelocity );
 
-		// Reduce grip during handbrake for sliding (only affects this wheel if handbraking)
-		var gripFactor = Input.Down( "brake" ) ? 0.2f : 1f; // Low grip = more slide
+		var gripFactor = Input.Down( "brake" ) ? 0.2f : 1f;
 
 		var wishVelocityChange = -steeringVelocity * gripFactor;
 
-		// Turn change in velocity into acceleration
-		// This will produce the acceleration necessary to change the velocity by wishVelocityChange in 1 physics
-		// step.
 		var wishAcceleration = wishVelocityChange / Time.Delta;
 
-		// Force = Mass * Acceleration, multiply by the mass of the tyre and apply as a force.
 		var desiredForce = CarryingMass * wishAcceleration;
 
-		// New: Clamp to friction limit (realistic max lateral force = mu * normal; here mu ≈ gripFactor, but tunable)
-		var muLateral =
-			1.5f; // Tune: Base tire friction coeff (1.0-1.5 for dry asphalt; multiply by gripFactor for reductions)
+		var muLateral = 1.5f;
+
 		var maxForceMag = muLateral * gripFactor * wheelForce;
+
 		var appliedForce = Math.Clamp( desiredForce, -maxForceMag, maxForceMag );
 
 		car.Rigidbody.ApplyForceAt( WorldPosition, steeringDirection * appliedForce );
@@ -125,8 +100,7 @@ public class CarWheel : Component
 
 	public void Accelerate( float distribution )
 	{
-		// Acceleration / braking
-		if ( !WheelTrace.Hit )
+		if ( !WheelTrace.Hit || Vector3.Dot( WheelTrace.Normal, WorldRotation.Up ) <= 0.7f )
 			return;
 
 		var car = CarController.Local;
@@ -139,21 +113,18 @@ public class CarWheel : Component
 		{
 			var normalizedSpeed = (MathF.Abs( carSpeed ) / car.MaxSpeed).Clamp( 0, 1 );
 
-			// Evaluate torque curve to figure out how much torque to apply
 			var availableTorque = car.TorqueCurve.Evaluate( normalizedSpeed ) * accelerationInput * distribution;
 
 			car.Rigidbody.ApplyForceAt( WorldPosition,
 				accelerationDirection * availableTorque * car.Rigidbody.Mass * 100f );
 		}
 
-		// Braking / air resistance
 		if ( accelerationInput < 0 || accelerationInput == 0 )
 		{
 			if ( accelerationInput == 0 )
 			{
 				var dragCoeff = 0.15f;
-				var dragForce = dragCoeff * carSpeed * car.Rigidbody.Mass *
-				                distribution;
+				var dragForce = dragCoeff * carSpeed * car.Rigidbody.Mass * distribution;
 
 				car.Rigidbody.ApplyForceAt( WorldPosition, -accelerationDirection * dragForce );
 
@@ -170,7 +141,7 @@ public class CarWheel : Component
 
 	public void HandBrake( float distribution )
 	{
-		if ( !WheelTrace.Hit )
+		if ( !WheelTrace.Hit || Vector3.Dot( WheelTrace.Normal, WorldRotation.Up ) <= 0.7f )
 			return;
 
 		HandbrakeApplied = true;
@@ -181,9 +152,8 @@ public class CarWheel : Component
 		var localSpeed = Vector3.Dot( accelerationDirection, car.Rigidbody.Velocity );
 
 		if ( MathF.Abs( localSpeed ) < 0.1f )
-			return; // No force if stopped
+			return;
 
-		// Apply strong opposing force to simulate locking
 		var brakeDir = -accelerationDirection.Normal * MathF.Sign( localSpeed );
 		var brakeForce = car.HandBrakeStrength * distribution * car.Rigidbody.Mass;
 
@@ -213,6 +183,14 @@ public class CarWheel : Component
 		Gizmo.Draw.Line( WheelTrace.StartPosition, WheelTrace.EndPosition );
 		Gizmo.Draw.SolidSphere( WheelTrace.EndPosition, 1f );
 
-		//Gizmo.Draw.ScreenText( $"{CarController.Local.}" );
+		if ( WheelModel.IsValid() )
+		{
+			Gizmo.Draw.Color = Color.Cyan.WithAlpha( 0.2f );
+			var axleDir = WheelModel.WorldRotation.Right;
+			Gizmo.Draw.SolidCylinder(
+				WheelModel.WorldPosition - axleDir * WheelWidth / 2,
+				WheelModel.WorldPosition + axleDir * WheelWidth / 2,
+				WheelRadius );
+		}
 	}
 }
