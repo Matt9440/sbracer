@@ -24,6 +24,8 @@ public class CarController : Component
 	[Property, Category( "Suspension" )] public float SuspensionDamping { get; set; } = 2500f;
 	[Property, Category( "Suspension" )] public float SuspensionStrength { get; set; } = 20000f;
 
+	public float DisplaySpeed => MathF.Round( Rigidbody.Velocity.WithZ( 0 ).Length, 0 );
+
 	/// <summary>
 	///     The length between a front wheel and a back wheel
 	/// </summary>

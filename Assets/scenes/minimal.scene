@@ -552,6 +552,17 @@
             "component_type": "CameraComponent"
           },
           "ZIndex": 100
+        },
+        {
+          "__type": "SBRacer.Ui.RootPanel",
+          "__guid": "34edb940-c537-4834-b17e-6c75aa16c2b1",
+          "__enabled": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
         }
       ],
       "Children": []
