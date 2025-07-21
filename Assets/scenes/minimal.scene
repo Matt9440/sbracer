@@ -488,43 +488,11 @@
           },
           {
             "Target": {
-              "Type": "Component",
-              "IdValue": "53346181-f894-4dd1-a8d7-b550858c82f6"
-            },
-            "Property": "IsTrigger",
-            "Value": true
-          },
-          {
-            "Target": {
-              "Type": "Component",
-              "IdValue": "c95e8e0e-50f5-4c32-bed4-e2576eedd19d"
-            },
-            "Property": "SuspensionHeight",
-            "Value": 10
-          },
-          {
-            "Target": {
-              "Type": "Component",
-              "IdValue": "c95e8e0e-50f5-4c32-bed4-e2576eedd19d"
-            },
-            "Property": "SuspensionStrength",
-            "Value": 150
-          },
-          {
-            "Target": {
               "Type": "GameObject",
-              "IdValue": "cc6b3b06-bd7b-4b48-86da-b3f4c101517d"
+              "IdValue": "8c63902a-e64b-48c8-b36e-bf5f2df26053"
             },
-            "Property": "Position",
-            "Value": "-0.0002441406,0.0009765625,15.03699"
-          },
-          {
-            "Target": {
-              "Type": "GameObject",
-              "IdValue": "425f152a-b557-4bbc-8e25-28240f15ca0b"
-            },
-            "Property": "Position",
-            "Value": "-0.0002441406,0.0009765625,15.03699"
+            "Property": "Rotation",
+            "Value": "0.0000000000002273737,-0.0000000000001136868,-0.7071068,0.7071068"
           }
         ],
         "MovedObjects": []

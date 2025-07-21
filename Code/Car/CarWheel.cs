@@ -30,10 +30,11 @@ public class CarWheel : Component
 		var endPos = WorldPosition + WorldRotation.Down * traceDist;
 
 		// Rotate cylinder 90 degrees to align axis with axle
-		WheelTrace = WheelTrace = Scene.Trace.Cylinder( WheelRadius, WheelRadius / 2, startPos, endPos )
+		WheelTrace = WheelTrace = Scene.Trace.Cylinder( WheelWidth, WheelRadius / 2, startPos, endPos )
 			.Rotated( Rotation.LookAt( WorldRotation.Down, WheelModel.WorldRotation.Right ) )
-			.IgnoreGameObjectHierarchy( car.GameObject )
+			.WithoutTags( "wheel", "car" )
 			.UseHitPosition()
+			.IgnoreGameObjectHierarchy( car.GameObject )
 			.Run();
 
 		if ( !WheelTrace.Hit )
@@ -169,7 +170,7 @@ public class CarWheel : Component
 
 		Gizmo.Transform = global::Transform.Zero;
 
-		Gizmo.Draw.Color = Color.Green;
+		/*Gizmo.Draw.Color = Color.Green;
 		Gizmo.Draw.Line( WorldPosition,
 			WorldPosition + (FlipWheelSpinRotation ? WorldRotation.Backward : WorldRotation.Forward) * 10f );
 
@@ -181,15 +182,16 @@ public class CarWheel : Component
 
 		Gizmo.Draw.Color = Color.White;
 		Gizmo.Draw.Line( WheelTrace.StartPosition, WheelTrace.EndPosition );
-		Gizmo.Draw.SolidSphere( WheelTrace.EndPosition, 1f );
+		Gizmo.Draw.SolidSphere( WheelTrace.EndPosition, 1f );*/
 
 		if ( WheelModel.IsValid() )
 		{
 			Gizmo.Draw.Color = Color.Cyan.WithAlpha( 0.2f );
 			var axleDir = WheelModel.WorldRotation.Right;
+
 			Gizmo.Draw.SolidCylinder(
-				WheelModel.WorldPosition - axleDir * WheelWidth / 2,
-				WheelModel.WorldPosition + axleDir * WheelWidth / 2,
+				WheelTrace.EndPosition - axleDir * WheelWidth / 2 + Vector3.Up * WheelRadius / 2,
+				WheelTrace.EndPosition + axleDir * WheelWidth / 2 + Vector3.Up * WheelRadius / 2,
 				WheelRadius );
 		}
 	}
