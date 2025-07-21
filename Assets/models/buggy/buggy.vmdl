@@ -1,0 +1,129 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:modeldoc29:version{3cec427c-1b0e-4d48-a90a-0436f33a6041} -->
+{
+	rootNode = 
+	{
+		_class = "RootNode"
+		children = 
+		[
+			{
+				_class = "MaterialGroupList"
+				children = 
+				[
+					{
+						_class = "DefaultMaterialGroup"
+						remaps = [  ]
+						use_global_default = true
+						global_default_material = "materials/default.vmat"
+					},
+				]
+			},
+			{
+				_class = "RenderMeshList"
+				children = 
+				[
+					{
+						_class = "RenderMeshFile"
+						filename = "models/buggy/buggy.fbx"
+						import_translation = [ 0.0, 0.0, 0.0 ]
+						import_rotation = [ -90.0, 0.0, 0.0 ]
+						import_scale = 40.0
+						align_origin_x_type = "None"
+						align_origin_y_type = "None"
+						align_origin_z_type = "None"
+						parent_bone = ""
+						import_filter = 
+						{
+							exclude_by_default = true
+							exception_list = 
+							[
+								"hl2buggy_battery_new",
+								"hl2buggy_radhose_v8",
+								"hl2buggy_radiator_performance",
+								"hl2buggy_engine_v8_353_pulley3_extension",
+								"hl2buggy_belt_supercharger",
+								"hl2buggy_engine_v8_353_pulley1_extension",
+								"hl2buggy_toplightglass_L_new",
+								"hl2buggy_wires_f_new",
+								"hl2buggy_headlightglass_CR_new",
+								"hl2buggy_headlightglass_CL_new",
+								"hl2buggy_headlightframe_L_new",
+								"hl2buggy_headlightframe_R_new",
+								"hl2buggy_radio_new",
+								"hl2buggy_shifterparts_new",
+								"hl2buggy_toplightglass_R_new",
+								"hl2buggy_brakelightglass_new",
+								"hl2buggy_headlightglass_C_new",
+								"hl2buggy_steeringbox_new",
+								"hl2buggy_subframe_f_new",
+								"hl2buggy_gaspedal_new",
+								"hl2buggy_seat_new",
+								"hl2buggy_floor_new",
+								"hl2buggy_fusebox_new",
+								"hl2buggy_toplightglass_L",
+								"hl2buggy_engine_v8_353_pulley2",
+								"hl2buggy_wires_f",
+								"hl2buggy_headlightglass_CR",
+								"hl2buggy_headlightglass_CL",
+								"hl2buggy_headlightframe_CL",
+								"hl2buggy_headlightframe_CR",
+								"hl2buggy_headlightframe_L",
+								"hl2buggy_headlightframe_R",
+								"hl2buggy_engine_v8_353_pulley3",
+								"hl2buggy_coolingfan_v8",
+								"hl2buggy_engine_v8_353_pulley1",
+								"hl2buggy_transmission",
+								"hl2buggy_header_v8_tubular_smallblock",
+								"hl2buggy_engine_v8_smallblock",
+								"hl2buggy_engine_v8_smallblock_001",
+								"hl2buggy_intake_v8_stock",
+								"hl2buggy_steeringwheel_001",
+								"hl2buggy_parkingbrake",
+								"hl2buggy_bumper",
+								"hl2buggy_fueltank",
+								"hl2buggy_gauges",
+								"hl2buggy_shifterparts",
+								"hl2buggy_brakelightglass",
+								"hl2buggy_exhaust",
+								"hl2buggy_frame",
+								"hl2buggy_headlightframe_C",
+								"hl2buggy_subframe_f",
+								"hl2buggy_brakepedal",
+								"hl2buggy_gaspedal",
+								"hl2buggy_battery",
+								"hl2buggy_floor",
+								"hl2buggy_fusebox",
+								"hl2buggy_ammobox",
+								"hl2buggy_steeringcolumn_lower_new",
+								"hl2buggy_steeringbox",
+								"hl2buggy_fenders",
+								"hl2buggy_intake",
+								"hl2buggy_steeringcolumn_lower",
+								"hl2buggy_valvecover_v8_smallblock_standard",
+								"hl2buggy_fenders_new",
+								"hl2buggy_bumper_new",
+							]
+						}
+					},
+				]
+			},
+			{
+				_class = "PhysicsShapeList"
+				children = 
+				[
+					{
+						_class = "PhysicsHullFromRender"
+						parent_bone = ""
+						surface_prop = "default"
+						collision_tags = "solid"
+						faceMergeAngle = 2.0
+						maxHullVertices = 16
+					},
+				]
+			},
+		]
+		model_archetype = ""
+		primary_associated_entity = ""
+		anim_graph_name = ""
+		base_model_name = ""
+	}
+}
