@@ -473,9 +473,55 @@
     {
       "__guid": "a45244aa-8024-48a7-bdc2-786ae3b17018",
       "__version": 1,
+      "__Prefab": "buggy.prefab",
+      "__PrefabInstancePatch": {
+        "AddedObjects": [],
+        "RemovedObjects": [],
+        "PropertyOverrides": [
+          {
+            "Target": {
+              "Type": "GameObject",
+              "IdValue": "d164c21b-3f2c-401b-8fad-5e76d284b220"
+            },
+            "Property": "Position",
+            "Value": "-2527.048,-5961.175,223.6996"
+          }
+        ],
+        "MovedObjects": []
+      },
+      "__PrefabIdToInstanceId": {
+        "d164c21b-3f2c-401b-8fad-5e76d284b220": "a45244aa-8024-48a7-bdc2-786ae3b17018",
+        "799272b4-f7ad-46ca-a5dd-c4a792d426f7": "82ffe211-0c58-4115-b29e-0515a211f0d0",
+        "53346181-f894-4dd1-a8d7-b550858c82f6": "d014bdb4-0f05-4ba9-8fb6-289df13ba41c",
+        "47627205-992c-4765-8837-d8d5db68537f": "72891e51-ab50-489b-8d6f-fdedfa59de05",
+        "c95e8e0e-50f5-4c32-bed4-e2576eedd19d": "1324935f-070c-4a50-b5e8-a8ea4b0f001b",
+        "cc6b3b06-bd7b-4b48-86da-b3f4c101517d": "edefef2b-a704-44c6-9604-1eb0f831c4e2",
+        "7647c57b-4f20-4713-a2a6-d8c21156a35c": "2c3172a2-3ab1-4ca7-adaa-c05d7a3e5dc1",
+        "85ffe15d-b939-4cb3-bc70-f4c9ce8f11d2": "97be8c66-68cc-416e-97d6-9502d87cde0c",
+        "8c63902a-e64b-48c8-b36e-bf5f2df26053": "c5c8814c-ab7f-4951-bc4a-c54b7fb6dd77",
+        "993d32de-0a3a-40bd-a4eb-a168d3cde05f": "0205f675-d321-4daa-bce5-5af206179ddf",
+        "b8d76430-1d39-4440-8010-1d4a7c875cda": "4dcb53b3-43b4-45e5-bfd9-ee0e6b46b408",
+        "c16069c4-a011-472a-a372-34daaff81040": "5bc2a3c5-e870-4169-8021-aa7fa5caf429",
+        "ae76ebbe-f3b6-4e1c-8fe0-43a829a0b912": "a19b1bc2-fe25-4dcb-a51b-6fa1ae4b2b0c",
+        "7c13f835-d733-43a6-b8f9-6412a5f5bf79": "ad62c7ad-baa3-4721-a6ed-19cf6f3d54b2",
+        "425f152a-b557-4bbc-8e25-28240f15ca0b": "c1d9b00e-e0c0-4537-b941-224777a8f0cc",
+        "8db84d3f-18cc-45bf-9247-04bc129590c5": "b358e256-e2f3-4e72-a9c2-a80fca503db6",
+        "fe285aec-e62b-423d-ad4b-e4e6243a0676": "b566f26d-6a90-4118-b409-b66737f4ad28",
+        "c2fa97fa-5148-427b-9d67-564a612c0e6e": "ed6c69ae-afd6-4fff-b170-2f9d87b5f44e",
+        "c7dd8c51-8aea-4149-a8d6-2a7765b11f8f": "855792d9-d56f-4d64-80e6-70cc4a68c342",
+        "d6f735a3-101f-4f47-ba20-fc76146b6970": "a8ead852-2541-419f-944e-2791003d7c34",
+        "e15bb0e6-23f2-4698-9f97-e0bbd2b09f75": "46b7a462-2302-41ae-9a28-a3b1b9b89525",
+        "fe757cdf-bb02-4724-b493-c56e51acb734": "c078b2b6-5de3-4fd0-ba05-84279d12c792",
+        "ea162222-2044-47d5-9c2b-ea288cbbee47": "7e7c2a56-04dd-48ed-825d-77fa6f6dc7e5",
+        "a6c0a009-c383-4c28-948b-c694688f5495": "636c602b-8472-4102-9d70-32e8fcd5c0bf"
+      }
+    },
+    {
+      "__guid": "b3efbb09-0c2e-40a3-9632-db204ac09fbd",
+      "__version": 1,
       "Flags": 0,
-      "Name": "buggy",
-      "Position": "-2527.048,-5961.175,223.6996",
+      "Name": "UI",
+      "Position": "-2539.939,-6058.343,219.0157",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "",
@@ -486,563 +532,29 @@
       "OwnerTransfer": 1,
       "Components": [
         {
-          "__type": "Sandbox.ModelRenderer",
-          "__guid": "82ffe211-0c58-4115-b29e-0515a211f0d0",
+          "__type": "Sandbox.ScreenPanel",
+          "__guid": "522c7b88-4f70-46e2-99f4-4aeaeb163d0e",
           "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "CreateAttachments": false,
-          "MaterialGroup": null,
-          "MaterialOverride": null,
-          "Materials": null,
-          "Model": "models/buggy/buggy.vmdl",
+          "AutoScreenScale": true,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
-          "RenderOptions": {
-            "GameLayer": true,
-            "OverlayLayer": false,
-            "BloomLayer": false,
-            "AfterUILayer": false
-          },
-          "RenderType": "On",
-          "Tint": "1,1,1,1"
-        },
-        {
-          "__type": "Sandbox.ModelCollider",
-          "__guid": "d014bdb4-0f05-4ba9-8fb6-289df13ba41c",
-          "__enabled": true,
-          "Elasticity": null,
-          "Friction": null,
-          "IsTrigger": false,
-          "Model": "models/buggy/buggy.vmdl",
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "OnObjectTriggerEnter": null,
-          "OnObjectTriggerExit": null,
-          "OnTriggerEnter": null,
-          "OnTriggerExit": null,
-          "RollingResistance": null,
-          "Static": false,
-          "Surface": null,
-          "SurfaceVelocity": "0,0,0"
-        },
-        {
-          "__type": "Sandbox.Rigidbody",
-          "__guid": "72891e51-ab50-489b-8d6f-fdedfa59de05",
-          "__enabled": true,
-          "AngularDamping": 0,
-          "Gravity": true,
-          "LinearDamping": 0,
-          "Locking": {
-            "X": false,
-            "Y": false,
-            "Z": false,
-            "Pitch": false,
-            "Yaw": false,
-            "Roll": false
-          },
-          "MassCenterOverride": "-7.2,0,13.19998",
-          "MassOverride": 1059,
-          "MotionEnabled": true,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "OverrideMassCenter": true,
-          "RigidbodyFlags": 0,
-          "StartAsleep": false
-        },
-        {
-          "__type": "SBRacer.Car.CarController",
-          "__guid": "1324935f-070c-4a50-b5e8-a8ea4b0f001b",
-          "__enabled": true,
-          "BackLeftWheel": {
+          "Opacity": 1,
+          "Scale": 1,
+          "ScaleStrategy": "ConsistentHeight",
+          "TargetCamera": {
             "_type": "component",
-            "component_id": "46b7a462-2302-41ae-9a28-a3b1b9b89525",
-            "go": "a8ead852-2541-419f-944e-2791003d7c34",
-            "component_type": "CarWheel"
+            "component_id": "79539e82-b3e6-46b9-83a2-db9faf45f592",
+            "go": "90f81ab9-6fa8-47fb-80b1-43f7e51f3610",
+            "component_type": "CameraComponent"
           },
-          "BackRightWheel": {
-            "_type": "component",
-            "component_id": "b566f26d-6a90-4118-b409-b66737f4ad28",
-            "go": "b358e256-e2f3-4e72-a9c2-a80fca503db6",
-            "component_type": "CarWheel"
-          },
-          "BrakeStrength": 50,
-          "CameraLookAt": {
-            "_type": "gameobject",
-            "go": "636c602b-8472-4102-9d70-32e8fcd5c0bf"
-          },
-          "DriveType": "RearWheelDrive",
-          "FrontLeftWheel": {
-            "_type": "component",
-            "component_id": "5bc2a3c5-e870-4169-8021-aa7fa5caf429",
-            "go": "4dcb53b3-43b4-45e5-bfd9-ee0e6b46b408",
-            "component_type": "CarWheel"
-          },
-          "FrontRightWheel": {
-            "_type": "component",
-            "component_id": "97be8c66-68cc-416e-97d6-9502d87cde0c",
-            "go": "2c3172a2-3ab1-4ca7-adaa-c05d7a3e5dc1",
-            "component_type": "CarWheel"
-          },
-          "HandBrakeStrength": 120,
-          "MaxSpeed": 200,
-          "MaxSteerAngle": 30,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "Rigidbody": {
-            "_type": "component",
-            "component_id": "72891e51-ab50-489b-8d6f-fdedfa59de05",
-            "go": "a45244aa-8024-48a7-bdc2-786ae3b17018",
-            "component_type": "Rigidbody"
-          },
-          "SteeringEffectivenessCurve": {
-            "rangey": "1,1.2",
-            "frames": [
-              {
-                "x": 0,
-                "y": 0,
-                "in": 0,
-                "out": 0,
-                "mode": "Linear"
-              },
-              {
-                "x": 1,
-                "y": 1,
-                "in": 0,
-                "out": 0,
-                "mode": "Linear"
-              }
-            ]
-          },
-          "SteeringSpeed": 60,
-          "SuspensionDamping": 26,
-          "SuspensionHeight": 8,
-          "SuspensionStrength": 175,
-          "TorqueCurve": {
-            "rangey": "0.3,1",
-            "frames": [
-              {
-                "x": 0,
-                "y": 0.28571427,
-                "in": 0,
-                "out": 0,
-                "mode": "Mirrored"
-              },
-              {
-                "x": 0.4015625,
-                "y": 1,
-                "in": 0,
-                "out": 0,
-                "mode": "Mirrored"
-              },
-              {
-                "x": 0.6984375,
-                "y": 1,
-                "in": 0,
-                "out": 0,
-                "mode": "Mirrored"
-              },
-              {
-                "x": 1,
-                "y": -0.003968307,
-                "in": 0,
-                "out": 0,
-                "mode": "Mirrored"
-              }
-            ]
-          }
+          "ZIndex": 100
         }
       ],
-      "Children": [
-        {
-          "__guid": "edefef2b-a704-44c6-9604-1eb0f831c4e2",
-          "__version": 1,
-          "Flags": 0,
-          "Name": "Front Wheels",
-          "Position": "-0.0002441406,0.0009765625,9.664703",
-          "Rotation": "0,0,-0.7071067,0.7071068",
-          "Scale": "1,1,1",
-          "Tags": "",
-          "Enabled": true,
-          "NetworkMode": 2,
-          "NetworkInterpolation": true,
-          "NetworkOrphaned": 0,
-          "OwnerTransfer": 1,
-          "Components": [],
-          "Children": [
-            {
-              "__guid": "2c3172a2-3ab1-4ca7-adaa-c05d7a3e5dc1",
-              "__version": 1,
-              "Flags": 0,
-              "Name": "fr",
-              "Position": "33.99952,69,0.00003054738",
-              "Rotation": "0.0000002538732,-0.000002487646,0.0000000000006315467,1",
-              "Scale": "0.8,0.8,0.8",
-              "Tags": "",
-              "Enabled": true,
-              "NetworkMode": 2,
-              "NetworkInterpolation": true,
-              "NetworkOrphaned": 0,
-              "OwnerTransfer": 1,
-              "Components": [
-                {
-                  "__type": "SBRacer.Car.CarWheel",
-                  "__guid": "97be8c66-68cc-416e-97d6-9502d87cde0c",
-                  "__enabled": true,
-                  "FlipWheelSpinRotation": false,
-                  "OnComponentDestroy": null,
-                  "OnComponentDisabled": null,
-                  "OnComponentEnabled": null,
-                  "OnComponentFixedUpdate": null,
-                  "OnComponentStart": null,
-                  "OnComponentUpdate": null,
-                  "WheelModel": {
-                    "_type": "component",
-                    "component_id": "0205f675-d321-4daa-bce5-5af206179ddf",
-                    "go": "c5c8814c-ab7f-4951-bc4a-c54b7fb6dd77",
-                    "component_type": "ModelRenderer"
-                  }
-                }
-              ],
-              "Children": [
-                {
-                  "__guid": "c5c8814c-ab7f-4951-bc4a-c54b7fb6dd77",
-                  "__version": 1,
-                  "Flags": 0,
-                  "Name": "Model",
-                  "Position": "0,0,0",
-                  "Rotation": "0,-0,-0.7071068,0.7071068",
-                  "Scale": "1,1,1",
-                  "Tags": "wheel",
-                  "Enabled": true,
-                  "NetworkMode": 2,
-                  "NetworkInterpolation": true,
-                  "NetworkOrphaned": 0,
-                  "OwnerTransfer": 1,
-                  "Components": [
-                    {
-                      "__type": "Sandbox.ModelRenderer",
-                      "__guid": "0205f675-d321-4daa-bce5-5af206179ddf",
-                      "__enabled": true,
-                      "BodyGroups": 18446744073709551615,
-                      "CreateAttachments": false,
-                      "MaterialGroup": null,
-                      "MaterialOverride": null,
-                      "Materials": null,
-                      "Model": "models/citizen_props/wheel01.vmdl",
-                      "OnComponentDestroy": null,
-                      "OnComponentDisabled": null,
-                      "OnComponentEnabled": null,
-                      "OnComponentFixedUpdate": null,
-                      "OnComponentStart": null,
-                      "OnComponentUpdate": null,
-                      "RenderOptions": {
-                        "GameLayer": true,
-                        "OverlayLayer": false,
-                        "BloomLayer": false,
-                        "AfterUILayer": false
-                      },
-                      "RenderType": "On",
-                      "Tint": "1,1,1,1"
-                    }
-                  ],
-                  "Children": []
-                }
-              ]
-            },
-            {
-              "__guid": "4dcb53b3-43b4-45e5-bfd9-ee0e6b46b408",
-              "__version": 1,
-              "Flags": 0,
-              "Name": "fl",
-              "Position": "-34.00048,69,0.00003054738",
-              "Rotation": "0.0000002538732,-0.000002487646,0.0000000000006315467,1",
-              "Scale": "0.8,0.8,0.8",
-              "Tags": "",
-              "Enabled": true,
-              "NetworkMode": 2,
-              "NetworkInterpolation": true,
-              "NetworkOrphaned": 0,
-              "OwnerTransfer": 1,
-              "Components": [
-                {
-                  "__type": "SBRacer.Car.CarWheel",
-                  "__guid": "5bc2a3c5-e870-4169-8021-aa7fa5caf429",
-                  "__enabled": true,
-                  "FlipWheelSpinRotation": true,
-                  "OnComponentDestroy": null,
-                  "OnComponentDisabled": null,
-                  "OnComponentEnabled": null,
-                  "OnComponentFixedUpdate": null,
-                  "OnComponentStart": null,
-                  "OnComponentUpdate": null,
-                  "WheelModel": {
-                    "_type": "component",
-                    "component_id": "ad62c7ad-baa3-4721-a6ed-19cf6f3d54b2",
-                    "go": "a19b1bc2-fe25-4dcb-a51b-6fa1ae4b2b0c",
-                    "component_type": "ModelRenderer"
-                  }
-                }
-              ],
-              "Children": [
-                {
-                  "__guid": "a19b1bc2-fe25-4dcb-a51b-6fa1ae4b2b0c",
-                  "__version": 1,
-                  "Flags": 0,
-                  "Name": "Model",
-                  "Position": "0,0,0",
-                  "Rotation": "0.00000002676764,0.00000002676764,0.7071068,0.7071068",
-                  "Scale": "1,1,1",
-                  "Tags": "",
-                  "Enabled": true,
-                  "NetworkMode": 2,
-                  "NetworkInterpolation": true,
-                  "NetworkOrphaned": 0,
-                  "OwnerTransfer": 1,
-                  "Components": [
-                    {
-                      "__type": "Sandbox.ModelRenderer",
-                      "__guid": "ad62c7ad-baa3-4721-a6ed-19cf6f3d54b2",
-                      "__enabled": true,
-                      "BodyGroups": 18446744073709551615,
-                      "CreateAttachments": false,
-                      "MaterialGroup": null,
-                      "MaterialOverride": null,
-                      "Materials": null,
-                      "Model": "models/citizen_props/wheel01.vmdl",
-                      "OnComponentDestroy": null,
-                      "OnComponentDisabled": null,
-                      "OnComponentEnabled": null,
-                      "OnComponentFixedUpdate": null,
-                      "OnComponentStart": null,
-                      "OnComponentUpdate": null,
-                      "RenderOptions": {
-                        "GameLayer": true,
-                        "OverlayLayer": false,
-                        "BloomLayer": false,
-                        "AfterUILayer": false
-                      },
-                      "RenderType": "On",
-                      "Tint": "1,1,1,1"
-                    }
-                  ],
-                  "Children": []
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "__guid": "c1d9b00e-e0c0-4537-b941-224777a8f0cc",
-          "__version": 1,
-          "Flags": 0,
-          "Name": "Rear Wheels",
-          "Position": "-0.0002441406,0.0009765625,9.664703",
-          "Rotation": "0,0,-0.7071067,0.7071068",
-          "Scale": "1,1,1",
-          "Tags": "",
-          "Enabled": true,
-          "NetworkMode": 2,
-          "NetworkInterpolation": true,
-          "NetworkOrphaned": 0,
-          "OwnerTransfer": 1,
-          "Components": [],
-          "Children": [
-            {
-              "__guid": "b358e256-e2f3-4e72-a9c2-a80fca503db6",
-              "__version": 1,
-              "Flags": 0,
-              "Name": "br",
-              "Position": "33.9995,-57.31787,0",
-              "Rotation": "0,0,0,1",
-              "Scale": "1,1,1",
-              "Tags": "",
-              "Enabled": true,
-              "NetworkMode": 2,
-              "NetworkInterpolation": true,
-              "NetworkOrphaned": 0,
-              "OwnerTransfer": 1,
-              "Components": [
-                {
-                  "__type": "SBRacer.Car.CarWheel",
-                  "__guid": "b566f26d-6a90-4118-b409-b66737f4ad28",
-                  "__enabled": true,
-                  "FlipWheelSpinRotation": false,
-                  "OnComponentDestroy": null,
-                  "OnComponentDisabled": null,
-                  "OnComponentEnabled": null,
-                  "OnComponentFixedUpdate": null,
-                  "OnComponentStart": null,
-                  "OnComponentUpdate": null,
-                  "WheelModel": {
-                    "_type": "component",
-                    "component_id": "855792d9-d56f-4d64-80e6-70cc4a68c342",
-                    "go": "ed6c69ae-afd6-4fff-b170-2f9d87b5f44e",
-                    "component_type": "ModelRenderer"
-                  }
-                }
-              ],
-              "Children": [
-                {
-                  "__guid": "ed6c69ae-afd6-4fff-b170-2f9d87b5f44e",
-                  "__version": 1,
-                  "Flags": 0,
-                  "Name": "Model",
-                  "Position": "0,0,0",
-                  "Rotation": "0,0,-0.7071068,0.7071068",
-                  "Scale": "1,1,1",
-                  "Tags": "",
-                  "Enabled": true,
-                  "NetworkMode": 2,
-                  "NetworkInterpolation": true,
-                  "NetworkOrphaned": 0,
-                  "OwnerTransfer": 1,
-                  "Components": [
-                    {
-                      "__type": "Sandbox.ModelRenderer",
-                      "__guid": "855792d9-d56f-4d64-80e6-70cc4a68c342",
-                      "__enabled": true,
-                      "BodyGroups": 18446744073709551615,
-                      "CreateAttachments": false,
-                      "MaterialGroup": null,
-                      "MaterialOverride": null,
-                      "Materials": null,
-                      "Model": "models/citizen_props/wheel01.vmdl",
-                      "OnComponentDestroy": null,
-                      "OnComponentDisabled": null,
-                      "OnComponentEnabled": null,
-                      "OnComponentFixedUpdate": null,
-                      "OnComponentStart": null,
-                      "OnComponentUpdate": null,
-                      "RenderOptions": {
-                        "GameLayer": true,
-                        "OverlayLayer": false,
-                        "BloomLayer": false,
-                        "AfterUILayer": false
-                      },
-                      "RenderType": "On",
-                      "Tint": "1,1,1,1"
-                    }
-                  ],
-                  "Children": []
-                }
-              ]
-            },
-            {
-              "__guid": "a8ead852-2541-419f-944e-2791003d7c34",
-              "__version": 1,
-              "Flags": 0,
-              "Name": "bl",
-              "Position": "-34.0005,-57.31786,0",
-              "Rotation": "0,0,0,1",
-              "Scale": "1,1,1",
-              "Tags": "",
-              "Enabled": true,
-              "NetworkMode": 2,
-              "NetworkInterpolation": true,
-              "NetworkOrphaned": 0,
-              "OwnerTransfer": 1,
-              "Components": [
-                {
-                  "__type": "SBRacer.Car.CarWheel",
-                  "__guid": "46b7a462-2302-41ae-9a28-a3b1b9b89525",
-                  "__enabled": true,
-                  "FlipWheelSpinRotation": true,
-                  "OnComponentDestroy": null,
-                  "OnComponentDisabled": null,
-                  "OnComponentEnabled": null,
-                  "OnComponentFixedUpdate": null,
-                  "OnComponentStart": null,
-                  "OnComponentUpdate": null,
-                  "WheelModel": {
-                    "_type": "component",
-                    "component_id": "7e7c2a56-04dd-48ed-825d-77fa6f6dc7e5",
-                    "go": "c078b2b6-5de3-4fd0-ba05-84279d12c792",
-                    "component_type": "ModelRenderer"
-                  }
-                }
-              ],
-              "Children": [
-                {
-                  "__guid": "c078b2b6-5de3-4fd0-ba05-84279d12c792",
-                  "__version": 1,
-                  "Flags": 0,
-                  "Name": "Model",
-                  "Position": "0,0,0",
-                  "Rotation": "0.00000005353531,0.00000005353532,0.7071068,0.7071068",
-                  "Scale": "1,1,1",
-                  "Tags": "",
-                  "Enabled": true,
-                  "NetworkMode": 2,
-                  "NetworkInterpolation": true,
-                  "NetworkOrphaned": 0,
-                  "OwnerTransfer": 1,
-                  "Components": [
-                    {
-                      "__type": "Sandbox.ModelRenderer",
-                      "__guid": "7e7c2a56-04dd-48ed-825d-77fa6f6dc7e5",
-                      "__enabled": true,
-                      "BodyGroups": 18446744073709551615,
-                      "CreateAttachments": false,
-                      "MaterialGroup": null,
-                      "MaterialOverride": null,
-                      "Materials": null,
-                      "Model": "models/citizen_props/wheel01.vmdl",
-                      "OnComponentDestroy": null,
-                      "OnComponentDisabled": null,
-                      "OnComponentEnabled": null,
-                      "OnComponentFixedUpdate": null,
-                      "OnComponentStart": null,
-                      "OnComponentUpdate": null,
-                      "RenderOptions": {
-                        "GameLayer": true,
-                        "OverlayLayer": false,
-                        "BloomLayer": false,
-                        "AfterUILayer": false
-                      },
-                      "RenderType": "On",
-                      "Tint": "1,1,1,1"
-                    }
-                  ],
-                  "Children": []
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "__guid": "636c602b-8472-4102-9d70-32e8fcd5c0bf",
-          "__version": 1,
-          "Flags": 0,
-          "Name": "LookAt",
-          "Position": "0,0,53.1918",
-          "Rotation": "0,0,0,1",
-          "Scale": "1,1,1",
-          "Tags": "",
-          "Enabled": true,
-          "NetworkMode": 2,
-          "NetworkInterpolation": true,
-          "NetworkOrphaned": 0,
-          "OwnerTransfer": 1,
-          "Components": [],
-          "Children": []
-        }
-      ]
+      "Children": []
     }
   ],
   "SceneProperties": {

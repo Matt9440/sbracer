@@ -1,0 +1,20 @@
+$heading-font: 'Freckle Face';
+$body-font: 'Rubik';
+
+title {
+	font-family: $heading-font;
+	font-size: 60px;
+}
+
+p {
+	font-family: $body-font;
+}
+
+b {
+	font-weight: bold;
+}
+
+$green: #05cd69;
+$yellow: #cdc305;
+$red: #cd0505;
+$white: rgba(238, 238, 238, 1);
