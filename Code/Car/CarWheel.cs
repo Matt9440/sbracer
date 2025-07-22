@@ -18,7 +18,7 @@ public class CarWheel : Component
 
 	protected override void OnUpdate()
 	{
-		DrawGizmos();
+		//DrawGizmos();
 	}
 
 	private void RunWheelTrace( float inwardOffset = 0 )
@@ -45,7 +45,7 @@ public class CarWheel : Component
 	/// </summary>
 	private void HandleWallCollisions()
 	{
-		Gizmo.Draw.IgnoreDepth = true;
+		//Gizmo.Draw.IgnoreDepth = true;
 
 		var wallTrace = Scene.Trace
 			.Ray( WheelTrace.EndPosition - WheelTraceInwardOffset,
@@ -55,7 +55,7 @@ public class CarWheel : Component
 
 		if ( wallTrace.Hit )
 		{
-			Gizmo.Draw.Line( wallTrace.EndPosition, wallTrace.EndPosition + wallTrace.Normal * 10 );
+			//Gizmo.Draw.Line( wallTrace.EndPosition, wallTrace.EndPosition + wallTrace.Normal * 10 );
 
 			var impulseStrength = 0.8f;
 			var normal = wallTrace.Normal;
@@ -69,8 +69,8 @@ public class CarWheel : Component
 			Car.Rigidbody.ApplyImpulseAt( WorldPosition, impulse );
 		}
 
-		Gizmo.Draw.LineThickness = 5f;
-		Gizmo.Draw.Line( wallTrace.StartPosition, wallTrace.EndPosition );
+		//Gizmo.Draw.LineThickness = 5f;
+		//Gizmo.Draw.Line( wallTrace.StartPosition, wallTrace.EndPosition );
 	}
 
 	protected override void OnFixedUpdate()

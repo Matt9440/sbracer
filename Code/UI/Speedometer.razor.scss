@@ -1,10 +1,14 @@
+@import "./Base.scss";
+
 Speedometer {
 	position: absolute;
 	bottom: -150px;
 	left: 50px;
 	width: 600px;
 	align-items: flex-start;
-	filter: border-wrap(4px #000000) drop-shadow(0px 0px 35px rgba(0, 0, 0, 1));
+	text-transform: uppercase;
+	font-family: $body-font;
+	filter: border-wrap(2px rgba(57, 57, 57, 0.37)) drop-shadow(0px 0px 35px rgba(0, 0, 0, 1));
 
 	.gauge {
 		width: 330px;
@@ -70,7 +74,6 @@ Speedometer {
 		border-radius: 4px;
 		transform-origin: 1.5px bottom;
 		filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 1));
-		transition: all 0.05s ease;
 	}
 
 	.needle-dot {
@@ -86,7 +89,7 @@ Speedometer {
 
 	.speed-display {
 		color: white;
-		font-size: 22px;
+		font-size: 24px;
 		white-space: nowrap;
 		position: absolute;
 		bottom: 180px;

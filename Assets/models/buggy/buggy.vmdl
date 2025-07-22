@@ -11,9 +11,27 @@
 				[
 					{
 						_class = "DefaultMaterialGroup"
-						remaps = [  ]
-						use_global_default = true
-						global_default_material = "materials/default.vmat"
+						remaps = 
+						[
+							{
+								from = "buggy_sheet_a.vmat"
+								to = "models/buggy/materials/buggy_sheet_a_raster.vmat"
+							},
+							{
+								from = "buggy_sheet_b.vmat"
+								to = "models/buggy/materials/buggy_sheet_b_raster.color.vmat"
+							},
+							{
+								from = "buggy_sheet_c.vmat"
+								to = "models/buggy/materials/buggy_sheet_c_raster.color.vmat"
+							},
+							{
+								from = "hl2buggy_metal.vmat"
+								to = "models/buggy/materials/hl2buggy_metal.vmat"
+							},
+						]
+						use_global_default = false
+						global_default_material = "models/buggy/materials/buggy_sheet_a_raster.vmat"
 					},
 				]
 			},
@@ -36,71 +54,22 @@
 							exclude_by_default = true
 							exception_list = 
 							[
-								"hl2buggy_battery_new",
-								"hl2buggy_radhose_v8",
-								"hl2buggy_radiator_performance",
-								"hl2buggy_engine_v8_353_pulley3_extension",
-								"hl2buggy_belt_supercharger",
-								"hl2buggy_engine_v8_353_pulley1_extension",
-								"hl2buggy_toplightglass_L_new",
-								"hl2buggy_wires_f_new",
-								"hl2buggy_headlightglass_CR_new",
-								"hl2buggy_headlightglass_CL_new",
-								"hl2buggy_headlightframe_L_new",
-								"hl2buggy_headlightframe_R_new",
-								"hl2buggy_radio_new",
-								"hl2buggy_shifterparts_new",
-								"hl2buggy_toplightglass_R_new",
-								"hl2buggy_brakelightglass_new",
-								"hl2buggy_headlightglass_C_new",
-								"hl2buggy_steeringbox_new",
-								"hl2buggy_subframe_f_new",
-								"hl2buggy_gaspedal_new",
-								"hl2buggy_seat_new",
-								"hl2buggy_floor_new",
-								"hl2buggy_fusebox_new",
-								"hl2buggy_toplightglass_L",
-								"hl2buggy_engine_v8_353_pulley2",
-								"hl2buggy_wires_f",
-								"hl2buggy_headlightglass_CR",
-								"hl2buggy_headlightglass_CL",
-								"hl2buggy_headlightframe_CL",
-								"hl2buggy_headlightframe_CR",
-								"hl2buggy_headlightframe_L",
-								"hl2buggy_headlightframe_R",
-								"hl2buggy_engine_v8_353_pulley3",
-								"hl2buggy_coolingfan_v8",
-								"hl2buggy_engine_v8_353_pulley1",
-								"hl2buggy_transmission",
-								"hl2buggy_header_v8_tubular_smallblock",
-								"hl2buggy_engine_v8_smallblock",
-								"hl2buggy_engine_v8_smallblock_001",
-								"hl2buggy_intake_v8_stock",
 								"hl2buggy_steeringwheel_001",
 								"hl2buggy_parkingbrake",
-								"hl2buggy_bumper",
 								"hl2buggy_fueltank",
 								"hl2buggy_gauges",
-								"hl2buggy_shifterparts",
-								"hl2buggy_brakelightglass",
-								"hl2buggy_exhaust",
 								"hl2buggy_frame",
-								"hl2buggy_headlightframe_C",
-								"hl2buggy_subframe_f",
 								"hl2buggy_brakepedal",
 								"hl2buggy_gaspedal",
 								"hl2buggy_battery",
 								"hl2buggy_floor",
-								"hl2buggy_fusebox",
-								"hl2buggy_ammobox",
-								"hl2buggy_steeringcolumn_lower_new",
-								"hl2buggy_steeringbox",
 								"hl2buggy_fenders",
-								"hl2buggy_intake",
+								"hl2buggy_bumper",
+								"hl2buggy_fusebox",
+								"hl2buggy_fusebox_new",
+								"hl2buggy_seat",
+								"hl2buggy_steeringbox",
 								"hl2buggy_steeringcolumn_lower",
-								"hl2buggy_valvecover_v8_smallblock_standard",
-								"hl2buggy_fenders_new",
-								"hl2buggy_bumper_new",
 							]
 						}
 					},
