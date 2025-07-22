@@ -1,0 +1,57 @@
+@inherits Panel
+@namespace SBRacer.Ui
+
+<root>
+	<div class="gauge">
+		<label class="speed-display">@Speed.ToString( "F0" ) mph</label>
+		
+		@for ( var i = 0; i <= 10; i++ )
+		{
+			var tickAngle = i * 18 - 90;
+			<div class="tick-container" style="transform: rotate(@( tickAngle )deg);">
+				<div class="tick"></div>
+			</div>
+		}
+		@for ( var i = 0; i <= 19; i++ )
+		{
+			var subTickAngle = i * 9 - 90;
+			<div class="tick-container" style="transform: rotate(@( subTickAngle )deg);">
+				<div class="tick subtick"></div>
+			</div>
+		}
+		@for ( var i = 0; i <= 10; i++ )
+		{
+			var angle = i * 18 - 90;
+			<div class="label-container" style="transform: rotate(@( angle )deg);">
+				<label class="label" style="">@( i * 20 )</label>
+			</div>
+		}
+		<div class="needle" @ref=" Needle"></div>
+		<div class="needle-dot"></div>
+	</div>
+</root>
+
+@code
+{
+	public Panel Needle { get; set; }
+
+	public float Speed => CarController.Local.DisplaySpeed;
+	public float MaxSpeed => CarController.Local.MaxSpeed;
+
+	public override void Tick()
+	{
+		if ( !Needle.IsValid() )
+		{
+			return;
+		}
+
+		var normalized = Math.Clamp( Speed / MaxSpeed, 0f, 1f );
+		var angle = -90f + normalized * 180f;
+		Needle.Style.Set( "transform", $"rotate({angle}deg)" );
+	}
+
+	protected override int BuildHash()
+	{
+		return HashCode.Combine( Speed );
+	}
+}
