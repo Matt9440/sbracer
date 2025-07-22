@@ -12,10 +12,36 @@ public class CarWheel : Component
 	private float CarryingMass => CarController.Local.Rigidbody.Mass / 4;
 
 	public bool HandbrakeApplied { get; set; }
+	private Vector3 WheelTraceInwardOffset { get; set; }
 
 	protected override void OnUpdate()
 	{
 		DrawGizmos();
+	}
+
+	private void RunWheelTrace( float inwardOffset = 0 )
+	{
+		var car = CarController.Local;
+
+		var traceDist = car.SuspensionHeight + WheelRadius;
+		var startPos = WorldPosition;
+		var endPos = WorldPosition + WorldRotation.Down * traceDist;
+		var inwardDirection = FlipWheelSpinRotation ? WorldRotation.Forward : WorldRotation.Backward;
+
+		WheelTraceInwardOffset = inwardDirection * inwardOffset;
+		startPos += WheelTraceInwardOffset;
+		endPos += WheelTraceInwardOffset;
+
+		Gizmo.Draw.IgnoreDepth = true;
+		Gizmo.Draw.LineThickness = 10f;
+		Gizmo.Draw.Line( WorldPosition, WorldPosition + inwardDirection * 30 );
+
+		// Rotate cylinder 90 degrees to align axis with axle
+		WheelTrace = WheelTrace = Scene.Trace.Cylinder( WheelWidth, WheelRadius / 2, startPos, endPos )
+			.Rotated( Rotation.LookAt( WorldRotation.Down, WheelModel.WorldRotation.Right ) )
+			.WithoutTags( "wheel", "car" )
+			.IgnoreGameObjectHierarchy( car.GameObject )
+			.Run();
 	}
 
 	protected override void OnFixedUpdate()
@@ -25,57 +51,29 @@ public class CarWheel : Component
 
 		var car = CarController.Local;
 
-		var traceDist = car.SuspensionHeight + WheelRadius;
-		var startPos = WorldPosition;
-		var endPos = WorldPosition + WorldRotation.Down * traceDist;
+		RunWheelTrace();
 
-		// Rotate cylinder 90 degrees to align axis with axle
-		WheelTrace = WheelTrace = Scene.Trace.Cylinder( WheelWidth, WheelRadius / 2, startPos, endPos )
-			.Rotated( Rotation.LookAt( WorldRotation.Down, WheelModel.WorldRotation.Right ) )
-			.WithoutTags( "wheel", "car" )
-			.IgnoreGameObjectHierarchy( car.GameObject )
-			.Run();
+		// If the cylinder trace has started solid it's probably in a wall, move it inwards towards the body of the car.
+		if ( WheelTrace.StartedSolid )
+		{
+			var maxInwardOffset = 10f; // Maximum distance to move inward 
+			var stepSize = 1f; // Incremental step size for inward movement
+
+			// Try moving inward until not solid or max offset reached
+			for ( var inwardOffset = stepSize; inwardOffset <= maxInwardOffset; inwardOffset += stepSize )
+			{
+				RunWheelTrace( inwardOffset );
+
+				if ( !WheelTrace.StartedSolid )
+					break;
+			}
+		}
 
 		if ( !WheelTrace.Hit )
 			return;
 
-		// Move direction trace
-		{
-		}
-
-		// Trace from the tire wall outwards
-		{
-			//Gizmo.Draw.IgnoreDepth = true;
-
-			var wheelFaceDirection = FlipWheelSpinRotation ? WorldRotation.Backward : WorldRotation.Forward;
-			var wallTrace = Scene.Trace
-				.Ray( WheelTrace.EndPosition, WheelTrace.EndPosition + wheelFaceDirection * WheelWidth / 2 )
-				.IgnoreGameObjectHierarchy( car.GameObject )
-				.Run();
-
-			if ( wallTrace.Hit )
-			{
-				//Gizmo.Draw.Line( wallTrace.EndPosition, wallTrace.EndPosition + wallTrace.Normal * 100 );
-
-				var impulseStrength = 0.8f;
-				var normal = wallTrace.Normal;
-				var vel = car.Rigidbody.GetVelocityAtPoint( WorldPosition );
-				var relativeNormalVel = Vector3.Dot( vel, normal );
-
-				var speedInto = -relativeNormalVel;
-				var impulse = normal * speedInto * car.Rigidbody.Mass * impulseStrength;
-				car.Rigidbody.ApplyImpulseAt( WorldPosition, impulse );
-			}
-
-			//Gizmo.Draw.LineThickness = 5f;
-			//Gizmo.Draw.Line( wallTrace.StartPosition, wallTrace.EndPosition );
-		}
-
-		if ( Vector3.Dot( WheelTrace.Normal, WorldRotation.Up ) <= 0.7f )
-			return;
-
 		var springDirection = WheelTrace.Normal;
-		var wheelOffset = car.SuspensionHeight - WheelTrace.Distance; // Adjust offset to place wheel bottom at ground
+		var wheelOffset = car.SuspensionHeight - WheelTrace.Distance;
 
 		var wheelWorldVelocity = car.Rigidbody.GetVelocityAtPoint( WorldPosition );
 		var wheelVelocity = Vector3.Dot( springDirection, wheelWorldVelocity );
@@ -91,7 +89,7 @@ public class CarWheel : Component
 		// Position wheel models
 		if ( WheelModel.IsValid() )
 		{
-			WheelModel.WorldPosition = WheelTrace.EndPosition + Vector3.Up * WheelRadius / 2;
+			WheelModel.WorldPosition = WheelTrace.EndPosition + Vector3.Up * WheelRadius / 2 + -WheelTraceInwardOffset;
 
 			if ( HandbrakeApplied )
 				return;
