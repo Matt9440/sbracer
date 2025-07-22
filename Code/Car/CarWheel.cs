@@ -173,12 +173,17 @@ public class CarWheel : Component
 
 		if ( accelerationInput < 0 || accelerationInput == 0 )
 		{
+			// We're not trying to move, apply air resistance
 			if ( accelerationInput == 0 )
 			{
-				var dragCoeff = 0.25f;
-				var dragForce = dragCoeff * carSpeed * Car.Rigidbody.Mass * distribution;
+				var localSpeed = Vector3.Dot( accelerationDirection, Car.Rigidbody.Velocity );
+				var brakeDir = -accelerationDirection.Normal * MathF.Sign( localSpeed );
 
-				Car.Rigidbody.ApplyForceAt( WorldPosition, -accelerationDirection * dragForce );
+				Gizmo.Draw.Line( WorldPosition, WorldPosition + brakeDir * 60f );
+
+				var dragCoeff = 0.3f;
+				var dragForce = MathF.Abs( localSpeed ) * CarryingMass * dragCoeff;
+				Car.Rigidbody.ApplyForceAt( WorldPosition, brakeDir * dragForce );
 
 				return;
 			}
@@ -197,18 +202,16 @@ public class CarWheel : Component
 
 		HandbrakeApplied = true;
 
-		var car = CarController.Local;
-
 		var accelerationDirection = WorldTransform.Left;
-		var localSpeed = Vector3.Dot( accelerationDirection, car.Rigidbody.Velocity );
+		var localSpeed = Vector3.Dot( accelerationDirection, Car.Rigidbody.Velocity );
 
 		if ( MathF.Abs( localSpeed ) < 0.1f )
 			return;
 
 		var brakeDir = -accelerationDirection.Normal * MathF.Sign( localSpeed );
-		var brakeForce = car.HandBrakeStrength * distribution * car.Rigidbody.Mass;
+		var brakeForce = Car.HandBrakeStrength * distribution * Car.Rigidbody.Mass;
 
-		car.Rigidbody.ApplyForceAt( WorldPosition, brakeDir * brakeForce );
+		Car.Rigidbody.ApplyForceAt( WorldPosition, brakeDir * brakeForce );
 	}
 
 	protected override void DrawGizmos()
