@@ -19,6 +19,7 @@ public class CarController : Component
 	[Property, Category( "Movement" )] public Curve SteeringEffectivenessCurve { get; set; }
 	[Property, Category( "Movement" )] public float BrakeStrength { get; set; } = 50f;
 	[Property, Category( "Movement" )] public float HandBrakeStrength { get; set; } = 100f;
+	[Property, Category( "Movement" )] public float HandBrakeGripFactor { get; set; } = 0.3f;
 
 	[Property, Category( "Suspension" )] public float SuspensionHeight { get; set; } = 30f;
 	[Property, Category( "Suspension" )] public float SuspensionDamping { get; set; } = 2500f;

@@ -140,7 +140,7 @@ public class CarWheel : Component
 		var wheelVelocity = Car.Rigidbody.GetVelocityAtPoint( WorldPosition );
 		var steeringVelocity = Vector3.Dot( steeringDirection, wheelVelocity );
 
-		var gripFactor = Input.Down( "brake" ) ? 0.2f : 1f;
+		var gripFactor = Input.Down( "brake" ) ? Car.HandBrakeGripFactor : 1f;
 		var wishVelocityChange = -steeringVelocity * gripFactor;
 		var wishAcceleration = wishVelocityChange / Time.Delta;
 		var desiredForce = CarryingMass * wishAcceleration;

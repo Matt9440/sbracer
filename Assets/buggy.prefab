@@ -5,7 +5,7 @@
     "Flags": 0,
     "Name": "buggy",
     "Position": "0,0,0",
-    "Rotation": "0,0,0,1",
+    "Rotation": "-0.00000005960464,0.00000005960464,0.5667711,0.8238752",
     "Scale": "1,1,1",
     "Tags": "",
     "Enabled": true,
@@ -124,6 +124,7 @@
           "go": "7647c57b-4f20-4713-a2a6-d8c21156a35c",
           "component_type": "CarWheel"
         },
+        "HandBrakeGripFactor": 0.3,
         "HandBrakeStrength": 120,
         "MaxSpeed": 200,
         "MaxSteerAngle": 30,
@@ -160,7 +161,7 @@
         },
         "SteeringSpeed": 60,
         "SuspensionDamping": 26,
-        "SuspensionHeight": 8,
+        "SuspensionHeight": 7,
         "SuspensionStrength": 175,
         "TorqueCurve": {
           "rangey": "0.3,1",
