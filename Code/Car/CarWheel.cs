@@ -33,14 +33,48 @@ public class CarWheel : Component
 		WheelTrace = WheelTrace = Scene.Trace.Cylinder( WheelWidth, WheelRadius / 2, startPos, endPos )
 			.Rotated( Rotation.LookAt( WorldRotation.Down, WheelModel.WorldRotation.Right ) )
 			.WithoutTags( "wheel", "car" )
-			.UseHitPosition()
 			.IgnoreGameObjectHierarchy( car.GameObject )
 			.Run();
 
 		if ( !WheelTrace.Hit )
 			return;
 
-		var springDirection = WorldRotation.Up;
+		// Move direction trace
+		{
+		}
+
+		// Trace from the tire wall outwards
+		{
+			//Gizmo.Draw.IgnoreDepth = true;
+
+			var wheelFaceDirection = FlipWheelSpinRotation ? WorldRotation.Backward : WorldRotation.Forward;
+			var wallTrace = Scene.Trace
+				.Ray( WheelTrace.EndPosition, WheelTrace.EndPosition + wheelFaceDirection * WheelWidth / 2 )
+				.IgnoreGameObjectHierarchy( car.GameObject )
+				.Run();
+
+			if ( wallTrace.Hit )
+			{
+				//Gizmo.Draw.Line( wallTrace.EndPosition, wallTrace.EndPosition + wallTrace.Normal * 100 );
+
+				var impulseStrength = 0.8f;
+				var normal = wallTrace.Normal;
+				var vel = car.Rigidbody.GetVelocityAtPoint( WorldPosition );
+				var relativeNormalVel = Vector3.Dot( vel, normal );
+
+				var speedInto = -relativeNormalVel;
+				var impulse = normal * speedInto * car.Rigidbody.Mass * impulseStrength;
+				car.Rigidbody.ApplyImpulseAt( WorldPosition, impulse );
+			}
+
+			//Gizmo.Draw.LineThickness = 5f;
+			//Gizmo.Draw.Line( wallTrace.StartPosition, wallTrace.EndPosition );
+		}
+
+		if ( Vector3.Dot( WheelTrace.Normal, WorldRotation.Up ) <= 0.7f )
+			return;
+
+		var springDirection = WheelTrace.Normal;
 		var wheelOffset = car.SuspensionHeight - WheelTrace.Distance; // Adjust offset to place wheel bottom at ground
 
 		var wheelWorldVelocity = car.Rigidbody.GetVelocityAtPoint( WorldPosition );
