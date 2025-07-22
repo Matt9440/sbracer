@@ -7,7 +7,7 @@ public class CarWheel : Component
 	[Property] public bool FlipWheelSpinRotation { get; set; } = false;
 
 	private SceneTraceResult WheelTrace { get; set; }
-	private float WheelRadius => WheelModel.Model.Bounds.Size.z * WheelModel.WorldScale.z / 2;
+	public float WheelRadius => WheelModel.Model.Bounds.Size.z * WheelModel.WorldScale.z / 2;
 	private float WheelWidth => WheelModel.Model.Bounds.Size.y * WheelModel.WorldScale.y;
 	private Vector3 WheelForward => FlipWheelSpinRotation ? WorldRotation.Backward : WorldRotation.Forward;
 	private float CarryingMass => CarController.Local.Rigidbody.Mass / 4;
@@ -157,18 +157,18 @@ public class CarWheel : Component
 		if ( !WheelTrace.Hit || Vector3.Dot( WheelTrace.Normal, WorldRotation.Up ) <= 0.7f )
 			return;
 
-		var carSpeed = Vector3.Dot( Car.WorldRotation.Left, Car.Rigidbody.Velocity );
-
 		var accelerationDirection = WorldTransform.Left;
 		var accelerationInput = Input.AnalogMove.x;
 
 		if ( accelerationInput > 0 )
 		{
-			var normalizedSpeed = (MathF.Abs( carSpeed ) / Car.MaxSpeed).Clamp( 0, 1 );
-			var availableTorque = Car.TorqueCurve.Evaluate( normalizedSpeed ) * accelerationInput * distribution;
+			var normalizedRpm = Car.CurrentRpm / Car.MaxRpm;
+			var availableTorque = Car.TorqueCurve.Evaluate( normalizedRpm ) * accelerationInput * distribution;
+
+			availableTorque *= Car.CurrentGearRatio * Car.FinalDriveRatio;
 
 			Car.Rigidbody.ApplyForceAt( WorldPosition,
-				accelerationDirection * availableTorque * Car.Rigidbody.Mass * 100f );
+				accelerationDirection * availableTorque * CarryingMass * 20f );
 		}
 
 		if ( accelerationInput < 0 || accelerationInput == 0 )
@@ -182,7 +182,8 @@ public class CarWheel : Component
 				Gizmo.Draw.Line( WorldPosition, WorldPosition + brakeDir * 60f );
 
 				var dragCoeff = 0.3f;
-				var dragForce = MathF.Abs( localSpeed ) * CarryingMass * dragCoeff;
+				var rollingResistance = 20f * CarryingMass; // Increased for better low-speed stopping
+				var dragForce = MathF.Abs( localSpeed ) * CarryingMass * dragCoeff + rollingResistance;
 				Car.Rigidbody.ApplyForceAt( WorldPosition, brakeDir * dragForce );
 
 				return;

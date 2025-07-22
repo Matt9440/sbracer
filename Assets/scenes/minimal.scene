@@ -184,8 +184,54 @@
               "Type": "Component",
               "IdValue": "4caffa18-0962-4aa8-b4cd-0ea5d6c5ea3e"
             },
+            "Property": "FinalDriveRatio",
+            "Value": 3
+          },
+          {
+            "Target": {
+              "Type": "Component",
+              "IdValue": "4caffa18-0962-4aa8-b4cd-0ea5d6c5ea3e"
+            },
+            "Property": "GearRatios",
+            "Value": [
+              3.5,
+              2.5,
+              1.8,
+              1.2,
+              0.8
+            ]
+          },
+          {
+            "Target": {
+              "Type": "Component",
+              "IdValue": "4caffa18-0962-4aa8-b4cd-0ea5d6c5ea3e"
+            },
             "Property": "HandBrakeStrength",
             "Value": 120
+          },
+          {
+            "Target": {
+              "Type": "Component",
+              "IdValue": "4caffa18-0962-4aa8-b4cd-0ea5d6c5ea3e"
+            },
+            "Property": "MaxRPM",
+            "Value": 6000
+          },
+          {
+            "Target": {
+              "Type": "Component",
+              "IdValue": "4caffa18-0962-4aa8-b4cd-0ea5d6c5ea3e"
+            },
+            "Property": "ShiftDownRPM",
+            "Value": 2000
+          },
+          {
+            "Target": {
+              "Type": "Component",
+              "IdValue": "4caffa18-0962-4aa8-b4cd-0ea5d6c5ea3e"
+            },
+            "Property": "ShiftUpRPM",
+            "Value": 5500
           },
           {
             "Target": {
@@ -338,49 +384,11 @@
       }
     },
     {
-      "__guid": "d176bbcb-db17-44ed-892e-c56de60e64b7",
-      "__version": 1,
-      "Flags": 0,
-      "Name": "couch",
-      "Position": "-2605.054,-6089.572,207.6325",
-      "Rotation": "0,0,0,1",
-      "Scale": "1,1,1",
-      "Tags": "",
-      "Enabled": true,
-      "NetworkMode": 2,
-      "NetworkInterpolation": true,
-      "NetworkOrphaned": 0,
-      "OwnerTransfer": 1,
-      "Components": [
-        {
-          "__type": "Sandbox.Prop",
-          "__guid": "937d4b38-5853-427e-97a2-8ab44f055d56",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "Health": 5,
-          "IsStatic": false,
-          "MaterialGroup": null,
-          "Model": "models/props/couch/couch.vmdl",
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "OnPropBreak": null,
-          "OnPropTakeDamage": null,
-          "StartAsleep": false,
-          "Tint": "1,1,1,1"
-        }
-      ],
-      "Children": []
-    },
-    {
       "__guid": "90f81ab9-6fa8-47fb-80b1-43f7e51f3610",
       "__version": 1,
       "Flags": 0,
       "Name": "Camera",
-      "Position": "0,-439.5673,270.8173",
+      "Position": "0,0,0",
       "Rotation": "-0.09229596,0.09229594,0.7010573,0.7010574",
       "Scale": "1,1,1",
       "Tags": "maincamera",
@@ -439,7 +447,7 @@
       "__version": 1,
       "Flags": 0,
       "Name": "Map",
-      "Position": "82.00836,17.62744,57.79782",
+      "Position": "0,0,0",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "",
@@ -535,23 +543,61 @@
               "IdValue": "d164c21b-3f2c-401b-8fad-5e76d284b220"
             },
             "Property": "Position",
-            "Value": "-2502.188,-5963.986,168.9794"
-          },
-          {
-            "Target": {
-              "Type": "GameObject",
-              "IdValue": "d164c21b-3f2c-401b-8fad-5e76d284b220"
-            },
-            "Property": "Rotation",
-            "Value": "-0.00000005960464,0.00000005960464,0.5667711,0.8238752"
+            "Value": "-1948.969,-7194.013,89.51268"
           },
           {
             "Target": {
               "Type": "Component",
               "IdValue": "c95e8e0e-50f5-4c32-bed4-e2576eedd19d"
             },
-            "Property": "SuspensionHeight",
-            "Value": 7
+            "Property": "DriveType",
+            "Value": "FrontWheelDrive"
+          },
+          {
+            "Target": {
+              "Type": "Component",
+              "IdValue": "c95e8e0e-50f5-4c32-bed4-e2576eedd19d"
+            },
+            "Property": "FinalDriveRatio",
+            "Value": 3
+          },
+          {
+            "Target": {
+              "Type": "Component",
+              "IdValue": "c95e8e0e-50f5-4c32-bed4-e2576eedd19d"
+            },
+            "Property": "GearRatios",
+            "Value": [
+              3.5,
+              2.5,
+              1.8,
+              1.2,
+              0.8
+            ]
+          },
+          {
+            "Target": {
+              "Type": "Component",
+              "IdValue": "c95e8e0e-50f5-4c32-bed4-e2576eedd19d"
+            },
+            "Property": "MaxRPM",
+            "Value": 6000
+          },
+          {
+            "Target": {
+              "Type": "Component",
+              "IdValue": "c95e8e0e-50f5-4c32-bed4-e2576eedd19d"
+            },
+            "Property": "ShiftDownRPM",
+            "Value": 2500
+          },
+          {
+            "Target": {
+              "Type": "Component",
+              "IdValue": "c95e8e0e-50f5-4c32-bed4-e2576eedd19d"
+            },
+            "Property": "ShiftUpRPM",
+            "Value": 3500
           }
         ],
         "MovedObjects": []
@@ -607,8 +653,6 @@
   "ResourceVersion": 3,
   "Title": "minimal",
   "Description": null,
-  "__references": [
-    "facepunch.couch#33708"
-  ],
+  "__references": [],
   "__version": 3
 }

@@ -25,6 +25,20 @@ public class CarController : Component
 	[Property, Category( "Suspension" )] public float SuspensionDamping { get; set; } = 2500f;
 	[Property, Category( "Suspension" )] public float SuspensionStrength { get; set; } = 20000f;
 
+	[Property, Category( "Gearing" )]
+	public float[] GearRatios { get; set; } = { 3.5f, 2.5f, 1.8f, 1.2f, 0.8f }; // Gear 1 to 5
+
+	[Property, Category( "Gearing" )] public float FinalDriveRatio { get; set; } = 4.0f;
+	[Property, Category( "Gearing" )] public float MaxRpm { get; set; } = 6000f;
+	[Property, Category( "Gearing" )] public float ShiftUpRpm { get; set; } = 4000f;
+	[Property, Category( "Gearing" )] public float ShiftDownRpm { get; set; } = 2500f;
+
+	public float CurrentRpm { get; private set; }
+	public int CurrentGear { get; private set; } = 1; // Start in first gear
+
+	public float CurrentGearRatio =>
+		CurrentGear >= 1 && CurrentGear <= GearRatios.Length ? GearRatios[CurrentGear - 1] : 0f;
+
 	public float DisplaySpeed => MathF.Max( 0, Rigidbody.Velocity.Length * 0.05681818181f );
 
 	/// <summary>
@@ -53,6 +67,8 @@ public class CarController : Component
 
 		if ( IsProxy )
 			return;
+
+		UpdateGearing();
 
 		Steer();
 
@@ -83,6 +99,62 @@ public class CarController : Component
 		{
 			BackLeftWheel.HandbrakeApplied = false;
 			BackRightWheel.HandbrakeApplied = false;
+		}
+
+		Gizmo.Draw.IgnoreDepth = true;
+		Gizmo.Draw.ScreenText( $"Gear {CurrentGear}, rpm {CurrentRpm}",
+			Scene.Camera.PointToScreenPixels( WorldPosition ) );
+	}
+
+	private float AverageDrivenWheelRadius()
+	{
+		var totalRadius = 0f;
+		var count = 0;
+
+		switch ( DriveType )
+		{
+			case DriveType.FrontWheelDrive:
+				totalRadius += FrontLeftWheel.WheelRadius + FrontRightWheel.WheelRadius;
+				count += 2;
+				break;
+			case DriveType.RearWheelDrive:
+				totalRadius += BackLeftWheel.WheelRadius + BackRightWheel.WheelRadius;
+				count += 2;
+				break;
+			case DriveType.FourWheelDrive:
+				totalRadius += FrontLeftWheel.WheelRadius + FrontRightWheel.WheelRadius + BackLeftWheel.WheelRadius +
+				               BackRightWheel.WheelRadius;
+				count += 4;
+				break;
+		}
+
+		return count > 0 ? totalRadius / count : BackLeftWheel.WheelRadius; // Fallback
+	}
+
+	private void UpdateGearing()
+	{
+		var carSpeed =
+			Vector3.Dot( WorldRotation.Forward, Rigidbody.Velocity ); // Fixed: Use Forward for longitudinal speed
+
+		var avgWheelRadius = AverageDrivenWheelRadius();
+		var wheelCircumference = MathF.PI * avgWheelRadius;
+		var wheelRps = MathF.Abs( carSpeed ) / wheelCircumference;
+
+		CurrentRpm = wheelRps * CurrentGearRatio * FinalDriveRatio * 60;
+		CurrentRpm = Math.Clamp( CurrentRpm, 0, MaxRpm );
+
+		var accelerationInput = Input.AnalogMove.x;
+
+		if ( accelerationInput > 0 && CurrentGear > 0 )
+		{
+			if ( CurrentRpm > ShiftUpRpm && CurrentGear < GearRatios.Length )
+			{
+				CurrentGear++;
+			}
+			else if ( CurrentRpm < ShiftDownRpm && CurrentGear > 1 )
+			{
+				CurrentGear--;
+			}
 		}
 	}
 
