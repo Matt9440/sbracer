@@ -219,7 +219,7 @@
             "__version": 1,
             "Flags": 0,
             "Name": "fr",
-            "Position": "33.99952,69,0.00003054738",
+            "Position": "30,69,0.00003054738",
             "Rotation": "0.0000002538732,-0.000002487646,0.0000000000006315467,1",
             "Scale": "0.8,0.8,0.8",
             "Tags": "",
@@ -299,7 +299,7 @@
             "__version": 1,
             "Flags": 0,
             "Name": "fl",
-            "Position": "-34.00048,69,0.00003054738",
+            "Position": "-30,69,0.00003054738",
             "Rotation": "0.0000002538732,-0.000002487646,0.0000000000006315467,1",
             "Scale": "0.8,0.8,0.8",
             "Tags": "",
@@ -571,7 +571,26 @@
         "Components": [],
         "Children": []
       }
-    ]
+    ],
+    "__properties": {
+      "NetworkInterpolation": true,
+      "TimeScale": 1,
+      "WantsSystemScene": true,
+      "Metadata": {},
+      "NavMesh": {
+        "Enabled": false,
+        "IncludeStaticBodies": true,
+        "IncludeKeyframedBodies": true,
+        "EditorAutoUpdate": true,
+        "AgentHeight": 64,
+        "AgentRadius": 16,
+        "AgentStepSize": 18,
+        "AgentMaxSlope": 40,
+        "ExcludedBodies": "",
+        "IncludedBodies": ""
+      }
+    },
+    "__variables": []
   },
   "ResourceVersion": 2,
   "ShowInMenu": false,
