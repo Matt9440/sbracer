@@ -168,7 +168,7 @@ public class CarWheel : Component
 			availableTorque *= Car.CurrentGearRatio * Car.FinalDriveRatio;
 
 			Car.Rigidbody.ApplyForceAt( WorldPosition,
-				accelerationDirection * availableTorque * CarryingMass * 20f );
+				accelerationDirection * availableTorque * CarryingMass * 30f );
 		}
 
 		if ( accelerationInput < 0 || accelerationInput == 0 )
