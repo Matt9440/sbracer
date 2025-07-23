@@ -7,6 +7,9 @@ public sealed class OrbitCamera : Component
 	[Group( "Following" ), Property] public float Distance { get; set; } = 256f;
 	[Group( "Following" ), Property] public float Height { get; set; } = 32f;
 
+	[Group( "Following" ), Property]
+	public float MinDistance { get; set; } = 32f; // Minimum distance to prevent clipping
+
 	[Group( "Sensitivity" ), Property] public float LookSensitivity { get; set; } = 5.0f;
 	[Group( "Sensitivity" ), Property] public float PositionSensitivity { get; set; } = 5.0f;
 	[Group( "Sensitivity" ), Property] public float RotationSensitivity { get; set; } = 5.0f;
@@ -40,12 +43,24 @@ public sealed class OrbitCamera : Component
 			_lookDir += analogLook;
 		}
 
-
 		// Follow camera
 		var offset = _lookDir.ToRotation().Backward * Distance * target.Transform.World.Rotation;
 		offset += Vector3.Up * Height;
 
 		var targetPosition = target.WorldPosition + offset;
+
+		// Perform trace to check for collisions with world tag
+		var tr = Scene.Trace.Ray( target.WorldPosition, targetPosition )
+			.WithTag( "world" )
+			.Run();
+
+		if ( tr.Hit )
+		{
+			// If we hit something, adjust the target position to the hit point
+			// Add a small offset to prevent clipping through the surface
+			targetPosition = tr.EndPosition + tr.Normal * MinDistance;
+		}
+
 		var targetRotation = Rotation.LookAt( target.WorldPosition - targetPosition ).Angles();
 
 		WorldPosition = Vector3.Lerp( WorldPosition, targetPosition, PositionSensitivity * Time.Delta );

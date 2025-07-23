@@ -359,9 +359,9 @@
         },
         {
           "__type": "SBRacer.Car.OrbitCamera",
-          "__guid": "8884e943-7457-44b7-a57d-dea2ef25b8ae",
+          "__guid": "ae24d540-ba02-408a-b70f-b60d49f64868",
           "__enabled": true,
-          "Distance": 256,
+          "Distance": 384,
           "Height": 32,
           "LookSensitivity": 5,
           "OnComponentDestroy": null,
@@ -477,7 +477,7 @@
               "IdValue": "d164c21b-3f2c-401b-8fad-5e76d284b220"
             },
             "Property": "Position",
-            "Value": "-2165.282,1423.912,205.8617"
+            "Value": "-2806.179,1026.739,205.8617"
           },
           {
             "Target": {
@@ -512,6 +512,22 @@
                 }
               ]
             }
+          },
+          {
+            "Target": {
+              "Type": "GameObject",
+              "IdValue": "a6c0a009-c383-4c28-948b-c694688f5495"
+            },
+            "Property": "Position",
+            "Value": "0.2267726,-0.1575093,38.79497"
+          },
+          {
+            "Target": {
+              "Type": "GameObject",
+              "IdValue": "a6c0a009-c383-4c28-948b-c694688f5495"
+            },
+            "Property": "Rotation",
+            "Value": "-0.00006149081,-0.00004404015,-0.0007565022,0.9999998"
           }
         ],
         "MovedObjects": []
