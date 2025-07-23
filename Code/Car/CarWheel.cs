@@ -168,7 +168,7 @@ public class CarWheel : Component
 			availableTorque *= Car.CurrentGearRatio * Car.FinalDriveRatio;
 
 			Car.Rigidbody.ApplyForceAt( WorldPosition,
-				accelerationDirection * availableTorque * CarryingMass * 30f );
+				accelerationDirection * availableTorque * CarryingMass * 25f );
 		}
 
 		if ( accelerationInput < 0 || accelerationInput == 0 )
@@ -179,7 +179,7 @@ public class CarWheel : Component
 				var localSpeed = Vector3.Dot( accelerationDirection, Car.Rigidbody.Velocity );
 				var brakeDir = -accelerationDirection.Normal * MathF.Sign( localSpeed );
 
-				Gizmo.Draw.Line( WorldPosition, WorldPosition + brakeDir * 60f );
+				//Gizmo.Draw.Line( WorldPosition, WorldPosition + brakeDir * 60f );
 
 				var dragCoeff = 0.3f;
 				var rollingResistance = 20f * CarryingMass; // Increased for better low-speed stopping

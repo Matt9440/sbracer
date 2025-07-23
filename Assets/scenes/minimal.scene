@@ -80,7 +80,7 @@
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "skybox",
-      "Enabled": true,
+      "Enabled": false,
       "NetworkMode": 2,
       "NetworkInterpolation": true,
       "NetworkOrphaned": 0,
@@ -477,31 +477,41 @@
               "IdValue": "d164c21b-3f2c-401b-8fad-5e76d284b220"
             },
             "Property": "Position",
-            "Value": "-2165.282,804.2279,104.0291"
+            "Value": "-2165.282,1423.912,205.8617"
           },
           {
             "Target": {
-              "Type": "GameObject",
-              "IdValue": "d164c21b-3f2c-401b-8fad-5e76d284b220"
+              "Type": "Component",
+              "IdValue": "47627205-992c-4765-8837-d8d5db68537f"
             },
-            "Property": "Rotation",
-            "Value": "-0.00000001532461,0.00000008288897,0.000000000000001270241,1"
+            "Property": "MassOverride",
+            "Value": 900
           },
           {
             "Target": {
               "Type": "Component",
               "IdValue": "c95e8e0e-50f5-4c32-bed4-e2576eedd19d"
             },
-            "Property": "DriveType",
-            "Value": "FrontWheelDrive"
-          },
-          {
-            "Target": {
-              "Type": "Component",
-              "IdValue": "c95e8e0e-50f5-4c32-bed4-e2576eedd19d"
-            },
-            "Property": "FinalDriveRatio",
-            "Value": 3
+            "Property": "SteeringEffectivenessCurve",
+            "Value": {
+              "rangey": "0.6,1",
+              "frames": [
+                {
+                  "x": 0,
+                  "y": 0,
+                  "in": 0,
+                  "out": 0,
+                  "mode": "Linear"
+                },
+                {
+                  "x": 1,
+                  "y": 1,
+                  "in": 0,
+                  "out": 0,
+                  "mode": "Linear"
+                }
+              ]
+            }
           }
         ],
         "MovedObjects": []

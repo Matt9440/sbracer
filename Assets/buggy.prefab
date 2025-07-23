@@ -5,7 +5,7 @@
     "Flags": 0,
     "Name": "buggy",
     "Position": "0,0,0",
-    "Rotation": "-0.00000005960464,0.00000005960464,0.5667711,0.8238752",
+    "Rotation": "0,0,0,1",
     "Scale": "1,1,1",
     "Tags": "",
     "Enabled": true,
@@ -111,7 +111,8 @@
           "_type": "gameobject",
           "go": "a6c0a009-c383-4c28-948b-c694688f5495"
         },
-        "DriveType": "RearWheelDrive",
+        "DriveType": "FrontWheelDrive",
+        "FinalDriveRatio": 5,
         "FrontLeftWheel": {
           "_type": "component",
           "component_id": "c16069c4-a011-472a-a372-34daaff81040",
@@ -124,8 +125,16 @@
           "go": "7647c57b-4f20-4713-a2a6-d8c21156a35c",
           "component_type": "CarWheel"
         },
+        "GearRatios": [
+          3.5,
+          2.5,
+          1.8,
+          1.2,
+          0.8
+        ],
         "HandBrakeGripFactor": 0.3,
         "HandBrakeStrength": 120,
+        "MaxRpm": 6000,
         "MaxSpeed": 200,
         "MaxSteerAngle": 30,
         "OnComponentDestroy": null,
@@ -140,6 +149,8 @@
           "go": "d164c21b-3f2c-401b-8fad-5e76d284b220",
           "component_type": "Rigidbody"
         },
+        "ShiftDownRpm": 3000,
+        "ShiftUpRpm": 4000,
         "SteeringEffectivenessCurve": {
           "rangey": "1,1.2",
           "frames": [
@@ -161,7 +172,7 @@
         },
         "SteeringSpeed": 60,
         "SuspensionDamping": 26,
-        "SuspensionHeight": 7,
+        "SuspensionHeight": 10,
         "SuspensionStrength": 175,
         "TorqueCurve": {
           "rangey": "0.3,1",

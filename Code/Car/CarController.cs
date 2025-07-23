@@ -143,9 +143,7 @@ public class CarController : Component
 		CurrentRpm = wheelRps * CurrentGearRatio * FinalDriveRatio * 60;
 		CurrentRpm = Math.Clamp( CurrentRpm, 0, MaxRpm );
 
-		var accelerationInput = Input.AnalogMove.x;
-
-		if ( accelerationInput > 0 && CurrentGear > 0 )
+		if ( CurrentGear > 0 )
 		{
 			if ( CurrentRpm > ShiftUpRpm && CurrentGear < GearRatios.Length )
 			{
