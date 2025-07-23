@@ -364,6 +364,7 @@
           "Distance": 384,
           "Height": 32,
           "LookSensitivity": 5,
+          "MinDistance": 32,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
@@ -494,7 +495,7 @@
             },
             "Property": "SteeringEffectivenessCurve",
             "Value": {
-              "rangey": "0.6,1",
+              "rangey": "0.6,0.7877778",
               "frames": [
                 {
                   "x": 0,
@@ -505,7 +506,7 @@
                 },
                 {
                   "x": 1,
-                  "y": 1,
+                  "y": 0.9940829,
                   "in": 0,
                   "out": 0,
                   "mode": "Linear"
@@ -515,11 +516,27 @@
           },
           {
             "Target": {
+              "Type": "Component",
+              "IdValue": "c95e8e0e-50f5-4c32-bed4-e2576eedd19d"
+            },
+            "Property": "SuspensionDamping",
+            "Value": 16
+          },
+          {
+            "Target": {
+              "Type": "Component",
+              "IdValue": "c95e8e0e-50f5-4c32-bed4-e2576eedd19d"
+            },
+            "Property": "SuspensionStrength",
+            "Value": 145
+          },
+          {
+            "Target": {
               "Type": "GameObject",
               "IdValue": "a6c0a009-c383-4c28-948b-c694688f5495"
             },
             "Property": "Position",
-            "Value": "0.2267726,-0.1575093,38.79497"
+            "Value": "0.2253418,-0.1551514,60.41489"
           },
           {
             "Target": {

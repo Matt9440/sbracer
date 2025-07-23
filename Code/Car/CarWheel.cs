@@ -23,7 +23,7 @@ public class CarWheel : Component
 
 	private void RunWheelTrace( float inwardOffset = 0 )
 	{
-		var traceDist = Car.SuspensionHeight + WheelRadius;
+		var traceDist = WheelRadius / 2;
 		var startPos = WorldPosition;
 		var endPos = WorldPosition + WorldRotation.Down * traceDist;
 		var inwardDirection = -WheelForward;
