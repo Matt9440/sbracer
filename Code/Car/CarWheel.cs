@@ -126,7 +126,7 @@ public class CarWheel : Component
 			var wheelVelocityModel = Car.Rigidbody.GetVelocityAtPoint( WheelModel.WorldPosition );
 
 			WheelModel.LocalRotation *=
-				Rotation.From( wheelVelocityModel.Length * Time.Delta * (FlipWheelSpinRotation ? -1f : 1f), 0, 0 );
+				Rotation.From( wheelVelocityModel.Length * Time.Delta * (FlipWheelSpinRotation ? 1f : -1f), 0, 0 );
 		}
 	}
 
