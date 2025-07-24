@@ -1,7 +1,9 @@
 global using Sandbox;
 global using Sandbox.UI;
 global using System;
+global using System.Threading.Tasks;
 global using System.Collections.Generic;
 global using System.Linq;
 global using SBRacer;
 global using SBRacer.Car;
+global using SBRacer.MapEntities;

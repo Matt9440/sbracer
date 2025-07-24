@@ -15,26 +15,7 @@
       "NetworkInterpolation": true,
       "NetworkOrphaned": 0,
       "OwnerTransfer": 1,
-      "Components": [
-        {
-          "__type": "Sandbox.SceneInformation",
-          "__guid": "404e0dd2-01b0-43aa-9116-2a71e6a820ff",
-          "__enabled": true,
-          "Author": null,
-          "Changes": null,
-          "Description": "",
-          "Group": null,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "SceneTags": "",
-          "Title": "minimal",
-          "Version": null
-        }
-      ],
+      "Components": [],
       "Children": []
     },
     {
@@ -465,59 +446,964 @@
       "Children": []
     },
     {
-      "__guid": "ba09cc77-53f3-493a-9af0-060b597a102c",
+      "__guid": "d77066a4-993a-4637-9a35-686a2f6fe9b7",
       "__version": 1,
-      "__Prefab": "buggy.prefab",
-      "__PrefabInstancePatch": {
-        "AddedObjects": [],
-        "RemovedObjects": [],
-        "PropertyOverrides": [
-          {
-            "Target": {
-              "Type": "GameObject",
-              "IdValue": "d164c21b-3f2c-401b-8fad-5e76d284b220"
-            },
-            "Property": "Position",
-            "Value": "-2806.179,1426.267,205.8617"
-          }
-        ],
-        "MovedObjects": []
-      },
-      "__PrefabIdToInstanceId": {
-        "d164c21b-3f2c-401b-8fad-5e76d284b220": "ba09cc77-53f3-493a-9af0-060b597a102c",
-        "799272b4-f7ad-46ca-a5dd-c4a792d426f7": "64607399-0b32-42bc-a59f-84411db7a464",
-        "53346181-f894-4dd1-a8d7-b550858c82f6": "b9528e75-4f53-4b26-a583-e3031a09dbaa",
-        "47627205-992c-4765-8837-d8d5db68537f": "ae2df28f-1368-47c7-97b5-51f2578bf26e",
-        "c95e8e0e-50f5-4c32-bed4-e2576eedd19d": "c125e0aa-ba54-4130-b7aa-1dc4dd1bfb77",
-        "cc6b3b06-bd7b-4b48-86da-b3f4c101517d": "28e3d058-290a-438d-988c-a170b79d01da",
-        "7647c57b-4f20-4713-a2a6-d8c21156a35c": "f6e19dc8-c886-4b44-ba4a-4408d150aca5",
-        "85ffe15d-b939-4cb3-bc70-f4c9ce8f11d2": "1b8aba60-aeb8-4af2-bc09-93451a3f9608",
-        "8c63902a-e64b-48c8-b36e-bf5f2df26053": "2ae7770b-0891-4e78-a0a7-0ec2bb7649e2",
-        "993d32de-0a3a-40bd-a4eb-a168d3cde05f": "5ec09e44-27b1-4db4-a80b-354d40cfd211",
-        "b8d76430-1d39-4440-8010-1d4a7c875cda": "ebf63e53-2c0b-4f68-9745-af491794a967",
-        "c16069c4-a011-472a-a372-34daaff81040": "afd10f12-d776-4531-9aa7-d15f38f86f71",
-        "ae76ebbe-f3b6-4e1c-8fe0-43a829a0b912": "a9c51df4-e56a-4e1c-82bc-cdd6a3e87f23",
-        "7c13f835-d733-43a6-b8f9-6412a5f5bf79": "b35c2df3-7c41-4108-b57e-12dc8d5119a0",
-        "425f152a-b557-4bbc-8e25-28240f15ca0b": "0ce73078-43f4-4861-b001-1698d308a86e",
-        "8db84d3f-18cc-45bf-9247-04bc129590c5": "e03d85b8-07a7-47e4-afe2-11d902259303",
-        "fe285aec-e62b-423d-ad4b-e4e6243a0676": "5ff02b3e-0262-4bd4-af8f-fdcd52d57b2e",
-        "c2fa97fa-5148-427b-9d67-564a612c0e6e": "75524411-f291-4fd5-8bce-2e568dc0085d",
-        "c7dd8c51-8aea-4149-a8d6-2a7765b11f8f": "7acccb21-36fb-433a-b795-c409289981a3",
-        "d6f735a3-101f-4f47-ba20-fc76146b6970": "90b4e615-bfae-4672-99c1-ee0e4b07b25d",
-        "e15bb0e6-23f2-4698-9f97-e0bbd2b09f75": "d1630f0e-1826-4d08-a4af-0b7a21cea30c",
-        "fe757cdf-bb02-4724-b493-c56e51acb734": "7e0847de-299b-4961-96cc-f5e650a0e17d",
-        "ea162222-2044-47d5-9c2b-ea288cbbee47": "05cea3d4-ad8a-439f-b19f-d5e13dcd2f2c",
-        "a6c0a009-c383-4c28-948b-c694688f5495": "f116f6b5-2aa6-4889-a119-22de30376a4b"
-      }
+      "Flags": 0,
+      "Name": "Manager",
+      "Position": "-3282.364,1563.105,541.3321",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
+      "NetworkOrphaned": 0,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "SBRacer.RaceGame",
+          "__guid": "336ca438-6bee-48a6-98a0-5affcb1b2695",
+          "__enabled": true,
+          "BuggyPrefab": {
+            "_type": "gameobject",
+            "prefab": "buggy.prefab"
+          },
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        },
+        {
+          "__type": "SBRacer.MapEntities.RaceMap",
+          "__guid": "011be429-1217-4302-b714-f02ffcc73694",
+          "__enabled": true,
+          "MapName": "Speedway",
+          "MaxLaps": 1,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Type": "Race"
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "88549cc2-6614-4c8d-b051-02a6b071b728",
+      "__version": 1,
+      "Flags": 0,
+      "Name": "RacingSpawns",
+      "Position": "-3392,685.9561,857.8616",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
+      "NetworkOrphaned": 0,
+      "OwnerTransfer": 1,
+      "Components": [],
+      "Children": [
+        {
+          "__guid": "477f02d3-b53a-443a-9b34-ff1c09c3be4d",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "RacingSpawnPoint (7)",
+          "Position": "563.3691,-445.9561,-624.1152",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "SBRacer.MapEntities.RacingSpawnPoint",
+              "__guid": "e34b0de6-9aed-489c-b565-b3304c7bfb4e",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "c9765210-8736-432c-9a8d-23aa8baa92c3",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "RacingSpawnPoint (5)",
+          "Position": "805.197,-445.9561,-624.1152",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "SBRacer.MapEntities.RacingSpawnPoint",
+              "__guid": "d136c104-e795-41df-b6c9-6b6d0b936757",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "89f61097-256d-465e-bc29-aebdd4bb6745",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "RacingSpawnPoint (8)",
+          "Position": "563.3691,-125.9561,-624.1152",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "SBRacer.MapEntities.RacingSpawnPoint",
+              "__guid": "79948fa5-6d04-4362-aaf5-4ffd75252e35",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "6d1283ad-b6eb-4e90-9711-fc9b1485a248",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "RacingSpawnPoint (3)",
+          "Position": "805.197,-125.9561,-624.1152",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "SBRacer.MapEntities.RacingSpawnPoint",
+              "__guid": "fb1b4303-59ba-40ee-bcd0-b46388a463f6",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "efbdcf09-720b-490a-ab1e-b7176c4106e3",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "RacingSpawnPoint (6)",
+          "Position": "563.3691,-285.9561,-624.1152",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "SBRacer.MapEntities.RacingSpawnPoint",
+              "__guid": "8f89df06-2dce-4679-ae40-5fdb2401b94c",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "c79e6ef2-48f0-4ec8-b05e-2e8d366ccf4e",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "RacingSpawnPoint (4)",
+          "Position": "805.197,-285.9561,-624.1152",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "SBRacer.MapEntities.RacingSpawnPoint",
+              "__guid": "40235939-0149-4e90-a147-07b0bc94f8bb",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "e839ddb9-ab87-4c1c-ba83-057c21e0d32a",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "RacingSpawnPoint (9)",
+          "Position": "563.3691,34.04395,-624.1152",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "SBRacer.MapEntities.RacingSpawnPoint",
+              "__guid": "8061f4f0-fc01-44de-b36d-4f0dafc72bff",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "1c8a98b4-bf17-4de9-b033-99dc18eecf5c",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "RacingSpawnPoint (2)",
+          "Position": "805.197,34.04395,-624.1152",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "SBRacer.MapEntities.RacingSpawnPoint",
+              "__guid": "8b2228f5-ecc8-49cd-81fd-e018c9fefdc4",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "bf1914c6-9526-4f83-828d-56aac4ad0d50",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "RacingSpawnPoint (10)",
+          "Position": "563.3691,194.0439,-624.1152",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "SBRacer.MapEntities.RacingSpawnPoint",
+              "__guid": "cb722271-53da-436f-8e2c-832bd308c1af",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "618fcbd5-0804-4be0-8651-10176f390582",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "RacingSpawnPoint (1)",
+          "Position": "805.197,194.0439,-624.1152",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "SBRacer.MapEntities.RacingSpawnPoint",
+              "__guid": "2360977b-1753-48cc-9626-97fe9f5e8e57",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "03333058-69cd-4ed3-97a9-e5cd3bb963ec",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "RacingSpawnPoint (11)",
+          "Position": "563.3691,354.0439,-624.1152",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "SBRacer.MapEntities.RacingSpawnPoint",
+              "__guid": "b01451f1-8913-48fb-9697-97a65db40f02",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "e45ffa84-b1e7-4935-b991-63a6a1e11cdc",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "RacingSpawnPoint",
+          "Position": "805.197,354.0439,-624.1152",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "SBRacer.MapEntities.RacingSpawnPoint",
+              "__guid": "fc29c485-c324-40ac-acee-c94542d9db45",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        }
+      ]
+    },
+    {
+      "__guid": "7eac043a-c8e4-407f-b4a4-f282d903ae6f",
+      "__version": 1,
+      "Flags": 0,
+      "Name": "WaitingSpawns",
+      "Position": "-2432,2272,398.4021",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
+      "NetworkOrphaned": 0,
+      "OwnerTransfer": 1,
+      "Components": [],
+      "Children": [
+        {
+          "__guid": "cb4275bd-f473-47b7-92f8-ec1b221a1453",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "WaitingSpawn (13)",
+          "Position": "555.2937,161.3376,-225.5636",
+          "Rotation": "0,0,-0.7071067,0.7071068",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "SBRacer.MapEntities.WaitingSpawnPoint",
+              "__guid": "cbd0c219-3e92-4e2b-8ebf-078a939573ec",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "07c814c7-281e-4858-a8bf-237719a91a95",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "WaitingSpawn (7)",
+          "Position": "555.2936,97.33777,-225.5636",
+          "Rotation": "0,0,-0.7071067,0.7071068",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "SBRacer.MapEntities.WaitingSpawnPoint",
+              "__guid": "a73b2f8a-8381-4f8e-82f4-8eb2fede20c4",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "243f1fa4-9f90-4d9f-b741-f363c1216cfc",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "WaitingSpawn (3)",
+          "Position": "555.2936,33.33813,-225.5636",
+          "Rotation": "0,0,-0.7071067,0.7071068",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "SBRacer.MapEntities.WaitingSpawnPoint",
+              "__guid": "5bdff414-af3e-4d17-a377-5e5651dfa5e8",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "26f115d8-c041-49ec-abb7-961feea3693f",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "WaitingSpawn (14)",
+          "Position": "363.2941,161.3376,-225.5636",
+          "Rotation": "0,0,-0.7071067,0.7071068",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "SBRacer.MapEntities.WaitingSpawnPoint",
+              "__guid": "bb1cfd30-94ba-45d3-a0c9-b96ea67f272c",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "0850b655-0370-48bf-981a-0f1e3482357d",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "WaitingSpawn (8)",
+          "Position": "363.2939,97.33777,-225.5636",
+          "Rotation": "0,0,-0.7071067,0.7071068",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "SBRacer.MapEntities.WaitingSpawnPoint",
+              "__guid": "7a3ea162-e95e-42ef-9637-b64e22444743",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "0ff853e6-494b-4602-8319-ffc9508a5c3c",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "WaitingSpawn",
+          "Position": "363.2939,33.33813,-225.5636",
+          "Rotation": "0,0,-0.7071067,0.7071068",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "SBRacer.MapEntities.WaitingSpawnPoint",
+              "__guid": "16187db0-28a2-4188-9254-594ced5f3dd9",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "3e96eceb-c58f-4a72-864a-4ec071fd9ad4",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "WaitingSpawn (1)",
+          "Position": "299.2937,33.33801,-225.5636",
+          "Rotation": "0,0,-0.7071067,0.7071068",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "SBRacer.MapEntities.WaitingSpawnPoint",
+              "__guid": "c65b6c4e-c284-4b45-b7e8-9111f3b91583",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "4027fe43-9676-4b80-adeb-99e874022c6d",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "WaitingSpawn (6)",
+          "Position": "299.2937,97.33765,-225.5636",
+          "Rotation": "0,0,-0.7071067,0.7071068",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "SBRacer.MapEntities.WaitingSpawnPoint",
+              "__guid": "32e1a7fe-5c7f-45b1-a8c5-b37ffc29d416",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "6202588d-82bb-4612-a941-6b1a52a3a90d",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "WaitingSpawn (12)",
+          "Position": "299.2939,161.3376,-225.5636",
+          "Rotation": "0,0,-0.7071067,0.7071068",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "SBRacer.MapEntities.WaitingSpawnPoint",
+              "__guid": "b3c5737d-4613-41da-9f9b-19eb681acee4",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "af44bc8e-b47d-4683-81de-d643f9686b00",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "WaitingSpawn (4)",
+          "Position": "491.2933,33.33801,-225.5636",
+          "Rotation": "0,0,-0.7071067,0.7071068",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "SBRacer.MapEntities.WaitingSpawnPoint",
+              "__guid": "ba0dad02-9503-4ea3-a98b-783eb9c7177b",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "b86c74d0-0e8d-4a2d-99c1-4afa4e11a740",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "WaitingSpawn (9)",
+          "Position": "491.2933,97.33765,-225.5636",
+          "Rotation": "0,0,-0.7071067,0.7071068",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "SBRacer.MapEntities.WaitingSpawnPoint",
+              "__guid": "8063e9ee-097f-48a1-ad60-83eb5a83ba53",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "ed33233d-7401-4317-af76-1ccb8bf8d71f",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "WaitingSpawn (15)",
+          "Position": "491.2935,161.3376,-225.5636",
+          "Rotation": "0,0,-0.7071067,0.7071068",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "SBRacer.MapEntities.WaitingSpawnPoint",
+              "__guid": "38c56de0-af93-48db-8c8e-185d559a4d58",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "2190d9cb-ea0f-4726-920c-8638758eb7ec",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "WaitingSpawn (2)",
+          "Position": "235.2937,33.33813,-225.5636",
+          "Rotation": "0,0,-0.7071067,0.7071068",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "SBRacer.MapEntities.WaitingSpawnPoint",
+              "__guid": "9f70c99a-68ac-4541-a3df-986d97bc13fd",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "075a422a-2080-480a-adba-338fd9198812",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "WaitingSpawn (10)",
+          "Position": "235.2937,97.33777,-225.5636",
+          "Rotation": "0,0,-0.7071067,0.7071068",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "SBRacer.MapEntities.WaitingSpawnPoint",
+              "__guid": "2bfa4eea-c30a-40a9-a46a-75f39481d77f",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "f30acf59-5b79-4710-95a1-5669981a622d",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "WaitingSpawn (16)",
+          "Position": "235.2939,161.3376,-225.5636",
+          "Rotation": "0,0,-0.7071067,0.7071068",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "SBRacer.MapEntities.WaitingSpawnPoint",
+              "__guid": "8a587047-d9c8-41f4-af22-ad6def43f560",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "5c9854fb-572d-4bb7-961a-e40b76b4f1df",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "WaitingSpawn (5)",
+          "Position": "427.2933,33.33813,-225.5636",
+          "Rotation": "0,0,-0.7071067,0.7071068",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "SBRacer.MapEntities.WaitingSpawnPoint",
+              "__guid": "51eeaf0e-9675-4da2-ab1e-3e449fcd5cf0",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "28b1db9d-8d68-4f25-89cb-d95d868accfb",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "WaitingSpawn (11)",
+          "Position": "427.2933,97.33777,-225.5636",
+          "Rotation": "0,0,-0.7071067,0.7071068",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "SBRacer.MapEntities.WaitingSpawnPoint",
+              "__guid": "2c761826-693c-428f-85ab-39c233a2f51a",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "151728dc-9b50-4c6c-8a9c-e62eee7627bb",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "WaitingSpawn (17)",
+          "Position": "427.2935,161.3376,-225.5636",
+          "Rotation": "0,0,-0.7071067,0.7071068",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "SBRacer.MapEntities.WaitingSpawnPoint",
+              "__guid": "5f477556-715c-4743-ba5d-0bea0562e452",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        }
+      ]
     }
   ],
   "SceneProperties": {
     "NetworkInterpolation": true,
     "TimeScale": 1,
     "WantsSystemScene": true,
-    "Metadata": {
-      "Title": "minimal"
-    },
+    "Metadata": {},
     "NavMesh": {
       "Enabled": false,
       "IncludeStaticBodies": true,
@@ -532,7 +1418,7 @@
     }
   },
   "ResourceVersion": 3,
-  "Title": "minimal",
+  "Title": null,
   "Description": null,
   "__references": [],
   "__version": 3
