@@ -157,8 +157,12 @@ public class CarWheel : Component
 		if ( !WheelTrace.Hit || Vector3.Dot( WheelTrace.Normal, WorldRotation.Up ) <= 0.7f )
 			return;
 
+		var carSpeed = Vector3.Dot( Car.WorldRotation.Forward, Car.Rigidbody.Velocity );
+
 		var accelerationDirection = WorldTransform.Left;
 		var accelerationInput = Input.AnalogMove.x;
+
+		var directionMultiplier = Car.CurrentGear >= 0 ? 1f : -1f; // Reverse direction in reverse gear
 
 		if ( accelerationInput > 0 )
 		{
@@ -168,7 +172,7 @@ public class CarWheel : Component
 			availableTorque *= Car.CurrentGearRatio * Car.FinalDriveRatio;
 
 			Car.Rigidbody.ApplyForceAt( WorldPosition,
-				accelerationDirection * availableTorque * CarryingMass * 25f );
+				accelerationDirection * availableTorque * CarryingMass * 25f * directionMultiplier );
 		}
 
 		if ( accelerationInput < 0 || accelerationInput == 0 )
@@ -182,8 +186,7 @@ public class CarWheel : Component
 				//Gizmo.Draw.Line( WorldPosition, WorldPosition + brakeDir * 60f );
 
 				var dragCoeff = 0.3f;
-				var rollingResistance = 20f * CarryingMass; // Increased for better low-speed stopping
-				var dragForce = MathF.Abs( localSpeed ) * CarryingMass * dragCoeff + rollingResistance;
+				var dragForce = MathF.Abs( localSpeed ) * CarryingMass * dragCoeff;
 				Car.Rigidbody.ApplyForceAt( WorldPosition, brakeDir * dragForce );
 
 				return;

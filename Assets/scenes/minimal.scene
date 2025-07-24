@@ -478,73 +478,7 @@
               "IdValue": "d164c21b-3f2c-401b-8fad-5e76d284b220"
             },
             "Property": "Position",
-            "Value": "-2806.179,1026.739,205.8617"
-          },
-          {
-            "Target": {
-              "Type": "Component",
-              "IdValue": "47627205-992c-4765-8837-d8d5db68537f"
-            },
-            "Property": "MassOverride",
-            "Value": 900
-          },
-          {
-            "Target": {
-              "Type": "Component",
-              "IdValue": "c95e8e0e-50f5-4c32-bed4-e2576eedd19d"
-            },
-            "Property": "SteeringEffectivenessCurve",
-            "Value": {
-              "rangey": "0.6,0.7877778",
-              "frames": [
-                {
-                  "x": 0,
-                  "y": 0,
-                  "in": 0,
-                  "out": 0,
-                  "mode": "Linear"
-                },
-                {
-                  "x": 1,
-                  "y": 0.9940829,
-                  "in": 0,
-                  "out": 0,
-                  "mode": "Linear"
-                }
-              ]
-            }
-          },
-          {
-            "Target": {
-              "Type": "Component",
-              "IdValue": "c95e8e0e-50f5-4c32-bed4-e2576eedd19d"
-            },
-            "Property": "SuspensionDamping",
-            "Value": 16
-          },
-          {
-            "Target": {
-              "Type": "Component",
-              "IdValue": "c95e8e0e-50f5-4c32-bed4-e2576eedd19d"
-            },
-            "Property": "SuspensionStrength",
-            "Value": 145
-          },
-          {
-            "Target": {
-              "Type": "GameObject",
-              "IdValue": "a6c0a009-c383-4c28-948b-c694688f5495"
-            },
-            "Property": "Position",
-            "Value": "0.2253418,-0.1551514,60.41489"
-          },
-          {
-            "Target": {
-              "Type": "GameObject",
-              "IdValue": "a6c0a009-c383-4c28-948b-c694688f5495"
-            },
-            "Property": "Rotation",
-            "Value": "-0.00006149081,-0.00004404015,-0.0007565022,0.9999998"
+            "Value": "-2806.179,1426.267,205.8617"
           }
         ],
         "MovedObjects": []

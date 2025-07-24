@@ -28,16 +28,21 @@ public class CarController : Component
 	[Property, Category( "Gearing" )]
 	public float[] GearRatios { get; set; } = { 3.5f, 2.5f, 1.8f, 1.2f, 0.8f }; // Gear 1 to 5
 
+	[Property, Category( "Gearing" )]
+	public float ReverseGearRatio { get; set; } =
+		5.0f; // High torque for reverse, positive value (direction handled separately)
+
 	[Property, Category( "Gearing" )] public float FinalDriveRatio { get; set; } = 4.0f;
 	[Property, Category( "Gearing" )] public float MaxRpm { get; set; } = 6000f;
 	[Property, Category( "Gearing" )] public float ShiftUpRpm { get; set; } = 4000f;
 	[Property, Category( "Gearing" )] public float ShiftDownRpm { get; set; } = 2500f;
 
 	public float CurrentRpm { get; private set; }
-	public int CurrentGear { get; private set; } = 1; // Start in first gear
+	public int CurrentGear { get; private set; } = 1; // Start in first gear; -1 for reverse
 
 	public float CurrentGearRatio =>
-		CurrentGear >= 1 && CurrentGear <= GearRatios.Length ? GearRatios[CurrentGear - 1] : 0f;
+		CurrentGear >= 1 && CurrentGear <= GearRatios.Length ? GearRatios[CurrentGear - 1] :
+		CurrentGear == -1 ? ReverseGearRatio : 0f;
 
 	public float DisplaySpeed => MathF.Max( 0, Rigidbody.Velocity.Length * 0.05681818181f );
 
@@ -102,7 +107,7 @@ public class CarController : Component
 		}
 
 		Gizmo.Draw.IgnoreDepth = true;
-		Gizmo.Draw.ScreenText( $"Gear {CurrentGear}, rpm {CurrentRpm}",
+		Gizmo.Draw.ScreenText( $"Gear {CurrentGear}, rpm {CurrentRpm:F0}, Speed {DisplaySpeed:F0} mph",
 			Scene.Camera.PointToScreenPixels( WorldPosition ) );
 	}
 
@@ -133,17 +138,19 @@ public class CarController : Component
 
 	private void UpdateGearing()
 	{
-		var carSpeed =
-			Vector3.Dot( WorldRotation.Forward, Rigidbody.Velocity ); // Fixed: Use Forward for longitudinal speed
+		var carSpeed = Vector3.Dot( WorldRotation.Forward, Rigidbody.Velocity );
 
 		var avgWheelRadius = AverageDrivenWheelRadius();
 		var wheelCircumference = MathF.PI * avgWheelRadius;
-		var wheelRps = MathF.Abs( carSpeed ) / wheelCircumference;
+		var wheelRps = MathF.Abs( carSpeed ) / wheelCircumference; // Use Abs for RPM in reverse
 
-		CurrentRpm = wheelRps * CurrentGearRatio * FinalDriveRatio * 60;
+		CurrentRpm =
+			wheelRps * MathF.Abs( CurrentGearRatio ) * FinalDriveRatio * 60; // Use Abs(ratio) to avoid negative RPM
 		CurrentRpm = Math.Clamp( CurrentRpm, 0, MaxRpm );
 
-		if ( CurrentGear > 0 )
+		var accelerationInput = Input.AnalogMove.x;
+
+		if ( accelerationInput > 0 && CurrentGear > 0 )
 		{
 			if ( CurrentRpm > ShiftUpRpm && CurrentGear < GearRatios.Length )
 			{
@@ -153,6 +160,15 @@ public class CarController : Component
 			{
 				CurrentGear--;
 			}
+		}
+		else if
+			( accelerationInput < 0 ) // Engage reverse only when nearly stopped and input back
+		{
+			CurrentGear = -1; // Switch to reverse
+		}
+		else if ( CurrentGear == -1 && accelerationInput >= 0 ) // Exit reverse on forward input
+		{
+			CurrentGear = 1; // Back to first gear
 		}
 	}
 
