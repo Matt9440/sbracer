@@ -2,7 +2,7 @@ namespace SBRacer;
 
 public sealed class RaceGame : Component, Component.INetworkListener
 {
-	private const float WaitingDuration = 10f;
+	public const float WaitingDuration = 10f;
 
 	public static RaceGame Instance { get; set; }
 

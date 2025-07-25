@@ -2,14 +2,27 @@
 @namespace SBRacer.Ui
 
 <root>
-	<!--<title class="speed">@( $"{CarController.Local.DisplaySpeed}MPH" )</title>-->
-	<Speedometer/>
+	@{
+		if ( Player.Local.Racing )
+		{
+			<Speedometer/>
+		}
+		else
+		{
+			if ( RaceGame.Instance.State is GameState.Waiting )
+			{
+				var waitTimeRemaining = RaceGame.WaitingDuration - RaceGame.Instance.TimeSinceStateStarted;
+				<div>@( $"Race starting in {waitTimeRemaining}" )</div>
+				<div>Press SOMETHING to join the race</div>
+			}
+		}
+	}
 </root>
 
 @code
 {
 	protected override int BuildHash()
 	{
-		return HashCode.Combine( CarController.Local.DisplaySpeed );
+		return HashCode.Combine( RaceGame.Instance?.QueuedPlayers, RaceGame.Instance?.RacingPlayers, RaceGame.Instance?.TimeSinceStateStarted.Relative );
 	}
 }

@@ -1,5 +1,6 @@
 global using Sandbox;
 global using Sandbox.UI;
+global using Sandbox.Audio;
 global using Sandbox.Network;
 global using System;
 global using System.Threading.Tasks;
