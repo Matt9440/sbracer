@@ -5,10 +5,40 @@ RootPanel {
 	width: 100%;
 	height: 100%;
 
-	.speed {
+	.countdown {
 		position: absolute;
-		bottom: 30px;
-		left: 30px;
-		font-size: 120px;
+		left: 60px;
+		top: 50px;
+		font-family: $heading-font;
+		flex-direction: column;
+		text-transform: uppercase;
+		font-size: 30px;
+		text-shadow: 0px 0px 2px black;
+		justify-content: center;
+
+		.prompt {
+			align-items: center;
+			gap: 2px;
+			font-size: 20px;
+
+			Image {
+				filter: drop-shadow(0px 0px 20px black);
+				margin-top: -4px;
+			}
+		}
+	}
+
+	.money {
+		position: absolute;
+		right: 60px;
+		top: 50px;
+		font-family: $heading-font;
+		flex-direction: column;
+		text-transform: uppercase;
+		font-size: 30px;
+		text-shadow: 0px 0px 2px black;
+		letter-spacing: 2px;
+
+
 	}
 }

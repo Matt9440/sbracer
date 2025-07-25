@@ -2,7 +2,7 @@ namespace SBRacer;
 
 public sealed class RaceGame : Component, Component.INetworkListener
 {
-	public const float WaitingDuration = 10f;
+	public const float WaitingDuration = 30f;
 
 	public static RaceGame Instance { get; set; }
 
@@ -51,9 +51,6 @@ public sealed class RaceGame : Component, Component.INetworkListener
 		var player = playerGo.GetComponent<Player>();
 
 		playerGo.NetworkSpawn( connection );
-
-		// Queue everyone by default for now.
-		QueuedPlayers.Add( player );
 	}
 
 	/// <summary>
@@ -64,7 +61,7 @@ public sealed class RaceGame : Component, Component.INetworkListener
 	{
 		var player = connection.GetPlayer();
 
-		// Everybody is queued by default for now, remove players when they leave.
+		// Remove players from queues when they leave.
 		if ( player.IsValid() )
 		{
 			QueuedPlayers.Remove( player );
@@ -164,6 +161,18 @@ public sealed class RaceGame : Component, Component.INetworkListener
 
 	private void TickRacingState()
 	{
+		// Nobody is racing, revert to waiting state.
+		if ( RacingPlayers.Count == 0 )
+			SetState( GameState.Waiting );
+	}
+
+	[Rpc.Host]
+	public void QueuePlayer( Player player, bool queued )
+	{
+		if ( queued )
+			QueuedPlayers.Add( player );
+		else
+			QueuedPlayers.Remove( player );
 	}
 }
 

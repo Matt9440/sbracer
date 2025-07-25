@@ -14,4 +14,16 @@ public class Player : Component
 		if ( !IsProxy )
 			Local = this;
 	}
+
+	protected override void OnUpdate()
+	{
+		if ( IsProxy )
+			return;
+
+		if ( RaceGame.Instance.State != GameState.Waiting )
+			return;
+
+		if ( Input.Released( "reload" ) )
+			RaceGame.Instance.QueuePlayer( this, !Queued );
+	}
 }

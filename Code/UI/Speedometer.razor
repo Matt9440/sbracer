@@ -35,8 +35,8 @@
 {
 	public Panel Needle { get; set; }
 
-	public float Speed => CarController.Local.DisplaySpeed;
-	public float MaxSpeed => CarController.Local.MaxSpeed;
+	public float Speed => CarController.Local?.DisplaySpeed ?? 0;
+	public float MaxSpeed => CarController.Local?.MaxSpeed ?? 0;
 
 	public override void Tick()
 	{
