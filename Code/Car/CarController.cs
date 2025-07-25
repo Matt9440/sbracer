@@ -1,7 +1,7 @@
 namespace SBRacer.Car;
 
 [Category( "SB Racer" ), Title( "Car Controller" ), Icon( "toys" )]
-public class CarController : Component
+public class CarController : EnterExitInteractable
 {
 	public static CarController Local { get; set; }
 
@@ -59,6 +59,13 @@ public class CarController : Component
 	[Property] public float MaxSteerAngle { get; set; } = 30f;
 
 	[Sync] public Player DrivenBy { get; private set; }
+
+	public override string InteractionDisplayName => "drive";
+
+	public override bool CanAltInteract( Player player )
+	{
+		return false;
+	}
 
 	protected override void OnStart()
 	{

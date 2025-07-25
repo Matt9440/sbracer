@@ -354,6 +354,17 @@
           "OnComponentUpdate": null,
           "PositionSensitivity": 5,
           "RotationSensitivity": 5
+        },
+        {
+          "__type": "Sandbox.Highlight",
+          "__guid": "2e105118-8520-4b2a-bc99-279750f98945",
+          "__enabled": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
         }
       ],
       "Children": []

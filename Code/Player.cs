@@ -4,6 +4,9 @@ public class Player : Component
 {
 	public static Player Local { get; set; }
 
+	[Property] public PlayerController PlayerController { get; set; }
+	[Property] public Interactor Interactor { get; set; }
+
 	[Sync( SyncFlags.FromHost )] public int Money { get; set; }
 
 	public bool Queued => RaceGame.Instance.QueuedPlayers.Contains( this );

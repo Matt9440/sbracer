@@ -8,6 +8,7 @@ global using System.Collections.Generic;
 global using System.Linq;
 global using SBRacer;
 global using SBRacer.Util;
+global using SBRacer.Components;
 global using SBRacer.Ui;
 global using SBRacer.Car;
 global using SBRacer.MapEntities;
