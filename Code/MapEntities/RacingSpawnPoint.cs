@@ -2,6 +2,8 @@ namespace SBRacer.MapEntities;
 
 public class RacingSpawnPoint : Component
 {
+	public static List<RacingSpawnPoint> All => Game.ActiveScene.GetAll<RacingSpawnPoint>().ToList();
+
 	protected override void DrawGizmos()
 	{
 		base.DrawGizmos();

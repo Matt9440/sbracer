@@ -4,7 +4,7 @@
 <root>
 	<div class="gauge">
 		<label class="speed-display">@Speed.ToString( "F0" ) mph</label>
-		
+
 		@for ( var i = 0; i <= 10; i++ )
 		{
 			var tickAngle = i * 18 - 90;
@@ -52,6 +52,6 @@
 
 	protected override int BuildHash()
 	{
-		return HashCode.Combine( Speed );
+		return HashCode.Combine( MaxSpeed, Speed );
 	}
 }

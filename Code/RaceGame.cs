@@ -1,16 +1,15 @@
-using Sandbox.Network;
-
 namespace SBRacer;
 
 public sealed class RaceGame : Component, Component.INetworkListener
 {
-	private const float WaitingDuration = 30f;
+	private const float WaitingDuration = 10f;
 
 	public static RaceGame Instance { get; set; }
 
+	[Property] public GameObject PlayerPrefab { get; set; }
 	[Property] public GameObject BuggyPrefab { get; set; }
 
-	[Sync( SyncFlags.FromHost )] public GameState State { get; private set; }
+	[Sync( SyncFlags.FromHost ), Change] public GameState State { get; private set; }
 
 	/// <summary>
 	///     How long have we been playing this map?
@@ -23,6 +22,12 @@ public sealed class RaceGame : Component, Component.INetworkListener
 	/// </summary>
 	[Sync( SyncFlags.FromHost )]
 	public TimeSince TimeSinceStateStarted { get; set; }
+
+	[Sync( SyncFlags.FromHost )] public NetList<Player> QueuedPlayers { get; set; } = new();
+	[Sync( SyncFlags.FromHost )] public NetList<Player> RacingPlayers { get; set; } = new();
+
+	public Action OnWaitingStarted { get; set; }
+	public Action OnRacingStarted { get; set; }
 
 	public bool AcceptConnection( Connection channel, ref string reason )
 	{
@@ -42,15 +47,30 @@ public sealed class RaceGame : Component, Component.INetworkListener
 
 		var spawnPoint = RaceMap.Instance.GetRandomWaitingSpawnPoint();
 
-		var playerBuggy = BuggyPrefab.Clone( spawnPoint.WorldTransform );
-		playerBuggy.NetworkSpawn( connection );
+		var playerGo = PlayerPrefab.Clone( spawnPoint.WorldTransform );
+		var player = playerGo.GetComponent<Player>();
+
+		playerGo.NetworkSpawn( connection );
+
+		// Queue everyone by default for now.
+		QueuedPlayers.Add( player );
 	}
 
 	/// <summary>
 	///     Called when someone leaves the server. This will only be called for the host.
 	/// </summary>
 	/// <param name="connection"></param>
-	public void OnDisconnected( Connection connection ) { }
+	public void OnDisconnected( Connection connection )
+	{
+		var player = connection.GetPlayer();
+
+		// Everybody is queued by default for now, remove players when they leave.
+		if ( player.IsValid() )
+		{
+			QueuedPlayers.Remove( player );
+			RacingPlayers.Remove( player );
+		}
+	}
 
 	protected override async Task OnLoad()
 	{
@@ -69,8 +89,7 @@ public sealed class RaceGame : Component, Component.INetworkListener
 
 	protected override void OnStart()
 	{
-		if ( !IsProxy )
-			Instance = this;
+		Instance = this;
 
 		if ( !Networking.IsHost )
 			return;
@@ -83,6 +102,22 @@ public sealed class RaceGame : Component, Component.INetworkListener
 	{
 		State = newState;
 		TimeSinceStateStarted = 0;
+
+		Log.Info( $"State changed to {newState}" );
+	}
+
+	/// <summary>
+	///     Invoked on host and all clients whenever the game state changes
+	/// </summary>
+	/// <param name="oldState"></param>
+	/// <param name="newState"></param>
+	private void OnStateChanged( GameState oldState, GameState newState )
+	{
+		if ( newState == GameState.Waiting )
+			OnWaitingStarted?.Invoke();
+
+		if ( newState == GameState.Racing )
+			OnRacingStarted?.Invoke();
 	}
 
 	protected override void OnUpdate()
@@ -99,6 +134,32 @@ public sealed class RaceGame : Component, Component.INetworkListener
 
 	private void TickWaitingState()
 	{
+		// Transition from waiting state to play state
+		if ( TimeSinceStateStarted < WaitingDuration )
+			return;
+
+		// Cleanup racing players from last round
+		RacingPlayers.Clear();
+
+		// All queued players are now racing players
+		foreach ( var player in QueuedPlayers )
+			RacingPlayers.Add( player );
+
+		// Clear queued players
+		QueuedPlayers.Clear();
+
+		// Move players to racing spawn points.
+		var spawnPoints = RacingSpawnPoint.All.Take( RacingPlayers.Count );
+
+		for ( var p = 0; p < RacingPlayers.Count; p++ )
+		{
+			var player = RacingPlayers[p];
+			var spawnPoint = spawnPoints.ElementAt( p );
+
+			player.WorldTransform = spawnPoint.WorldTransform;
+		}
+
+		SetState( GameState.Racing );
 	}
 
 	private void TickRacingState()

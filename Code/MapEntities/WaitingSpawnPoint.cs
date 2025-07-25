@@ -2,6 +2,8 @@ namespace SBRacer.MapEntities;
 
 public class WaitingSpawnPoint : Component
 {
+	public static List<WaitingSpawnPoint> All => Game.ActiveScene.GetAll<WaitingSpawnPoint>().ToList();
+
 	protected override void DrawGizmos()
 	{
 		base.DrawGizmos();

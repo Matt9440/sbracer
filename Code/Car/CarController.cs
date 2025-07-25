@@ -38,7 +38,7 @@ public class CarController : Component
 	[Property, Category( "Gearing" )] public float ShiftDownRpm { get; set; } = 2500f;
 
 	public float CurrentRpm { get; private set; }
-	public int CurrentGear { get; private set; } = 1; // Start in first gear; -1 for reverse
+	public int CurrentGear { get; private set; } = 1;
 
 	public float CurrentGearRatio =>
 		CurrentGear >= 1 && CurrentGear <= GearRatios.Length ? GearRatios[CurrentGear - 1] :
@@ -95,7 +95,7 @@ public class CarController : Component
 				break;
 		}
 
-		if ( Input.Down( "brake" ) )
+		if ( Input.Down( "Jump" ) )
 		{
 			BackLeftWheel.HandBrake( 0.5f );
 			BackRightWheel.HandBrake( 0.5f );
@@ -162,9 +162,9 @@ public class CarController : Component
 			}
 		}
 		else if
-			( accelerationInput < 0 ) // Engage reverse only when nearly stopped and input back
+			( accelerationInput < 0 ) // Engage reverse
 		{
-			CurrentGear = -1; // Switch to reverse
+			CurrentGear = -1;
 		}
 		else if ( CurrentGear == -1 && accelerationInput >= 0 ) // Exit reverse on forward input
 		{
