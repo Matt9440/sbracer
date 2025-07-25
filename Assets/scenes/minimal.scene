@@ -1401,6 +1401,60 @@
           "Children": []
         }
       ]
+    },
+    {
+      "__guid": "8f8c0054-3b76-4c8b-b47f-9221e364b103",
+      "__version": 1,
+      "__Prefab": "buggy.prefab",
+      "__PrefabInstancePatch": {
+        "AddedObjects": [],
+        "RemovedObjects": [],
+        "PropertyOverrides": [
+          {
+            "Target": {
+              "Type": "GameObject",
+              "IdValue": "d164c21b-3f2c-401b-8fad-5e76d284b220"
+            },
+            "Property": "Position",
+            "Value": "-3392,2304,389.1823"
+          },
+          {
+            "Target": {
+              "Type": "GameObject",
+              "IdValue": "d164c21b-3f2c-401b-8fad-5e76d284b220"
+            },
+            "Property": "Rotation",
+            "Value": "0,0,0,0.9999999"
+          }
+        ],
+        "MovedObjects": []
+      },
+      "__PrefabIdToInstanceId": {
+        "d164c21b-3f2c-401b-8fad-5e76d284b220": "8f8c0054-3b76-4c8b-b47f-9221e364b103",
+        "799272b4-f7ad-46ca-a5dd-c4a792d426f7": "9a0662a1-731a-4037-942e-70df4a4dcbf9",
+        "53346181-f894-4dd1-a8d7-b550858c82f6": "12d038ea-b9dd-4edc-aa70-ed6da81db803",
+        "47627205-992c-4765-8837-d8d5db68537f": "dcd77ed4-241e-4912-b22c-5245e1b083d3",
+        "c95e8e0e-50f5-4c32-bed4-e2576eedd19d": "16547a4f-86c4-4905-a5db-c2b6b6cec82e",
+        "cc6b3b06-bd7b-4b48-86da-b3f4c101517d": "624105b0-170e-47ed-a297-2448b1e7bdec",
+        "7647c57b-4f20-4713-a2a6-d8c21156a35c": "43319023-e586-4ba2-ac7f-a49a2d9ea4ac",
+        "85ffe15d-b939-4cb3-bc70-f4c9ce8f11d2": "24a09726-2654-4bef-bfb9-f2107272922a",
+        "8c63902a-e64b-48c8-b36e-bf5f2df26053": "a6ad6551-0e25-42f4-a1d3-f42ae9b02368",
+        "993d32de-0a3a-40bd-a4eb-a168d3cde05f": "e947f14e-fcc3-43b2-a191-b68745b66490",
+        "b8d76430-1d39-4440-8010-1d4a7c875cda": "716a72cb-52c1-4df2-b6f8-13ff6f42829f",
+        "c16069c4-a011-472a-a372-34daaff81040": "8d6acdff-8d8d-449e-81fa-b5cf699e18a0",
+        "ae76ebbe-f3b6-4e1c-8fe0-43a829a0b912": "18c536ed-8b77-4550-b717-5f9d43d04282",
+        "7c13f835-d733-43a6-b8f9-6412a5f5bf79": "b2f6bf2c-19cc-4cda-aa50-5980da0c0314",
+        "425f152a-b557-4bbc-8e25-28240f15ca0b": "401f0e66-0996-4909-aea4-c679d72e8d9f",
+        "8db84d3f-18cc-45bf-9247-04bc129590c5": "818348ae-8aa3-4f1c-9249-66fd4289152b",
+        "fe285aec-e62b-423d-ad4b-e4e6243a0676": "c8d5df5d-2b92-4dcb-bd54-914b49f23ba4",
+        "c2fa97fa-5148-427b-9d67-564a612c0e6e": "7c1cdde0-f511-47a0-a6e5-a9aac44ffe0f",
+        "c7dd8c51-8aea-4149-a8d6-2a7765b11f8f": "fd023ff8-1f97-45f8-a72e-ea568b92dd96",
+        "d6f735a3-101f-4f47-ba20-fc76146b6970": "c2ac54d4-f9b0-4d4a-bf68-e27c587d3c4d",
+        "e15bb0e6-23f2-4698-9f97-e0bbd2b09f75": "96060e06-65c4-4915-82db-80e5deca31c4",
+        "fe757cdf-bb02-4724-b493-c56e51acb734": "28e545b8-7bd3-45a6-a6ab-0e30f13eeb09",
+        "ea162222-2044-47d5-9c2b-ea288cbbee47": "fc22d4d3-c9de-41ad-8a20-fc961ef7a4ce",
+        "a6c0a009-c383-4c28-948b-c694688f5495": "d7471eb5-3340-4849-bf76-2c8d154d9f66"
+      }
     }
   ],
   "SceneProperties": {

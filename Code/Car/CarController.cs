@@ -58,6 +58,8 @@ public class CarController : Component
 
 	[Property] public float MaxSteerAngle { get; set; } = 30f;
 
+	[Sync] public Player DrivenBy { get; private set; }
+
 	protected override void OnStart()
 	{
 		base.OnStart();
@@ -72,10 +74,6 @@ public class CarController : Component
 
 		if ( IsProxy )
 			return;
-
-		UpdateGearing();
-
-		Steer();
 
 		switch ( DriveType )
 		{
@@ -95,6 +93,11 @@ public class CarController : Component
 				break;
 		}
 
+		if ( !DrivenBy.IsValid() )
+			return;
+
+		UpdateGearing();
+
 		if ( Input.Down( "Jump" ) )
 		{
 			BackLeftWheel.HandBrake( 0.5f );
@@ -105,6 +108,8 @@ public class CarController : Component
 			BackLeftWheel.HandbrakeApplied = false;
 			BackRightWheel.HandbrakeApplied = false;
 		}
+
+		Steer();
 
 		Gizmo.Draw.IgnoreDepth = true;
 		Gizmo.Draw.ScreenText( $"Gear {CurrentGear}, rpm {CurrentRpm:F0}, Speed {DisplaySpeed:F0} mph",

@@ -160,7 +160,7 @@ public class CarWheel : Component
 		var carSpeed = Vector3.Dot( Car.WorldRotation.Forward, Car.Rigidbody.Velocity );
 
 		var accelerationDirection = WorldTransform.Left;
-		var accelerationInput = Input.AnalogMove.x;
+		var accelerationInput = Car.DrivenBy.IsValid() ? Input.AnalogMove.x : 0;
 
 		var directionMultiplier = Car.CurrentGear >= 0 ? 1f : -1f; // Reverse direction in reverse gear
 
