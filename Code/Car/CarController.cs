@@ -58,13 +58,42 @@ public class CarController : EnterExitInteractable
 
 	[Property] public float MaxSteerAngle { get; set; } = 30f;
 
+	[Sync( SyncFlags.FromHost )] public Player Owner { get; private set; }
 	[Sync] public Player DrivenBy { get; private set; }
 
-	public override string InteractionDisplayName => "drive";
+	public override string InteractionDisplayName =>
+		Owner.IsValid() ? $"Drive {Owner.Network.Owner.DisplayName}'s car" : "Drive";
 
 	public override bool CanAltInteract( Player player )
 	{
 		return false;
+	}
+
+	public override bool CanExitInteraction( Player player )
+	{
+		return !player.Racing;
+	}
+
+	public override bool CanInteract( Player player )
+	{
+		return !DrivenBy.IsValid();
+	}
+
+	public override void OnInteract( Player player )
+	{
+		// Give network ownership of this car to the interactor
+		GameObject.Network.TakeOwnership();
+		DrivenBy = player;
+	}
+
+	public override void ExitInteract( Player player )
+	{
+		if ( Owner.IsValid() )
+			GameObject.Network.AssignOwnership( Owner.Network.Owner );
+		else
+			GameObject.Network.DropOwnership();
+
+		DrivenBy = null;
 	}
 
 	protected override void OnStart()
@@ -73,6 +102,9 @@ public class CarController : EnterExitInteractable
 
 		if ( !IsProxy )
 			Local = this;
+
+		if ( Networking.IsHost )
+			Owner = Network.Owner.GetPlayer();
 	}
 
 	protected override void OnUpdate()

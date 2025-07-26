@@ -33,11 +33,14 @@ public class CarWheel : Component
 		endPos += WheelTraceInwardOffset;
 
 		// Rotate cylinder 90 degrees to align axis with axle
-		WheelTrace = WheelTrace = Scene.Trace.Cylinder( WheelWidth, WheelRadius / 2, startPos, endPos )
+		WheelTrace = WheelTrace = Scene.Trace.Cylinder( WheelWidth, WheelRadius, startPos, endPos )
 			.Rotated( Rotation.LookAt( WorldRotation.Down, WheelModel.WorldRotation.Right ) )
 			.WithoutTags( "wheel", "car" )
 			.IgnoreGameObjectHierarchy( Car.GameObject )
 			.Run();
+
+		// This is beautiful, but only supported on staging for now.
+		//DebugOverlay.Trace( WheelTrace );
 	}
 
 	/// <summary>
@@ -118,7 +121,7 @@ public class CarWheel : Component
 		// Position wheel models
 		if ( WheelModel.IsValid() )
 		{
-			WheelModel.WorldPosition = WheelTrace.EndPosition + Vector3.Up * WheelRadius / 2 + -WheelTraceInwardOffset;
+			WheelModel.WorldPosition = WheelTrace.EndPosition - WheelTraceInwardOffset;
 
 			if ( HandbrakeApplied )
 				return;
@@ -140,7 +143,7 @@ public class CarWheel : Component
 		var wheelVelocity = Car.Rigidbody.GetVelocityAtPoint( WorldPosition );
 		var steeringVelocity = Vector3.Dot( steeringDirection, wheelVelocity );
 
-		var gripFactor = Input.Down( "brake" ) ? Car.HandBrakeGripFactor : 1f;
+		var gripFactor = Input.Down( "jump" ) ? Car.HandBrakeGripFactor : 1f;
 		var wishVelocityChange = -steeringVelocity * gripFactor;
 		var wishAcceleration = wishVelocityChange / Time.Delta;
 		var desiredForce = CarryingMass * wishAcceleration;

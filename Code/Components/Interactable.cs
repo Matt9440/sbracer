@@ -75,7 +75,7 @@ public abstract class Interactable : Component
 		highlight.Width = 0.5f;
 	}
 
-	public virtual void OnInteract( Player pawn ) { }
+	public virtual void OnInteract( Player player ) { }
 
 	protected override void OnStart()
 	{
