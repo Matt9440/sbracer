@@ -39,8 +39,8 @@ public class CarWheel : Component
 			.IgnoreGameObjectHierarchy( Car.GameObject )
 			.Run();
 
-		// This is beautiful, but only supported on staging for now.
-		//DebugOverlay.Trace( WheelTrace );
+		// This is great, but only supported on staging for now.
+		// DebugOverlay.Trace( WheelTrace );
 	}
 
 	/// <summary>

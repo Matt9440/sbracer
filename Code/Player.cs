@@ -9,7 +9,9 @@ public class Player : Component
 	[Property] public PlayerController PlayerController { get; set; }
 	[Property] public Interactor Interactor { get; set; }
 
-	[Sync( SyncFlags.FromHost )] public bool MovementLocked { get; set; }
+	[Sync( SyncFlags.FromHost ), Change( "OnMovementLocked" )]
+	public bool MovementLocked { get; set; }
+
 	[Sync( SyncFlags.FromHost )] public int Money { get; set; }
 
 	/// <summary>
@@ -46,5 +48,18 @@ public class Player : Component
 		Assert.True( Networking.IsHost );
 
 		MovementLocked = locked;
+	}
+
+	public void OnMovementLocked( bool wasLocked, bool isLocked )
+	{
+		if ( IsProxy )
+			return;
+
+		PlayerController.UseCameraControls = !isLocked;
+		PlayerController.UseInputControls = !isLocked;
+		PlayerController.UseLookControls = !isLocked;
+
+		if ( isLocked )
+			PlayerController.WishVelocity = Vector3.Zero;
 	}
 }

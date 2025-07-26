@@ -84,6 +84,8 @@ public class CarController : EnterExitInteractable
 		// Give network ownership of this car to the interactor
 		GameObject.Network.TakeOwnership();
 		DrivenBy = player;
+
+		player.LockMovement( true );
 	}
 
 	public override void ExitInteract( Player player )
@@ -94,6 +96,7 @@ public class CarController : EnterExitInteractable
 			GameObject.Network.DropOwnership();
 
 		DrivenBy = null;
+		player.LockMovement( false );
 	}
 
 	protected override void OnStart()
