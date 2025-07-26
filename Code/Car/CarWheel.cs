@@ -243,16 +243,5 @@ public class CarWheel : Component
 		Gizmo.Draw.Color = Color.White;
 		Gizmo.Draw.Line( WheelTrace.StartPosition, WheelTrace.EndPosition );
 		Gizmo.Draw.SolidSphere( WheelTrace.EndPosition, 1f );*/
-
-		if ( WheelModel.IsValid() )
-		{
-			Gizmo.Draw.Color = Color.Cyan.WithAlpha( 0.2f );
-			var axleDir = WheelModel.WorldRotation.Right;
-
-			Gizmo.Draw.SolidCylinder(
-				WheelTrace.EndPosition - axleDir * WheelWidth / 2 + Vector3.Up * WheelRadius / 2,
-				WheelTrace.EndPosition + axleDir * WheelWidth / 2 + Vector3.Up * WheelRadius / 2,
-				WheelRadius );
-		}
 	}
 }

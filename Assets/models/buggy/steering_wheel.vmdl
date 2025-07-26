@@ -42,7 +42,7 @@
 					{
 						_class = "RenderMeshFile"
 						filename = "models/buggy/buggy.fbx"
-						import_translation = [ 0.0, 0.0, 0.0 ]
+						import_translation = [ -0.35, -0.22, -1.0 ]
 						import_rotation = [ -90.0, 0.0, 0.0 ]
 						import_scale = 40.0
 						align_origin_x_type = "None"
@@ -54,21 +54,7 @@
 							exclude_by_default = true
 							exception_list = 
 							[
-								"hl2buggy_parkingbrake",
-								"hl2buggy_fueltank",
-								"hl2buggy_gauges",
-								"hl2buggy_frame",
-								"hl2buggy_brakepedal",
-								"hl2buggy_gaspedal",
-								"hl2buggy_battery",
-								"hl2buggy_floor",
-								"hl2buggy_fenders",
-								"hl2buggy_bumper",
-								"hl2buggy_fusebox",
-								"hl2buggy_fusebox_new",
-								"hl2buggy_seat",
-								"hl2buggy_steeringbox",
-								"hl2buggy_steeringcolumn_lower",
+								"hl2buggy_steeringwheel_001",
 							]
 						}
 					},

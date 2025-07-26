@@ -135,6 +135,18 @@
         "HandBrakeGripFactor": 0.3,
         "HandBrakeStrength": 120,
         "HighlightColor": "1,1,1,1",
+        "IkLeftHand": {
+          "_type": "gameobject",
+          "go": "31614972-7f79-447c-9fa6-37a22ea4300e"
+        },
+        "IkRightFoot": {
+          "_type": "gameobject",
+          "go": "e5d0a711-85e3-4b9c-8104-3e7dbe96d6a6"
+        },
+        "IkRightHand": {
+          "_type": "gameobject",
+          "go": "5db30f53-6ff9-4e40-a629-8ffd82a81913"
+        },
         "MaxRpm": 6000,
         "MaxSpeed": 200,
         "MaxSteerAngle": 30,
@@ -150,6 +162,10 @@
           "component_id": "47627205-992c-4765-8837-d8d5db68537f",
           "go": "d164c21b-3f2c-401b-8fad-5e76d284b220",
           "component_type": "Rigidbody"
+        },
+        "SeatedTransform": {
+          "_type": "gameobject",
+          "go": "c18e9bae-7c2a-449c-9646-f7075614fa26"
         },
         "ShiftDownRpm": 3000,
         "ShiftUpRpm": 4000,
@@ -173,6 +189,10 @@
           ]
         },
         "SteeringSpeed": 50,
+        "SteeringWheel": {
+          "_type": "gameobject",
+          "go": "09b033b2-1a5d-4be2-9a0c-103bd9c2a223"
+        },
         "SuspensionDamping": 16,
         "SuspensionHeight": 10,
         "SuspensionStrength": 165,
@@ -584,6 +604,118 @@
         "OwnerTransfer": 1,
         "Components": [],
         "Children": []
+      },
+      {
+        "__guid": "c18e9bae-7c2a-449c-9646-f7075614fa26",
+        "__version": 1,
+        "Flags": 0,
+        "Name": "SeatedTransform",
+        "Position": "6.515469,10.09903,14.48509",
+        "Rotation": "-0.00008617365,-0.13051,-0.002501601,0.9914437",
+        "Scale": "1,1,1",
+        "Tags": "",
+        "Enabled": true,
+        "NetworkMode": 2,
+        "NetworkInterpolation": true,
+        "NetworkOrphaned": 0,
+        "OwnerTransfer": 1,
+        "Components": [],
+        "Children": []
+      },
+      {
+        "__guid": "e5d0a711-85e3-4b9c-8104-3e7dbe96d6a6",
+        "__version": 1,
+        "Flags": 0,
+        "Name": "IK_Right_Foot",
+        "Position": "19.63511,3.308804,21.70968",
+        "Rotation": "0.7008175,-0.09431084,0.09030436,0.7012884",
+        "Scale": "1,1,1",
+        "Tags": "",
+        "Enabled": true,
+        "NetworkMode": 2,
+        "NetworkInterpolation": true,
+        "NetworkOrphaned": 0,
+        "OwnerTransfer": 1,
+        "Components": [],
+        "Children": []
+      },
+      {
+        "__guid": "09b033b2-1a5d-4be2-9a0c-103bd9c2a223",
+        "__version": 1,
+        "Flags": 0,
+        "Name": "steering_wheel",
+        "Position": "9.516264,9.055987,44.214",
+        "Rotation": "0,0.1305262,0,0.9914449",
+        "Scale": "1,1,1",
+        "Tags": "",
+        "Enabled": true,
+        "NetworkMode": 2,
+        "NetworkInterpolation": true,
+        "NetworkOrphaned": 0,
+        "OwnerTransfer": 1,
+        "Components": [
+          {
+            "__type": "Sandbox.ModelRenderer",
+            "__guid": "23fb12f4-ed27-498d-8e77-fa8ed8e3b5c8",
+            "__enabled": true,
+            "BodyGroups": 18446744073709551615,
+            "CreateAttachments": false,
+            "MaterialGroup": null,
+            "MaterialOverride": null,
+            "Materials": null,
+            "Model": "models/buggy/steering_wheel.vmdl",
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "RenderOptions": {
+              "GameLayer": true,
+              "OverlayLayer": false,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
+            "RenderType": "On",
+            "Tint": "1,1,1,1"
+          }
+        ],
+        "Children": [
+          {
+            "__guid": "31614972-7f79-447c-9fa6-37a22ea4300e",
+            "__version": 1,
+            "Flags": 0,
+            "Name": "IK_Left_Hand",
+            "Position": "-4.160612,7.355029,2.97541",
+            "Rotation": "0.7576267,-0.03230779,0.0392424,0.6507054",
+            "Scale": "1,1,1",
+            "Tags": "",
+            "Enabled": true,
+            "NetworkMode": 2,
+            "NetworkInterpolation": true,
+            "NetworkOrphaned": 0,
+            "OwnerTransfer": 1,
+            "Components": [],
+            "Children": []
+          },
+          {
+            "__guid": "5db30f53-6ff9-4e40-a629-8ffd82a81913",
+            "__version": 1,
+            "Flags": 0,
+            "Name": "IK_Right_Hand",
+            "Position": "-3.957281,-8.754903,1.21062",
+            "Rotation": "0.6003776,-0.105757,0.07662244,0.7889813",
+            "Scale": "1,1,1",
+            "Tags": "",
+            "Enabled": true,
+            "NetworkMode": 2,
+            "NetworkInterpolation": true,
+            "NetworkOrphaned": 0,
+            "OwnerTransfer": 1,
+            "Components": [],
+            "Children": []
+          }
+        ]
       }
     ],
     "__properties": {

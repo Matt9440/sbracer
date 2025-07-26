@@ -1,3 +1,4 @@
+using Sandbox.Citizen;
 using Sandbox.Diagnostics;
 
 namespace SBRacer;
@@ -8,6 +9,7 @@ public class Player : Component
 
 	[Property] public PlayerController PlayerController { get; set; }
 	[Property] public Interactor Interactor { get; set; }
+	[Property] public CitizenAnimationHelper AnimationHelper { get; set; }
 
 	[Sync( SyncFlags.FromHost ), Change( "OnMovementLocked" )]
 	public bool MovementLocked { get; set; }
@@ -50,16 +52,23 @@ public class Player : Component
 		MovementLocked = locked;
 	}
 
+	/// <summary>
+	///     Called on all clients as a result of changes to MovementLocked
+	/// </summary>
+	/// <param name="wasLocked"></param>
+	/// <param name="isLocked"></param>
 	public void OnMovementLocked( bool wasLocked, bool isLocked )
 	{
 		if ( IsProxy )
 			return;
 
+		if ( isLocked )
+			PlayerController.WishVelocity = Vector3.Zero;
+
 		PlayerController.UseCameraControls = !isLocked;
 		PlayerController.UseInputControls = !isLocked;
 		PlayerController.UseLookControls = !isLocked;
-
-		if ( isLocked )
-			PlayerController.WishVelocity = Vector3.Zero;
+		PlayerController.UseAnimatorControls = !isLocked;
+		PlayerController.UpdateAnimation( PlayerController.Renderer );
 	}
 }

@@ -18,6 +18,12 @@
         "__type": "SBRacer.Player",
         "__guid": "c8c4379b-9b60-4f1c-816a-0a55f40be7b2",
         "__enabled": true,
+        "AnimationHelper": {
+          "_type": "component",
+          "component_id": "b76b7a2e-9340-4dce-aa43-6cebe69a21e6",
+          "go": "9753635f-5b5c-4d73-bdef-c6d2268bdda6",
+          "component_type": "CitizenAnimationHelper"
+        },
         "Interactor": {
           "_type": "component",
           "component_id": "2105b4bf-b9af-43e7-9265-50689bd06770",
@@ -203,9 +209,9 @@
           "component_type": "SkinnedModelRenderer"
         },
         "Clothing": [],
-        "ManualAge": 0.5,
-        "ManualHeight": 0.5,
-        "ManualTint": 0.5,
+        "ManualAge": 0,
+        "ManualHeight": 0.8,
+        "ManualTint": 0.38855422,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
@@ -341,11 +347,39 @@
             },
             "Tint": "1,1,1,1",
             "UseAnimGraph": true
+          },
+          {
+            "__type": "Sandbox.Citizen.CitizenAnimationHelper",
+            "__guid": "b76b7a2e-9340-4dce-aa43-6cebe69a21e6",
+            "__enabled": true,
+            "BodyWeight": 1,
+            "EyeSource": null,
+            "EyesWeight": 1,
+            "HeadWeight": 1,
+            "Height": null,
+            "IkLeftFoot": null,
+            "IkLeftHand": null,
+            "IkRightFoot": null,
+            "IkRightHand": null,
+            "LookAt": null,
+            "LookAtEnabled": false,
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "Target": {
+              "_type": "component",
+              "component_id": "557d3598-5927-4e52-8325-fef5f2b81f2f",
+              "go": "9753635f-5b5c-4d73-bdef-c6d2268bdda6",
+              "component_type": "SkinnedModelRenderer"
+            }
           }
         ],
         "Children": [
           {
-            "__guid": "bf77234a-ae5e-41a6-ba2a-a7d5827cab82",
+            "__guid": "3bacd6c8-6d66-48de-bf9d-bc6af14c82a1",
             "__version": 1,
             "Flags": 0,
             "Name": "Clothing - slippers",
@@ -361,7 +395,7 @@
             "Components": [
               {
                 "__type": "Sandbox.SkinnedModelRenderer",
-                "__guid": "b5e82372-2957-4d8b-8668-a8590e5e616c",
+                "__guid": "44a91412-8b46-4f14-933c-c29952598bac",
                 "__enabled": true,
                 "AnimationGraph": null,
                 "BodyGroups": 18446744073709551615,
@@ -411,7 +445,7 @@
             "Children": []
           },
           {
-            "__guid": "1f2174eb-adeb-4561-8320-c88be0dc8d61",
+            "__guid": "604c78e2-866c-414f-99ce-d981f7b00dde",
             "__version": 1,
             "Flags": 0,
             "Name": "Clothing - modern_watch_black",
@@ -427,7 +461,7 @@
             "Components": [
               {
                 "__type": "Sandbox.SkinnedModelRenderer",
-                "__guid": "7cc35c33-dc1b-4d96-a224-adb0e746ada1",
+                "__guid": "02d06811-3cf4-4003-9722-9be4d6c78a66",
                 "__enabled": true,
                 "AnimationGraph": null,
                 "BodyGroups": 18446744073709551615,
@@ -477,7 +511,7 @@
             "Children": []
           },
           {
-            "__guid": "d846b2ab-7e8f-4627-a194-c4a21af8937e",
+            "__guid": "09224e18-e4f9-431f-84e5-639f1e78dc62",
             "__version": 1,
             "Flags": 0,
             "Name": "Clothing - polo_shirt_white",
@@ -493,7 +527,7 @@
             "Components": [
               {
                 "__type": "Sandbox.SkinnedModelRenderer",
-                "__guid": "919f13cb-72ae-4b0a-8e65-c57ed0d72440",
+                "__guid": "9ca24e02-0ab2-4c1b-8d3e-9e04e6841e97",
                 "__enabled": true,
                 "AnimationGraph": null,
                 "BodyGroups": 18446744073709551615,
@@ -543,7 +577,7 @@
             "Children": []
           },
           {
-            "__guid": "c449e378-d3ae-48e2-965e-8ebf561e2995",
+            "__guid": "fe920663-e4c1-4399-8374-11a904e9f031",
             "__version": 1,
             "Flags": 0,
             "Name": "Clothing - neck_tattoo",
@@ -559,7 +593,7 @@
             "Components": [
               {
                 "__type": "Sandbox.SkinnedModelRenderer",
-                "__guid": "766c3a19-2c68-4384-b15c-82be59178245",
+                "__guid": "24c23c82-b7d6-468a-8cc2-ab5720e93b41",
                 "__enabled": true,
                 "AnimationGraph": null,
                 "BodyGroups": 18446744073709551615,
@@ -609,7 +643,7 @@
             "Children": []
           },
           {
-            "__guid": "dd96f3d1-c1ff-4c40-a820-9b5ffeabfd45",
+            "__guid": "37c13eda-b053-4631-b119-5d836322b6bc",
             "__version": 1,
             "Flags": 0,
             "Name": "Clothing - heart_pattern_boxers",
@@ -625,7 +659,7 @@
             "Components": [
               {
                 "__type": "Sandbox.SkinnedModelRenderer",
-                "__guid": "08256531-1c7b-45cc-8775-797657393525",
+                "__guid": "f036179c-d149-45bf-8843-14e9be48396b",
                 "__enabled": true,
                 "AnimationGraph": null,
                 "BodyGroups": 18446744073709551615,
@@ -675,7 +709,7 @@
             "Children": []
           },
           {
-            "__guid": "1fb46a6b-ac5e-409c-9111-09a75c7e5384",
+            "__guid": "da3c353e-b68b-4aee-8fae-91ca6f24070e",
             "__version": 1,
             "Flags": 0,
             "Name": "Clothing - hard_hat",
@@ -691,7 +725,7 @@
             "Components": [
               {
                 "__type": "Sandbox.SkinnedModelRenderer",
-                "__guid": "0454c829-2ab9-4788-a570-70e9a4bf31c3",
+                "__guid": "76bd18e5-8657-4ff5-ab34-a36ecca58c1c",
                 "__enabled": true,
                 "AnimationGraph": null,
                 "BodyGroups": 18446744073709551615,
@@ -741,7 +775,7 @@
             "Children": []
           },
           {
-            "__guid": "e0cf25f1-2db2-4ec3-9255-abe5467c5d44",
+            "__guid": "d953d4d6-aefe-49bc-822e-bc59b16057f1",
             "__version": 1,
             "Flags": 0,
             "Name": "Clothing - eyebrows",
@@ -757,7 +791,7 @@
             "Components": [
               {
                 "__type": "Sandbox.SkinnedModelRenderer",
-                "__guid": "02a11977-4ccc-4eff-a439-438ec028f642",
+                "__guid": "b0218867-b7fa-4264-ab27-813f9d8ce5b4",
                 "__enabled": true,
                 "AnimationGraph": null,
                 "BodyGroups": 18446744073709551615,

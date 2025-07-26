@@ -6,11 +6,16 @@ public class CarController : EnterExitInteractable
 	public static CarController Local { get; set; }
 
 	[Property, Category( "References" )] public Rigidbody Rigidbody { get; set; }
+	[Property, Category( "References" )] public GameObject SteeringWheel { get; set; }
 	[Property, Category( "References" )] public CarWheel FrontLeftWheel { get; set; }
 	[Property, Category( "References" )] public CarWheel FrontRightWheel { get; set; }
 	[Property, Category( "References" )] public CarWheel BackLeftWheel { get; set; }
 	[Property, Category( "References" )] public CarWheel BackRightWheel { get; set; }
 	[Property, Category( "References" )] public GameObject CameraLookAt { get; set; }
+	[Property, Category( "References" )] public GameObject SeatedTransform { get; set; }
+	[Property, Category( "References" )] public GameObject IkRightHand { get; set; }
+	[Property, Category( "References" )] public GameObject IkLeftHand { get; set; }
+	[Property, Category( "References" )] public GameObject IkRightFoot { get; set; }
 
 	[Property, Category( "Movement" )] public DriveType DriveType { get; set; } = DriveType.FrontWheelDrive;
 	[Property, Category( "Movement" )] public float MaxSpeed { get; set; } = 100f;
@@ -86,6 +91,21 @@ public class CarController : EnterExitInteractable
 		DrivenBy = player;
 
 		player.LockMovement( true );
+		player.Tags.Add( "no_collide" );
+
+		player.GameObject.Parent = SeatedTransform;
+		player.WorldTransform = SeatedTransform.WorldTransform;
+
+		player.PlayerController.Renderer.LocalRotation = Rotation.Identity;
+		player.PlayerController.Renderer.Set( "sit", 1 );
+		player.PlayerController.Renderer.Set( "sit_height_offset", -4.301f );
+
+		player.AnimationHelper.IkRightHand = IkRightHand;
+		player.AnimationHelper.IkLeftHand = IkLeftHand;
+		player.AnimationHelper.IkRightFoot = IkRightFoot;
+
+		player.AnimationHelper.LookAtEnabled = true;
+		player.AnimationHelper.LookAt = Scene.Camera.GameObject;
 	}
 
 	public override void ExitInteract( Player player )
@@ -96,7 +116,19 @@ public class CarController : EnterExitInteractable
 			GameObject.Network.DropOwnership();
 
 		DrivenBy = null;
+
+		player.PlayerController.Renderer.Set( "sit", 0 );
+
 		player.LockMovement( false );
+		player.Tags.Remove( "no_collide" );
+
+		player.AnimationHelper.IkRightHand = null;
+		player.AnimationHelper.IkLeftHand = null;
+		player.AnimationHelper.IkRightFoot = null;
+		player.AnimationHelper.LookAtEnabled = false;
+
+		player.GameObject.Parent = null;
+		player.WorldTransform = FindSafeExitPoint();
 	}
 
 	protected override void OnStart()
@@ -227,6 +259,9 @@ public class CarController : EnterExitInteractable
 		// Ackermann formula (inside wheel turns more than outside wheel)
 		var phi = Input.AnalogMove.y * MaxSteerAngle;
 
+		// Clamp phi to ensure input doesn't exceed MaxSteerAngle
+		phi = phi.Clamp( -MaxSteerAngle, MaxSteerAngle );
+
 		// Use absolutes to calculate magnitudes, then apply sign
 		var absPhi = MathF.Abs( phi );
 		var absPhiRad = absPhi.DegreeToRadian();
@@ -263,6 +298,63 @@ public class CarController : EnterExitInteractable
 		var currentRightYaw = FrontRightWheel.LocalRotation.Yaw();
 		var newRightYaw = currentRightYaw.Approach( targetRightYaw, effectiveSteeringSpeed * Time.Delta );
 		FrontRightWheel.LocalRotation = Rotation.FromYaw( newRightYaw );
+
+		// Rotate steering wheel (roll around Z-axis)
+		if ( SteeringWheel.IsValid() )
+		{
+			var maxSteeringWheelRoll =
+				MaxSteerAngle + 30; // Max roll matches wheel limits (e.g., 30 * 10 = 300 degrees)
+
+			var targetSteeringWheelRoll = -phi * 10f; // Multiply by 10 for visual effect, invert for natural rotation
+			targetSteeringWheelRoll = targetSteeringWheelRoll.Clamp( -maxSteeringWheelRoll, maxSteeringWheelRoll );
+
+			var currentSteeringWheelRoll = SteeringWheel.LocalRotation.Roll();
+			var steeringWheelSpeed = effectiveSteeringSpeed * 2f; // Double the speed for faster rotation
+			var newSteeringWheelRoll =
+				currentSteeringWheelRoll.Approach( targetSteeringWheelRoll, steeringWheelSpeed * Time.Delta );
+
+			SteeringWheel.LocalRotation = Rotation.FromPitch( SteeringWheel.LocalRotation.Pitch() ) *
+			                              Rotation.FromRoll( newSteeringWheelRoll );
+		}
+	}
+
+	protected Transform FindSafeExitPoint()
+	{
+		var playerBounds = Player.Local.PlayerController.Renderer.Bounds;
+
+		var testDistance = 48f;
+		var testPositions = new[]
+		{
+			WorldPosition + WorldRotation.Left * testDistance, WorldPosition + WorldRotation.Right * testDistance,
+			WorldPosition + WorldRotation.Forward * testDistance,
+			WorldPosition + WorldRotation.Backward * testDistance, WorldPosition + Vector3.Up * testDistance
+		};
+
+		foreach ( var testPos in testPositions )
+		{
+			var testTransform = new Transform( testPos + Vector3.Up * 12f, WorldRotation );
+
+			// Check this position isn't obstructed
+			var trace = Scene.Trace.Box( playerBounds, testTransform.Position, testTransform.Position )
+				.WithoutTags( "player", "trigger" )
+				.Run();
+
+			if ( !trace.Hit )
+			{
+				// Check there's ground beneath
+				var groundTrace = Scene.Trace
+					.Ray( testTransform.Position, testTransform.Position + Vector3.Down * 100f )
+					.WithoutTags( "player", "trigger" )
+					.Run();
+
+				// Adjust to ground level
+				if ( groundTrace.Hit )
+					return testTransform.WithPosition( groundTrace.HitPosition + Vector3.Up * 2f );
+			}
+		}
+
+		// Fallback to original position if all else fails
+		return WorldTransform.WithPosition( WorldPosition + Vector3.Up * 12f + WorldRotation.Left * 32f );
 	}
 }
 
