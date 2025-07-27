@@ -60,7 +60,7 @@ public class CarWheel : Component
 		{
 			//Gizmo.Draw.Line( wallTrace.EndPosition, wallTrace.EndPosition + wallTrace.Normal * 10 );
 
-			var impulseStrength = 0.8f;
+			var impulseStrength = 1f;
 			var normal = wallTrace.Normal;
 			var vel = Car.Rigidbody.GetVelocityAtPoint( WorldPosition );
 			var relativeNormalVel = Vector3.Dot( vel, normal );
@@ -170,8 +170,6 @@ public class CarWheel : Component
 		if ( !WheelTrace.Hit || Vector3.Dot( WheelTrace.Normal, WorldRotation.Up ) <= 0.7f )
 			return;
 
-		var carSpeed = Vector3.Dot( Car.WorldRotation.Forward, Car.Rigidbody.Velocity );
-
 		var accelerationDirection = WorldTransform.Left;
 		var accelerationInput = Car.DrivenBy.IsValid() ? Input.AnalogMove.x : 0;
 
@@ -185,7 +183,7 @@ public class CarWheel : Component
 			availableTorque *= Car.CurrentGearRatio * Car.FinalDriveRatio;
 
 			Car.Rigidbody.ApplyForceAt( WorldPosition,
-				accelerationDirection * availableTorque * CarryingMass * 25f * directionMultiplier );
+				accelerationDirection * availableTorque * CarryingMass * 45f * directionMultiplier );
 		}
 
 		if ( accelerationInput < 0 || accelerationInput == 0 )

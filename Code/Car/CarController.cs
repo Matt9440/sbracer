@@ -91,6 +91,7 @@ public class CarController : EnterExitInteractable
 		DrivenBy = player;
 
 		player.LockMovement( true );
+		player.Driving = this;
 		player.Tags.Add( "no_collide" );
 
 		player.GameObject.Parent = SeatedTransform;
@@ -117,6 +118,7 @@ public class CarController : EnterExitInteractable
 		player.PlayerController.Renderer.Set( "sit", 0 );
 
 		player.LockMovement( false );
+		player.Driving = null;
 		player.Tags.Remove( "no_collide" );
 
 		player.AnimationHelper.IkRightHand = null;

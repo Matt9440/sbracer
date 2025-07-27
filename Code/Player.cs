@@ -16,6 +16,8 @@ public class Player : Component
 
 	[Sync( SyncFlags.FromHost )] public int Money { get; set; }
 
+	[Sync] public CarController Driving { get; set; }
+
 	/// <summary>
 	///     Is this player queued to race?
 	/// </summary>

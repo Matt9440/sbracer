@@ -3,41 +3,39 @@
 
 <root>
 	@{
-		if ( Player.Local.Racing )
+		if ( Player.Local.Racing || Player.Local.Driving.IsValid() )
 		{
 			<Speedometer/>
 		}
-		else
-		{
-			if ( RaceGame.Instance.State is GameState.Waiting )
-			{
-				<div class="countdown">
-					@{
-						var waitTimeRemaining = RaceGame.WaitingDuration - RaceGame.Instance.TimeSinceStateStarted;
-						<div>@( $"Next race starting in {waitTimeRemaining.AsTimeFormatted( true )}" )</div>
 
-						if ( Player.Local.Queued )
-						{
-							<div class="prompt">Queued for the next race. Press
-								<Image
-									Texture="@Input.GetGlyph( "Reload", InputGlyphSize.Small, GlyphStyle.Knockout )"/>
-								to cancel.
-							</div>
-						}
-						else
-						{
-							<div class="prompt">Press
-								<Image
-									Texture="@Input.GetGlyph( "Reload", InputGlyphSize.Small, GlyphStyle.Knockout )"/>
-								to join the race.
-							</div>
-						}
+		if ( !Player.Local.Racing && RaceGame.Instance.State is GameState.Waiting )
+		{
+			<div class="countdown">
+				@{
+					var waitTimeRemaining = RaceGame.WaitingDuration - RaceGame.Instance.TimeSinceStateStarted;
+					<div>@( $"Next race starting in {waitTimeRemaining.AsTimeFormatted( true )}" )</div>
+
+					if ( Player.Local.Queued )
+					{
+						<div class="prompt">Queued for the next race. Press
+							<Image
+								Texture="@Input.GetGlyph( "Reload", InputGlyphSize.Small, GlyphStyle.Knockout )"/>
+							to cancel.
+						</div>
 					}
-				</div>
-				<div class="money">
-					<div>@( $"${Player.Local.Money}" )</div>
-				</div>
-			}
+					else
+					{
+						<div class="prompt">Press
+							<Image
+								Texture="@Input.GetGlyph( "Reload", InputGlyphSize.Small, GlyphStyle.Knockout )"/>
+							to join the race.
+						</div>
+					}
+				}
+			</div>
+			<div class="money">
+				<div>@( $"${Player.Local.Money}" )</div>
+			</div>
 		}
 	}
 </root>
