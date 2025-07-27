@@ -69,6 +69,5 @@ public class Player : Component
 		PlayerController.UseInputControls = !isLocked;
 		PlayerController.UseLookControls = !isLocked;
 		PlayerController.UseAnimatorControls = !isLocked;
-		PlayerController.UpdateAnimation( PlayerController.Renderer );
 	}
 }

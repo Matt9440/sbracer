@@ -103,9 +103,6 @@ public class CarController : EnterExitInteractable
 		player.AnimationHelper.IkRightHand = IkRightHand;
 		player.AnimationHelper.IkLeftHand = IkLeftHand;
 		player.AnimationHelper.IkRightFoot = IkRightFoot;
-
-		player.AnimationHelper.LookAtEnabled = true;
-		player.AnimationHelper.LookAt = Scene.Camera.GameObject;
 	}
 
 	public override void ExitInteract( Player player )
@@ -125,7 +122,6 @@ public class CarController : EnterExitInteractable
 		player.AnimationHelper.IkRightHand = null;
 		player.AnimationHelper.IkLeftHand = null;
 		player.AnimationHelper.IkRightFoot = null;
-		player.AnimationHelper.LookAtEnabled = false;
 
 		player.GameObject.Parent = null;
 		player.WorldTransform = FindSafeExitPoint();
@@ -144,7 +140,24 @@ public class CarController : EnterExitInteractable
 
 	protected override void OnUpdate()
 	{
-		base.OnUpdate();
+		if ( IsProxy || !DrivenBy.IsValid() )
+			return;
+
+		// Make driver look at camera 
+		var eyePos = DrivenBy.AnimationHelper.EyeWorldTransform.Position;
+
+		var dir = (Scene.Camera.WorldPosition - eyePos).Normal;
+		var dotProduct = Vector3.Dot( dir, WorldRotation.Forward );
+
+		if ( dotProduct > -0.4f )
+			DrivenBy.AnimationHelper.WithLook( dir );
+		else
+			DrivenBy.AnimationHelper.WithLook( WorldRotation.Forward );
+	}
+
+	protected override void OnFixedUpdate()
+	{
+		base.OnFixedUpdate();
 
 		if ( IsProxy )
 			return;
