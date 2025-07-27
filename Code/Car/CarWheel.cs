@@ -126,10 +126,20 @@ public class CarWheel : Component
 			if ( HandbrakeApplied )
 				return;
 
-			var wheelVelocityModel = Car.Rigidbody.GetVelocityAtPoint( WheelModel.WorldPosition );
+			if ( WheelTrace.Hit ) // Only rotate if grounded
+			{
+				var wheelVelocityModel = Car.Rigidbody.GetVelocityAtPoint( WheelModel.WorldPosition );
 
-			WheelModel.LocalRotation *=
-				Rotation.From( wheelVelocityModel.Length * Time.Delta * (FlipWheelSpinRotation ? 1f : -1f), 0, 0 );
+				// Calculate signed velocity along the wheel's forward direction
+				var forwardDirection = WorldTransform.Left;
+				var signedSpeed = Vector3.Dot( wheelVelocityModel, forwardDirection );
+
+				if ( MathF.Abs( signedSpeed ) > 0.1f ) // Threshold to prevent spinning at rest
+				{
+					WheelModel.LocalRotation *=
+						Rotation.From( signedSpeed * Time.Delta * (FlipWheelSpinRotation ? 1f : -1f), 0, 0 );
+				}
+			}
 		}
 	}
 
@@ -186,10 +196,9 @@ public class CarWheel : Component
 				var localSpeed = Vector3.Dot( accelerationDirection, Car.Rigidbody.Velocity );
 				var brakeDir = -accelerationDirection.Normal * MathF.Sign( localSpeed );
 
-				//Gizmo.Draw.Line( WorldPosition, WorldPosition + brakeDir * 60f );
-
-				var dragCoeff = 0.3f;
-				var dragForce = MathF.Abs( localSpeed ) * CarryingMass * dragCoeff;
+				var dragCoeff = 0.5f;
+				var rollingFriction = 20f * CarryingMass; // Constant friction to stop at low speeds
+				var dragForce = MathF.Abs( localSpeed ) * CarryingMass * dragCoeff + rollingFriction;
 				Car.Rigidbody.ApplyForceAt( WorldPosition, brakeDir * dragForce );
 
 				return;
