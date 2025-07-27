@@ -6,11 +6,12 @@
 		if ( Player.Local.Racing || Player.Local.Driving.IsValid() )
 		{
 			<Speedometer/>
+			<RaceCountdown/>
 		}
 
 		if ( !Player.Local.Racing && RaceGame.Instance.State is GameState.Waiting )
 		{
-			<div class="countdown">
+			<div class="queue-countdown">
 				@{
 					var waitTimeRemaining = RaceGame.WaitingDuration - RaceGame.Instance.TimeSinceStateStarted;
 					<div>@( $"Next race starting in {waitTimeRemaining.AsTimeFormatted( true )}" )</div>

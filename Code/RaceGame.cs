@@ -2,7 +2,8 @@ namespace SBRacer;
 
 public sealed class RaceGame : Component, Component.INetworkListener
 {
-	public const float WaitingDuration = 30f;
+	public const float WaitingDuration = 10f;
+	public const float RaceCountdownDuration = 3f;
 
 	public static RaceGame Instance { get; set; }
 
@@ -25,6 +26,11 @@ public sealed class RaceGame : Component, Component.INetworkListener
 
 	[Sync( SyncFlags.FromHost )] public NetList<Player> QueuedPlayers { get; set; } = new();
 	[Sync( SyncFlags.FromHost )] public NetList<Player> RacingPlayers { get; set; } = new();
+
+	/// <summary>
+	///     The race countdown is showing (3.. 2.. 1..)
+	/// </summary>
+	public bool IsRaceStarting => State == GameState.Racing && TimeSinceStateStarted < RaceCountdownDuration;
 
 	public Action OnWaitingStarted { get; set; }
 	public Action OnRacingStarted { get; set; }
@@ -153,7 +159,14 @@ public sealed class RaceGame : Component, Component.INetworkListener
 			var player = RacingPlayers[p];
 			var spawnPoint = spawnPoints.ElementAt( p );
 
-			player.WorldTransform = spawnPoint.WorldTransform;
+			if ( player.Driving.IsValid() )
+			{
+				player.Driving.TeleportTo( spawnPoint.WorldTransform );
+			}
+			else
+			{
+				player.WorldTransform = spawnPoint.WorldTransform;
+			}
 		}
 
 		SetState( GameState.Racing );

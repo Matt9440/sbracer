@@ -1,0 +1,62 @@
+@inherits Panel
+@namespace SBRacer.Ui
+
+<root>
+	@if ( Player.Local.Racing && !string.IsNullOrEmpty( DisplayMessage ) )
+	{
+		<div class="race-start-countdown">@DisplayMessage</div>
+	}
+</root>
+
+@code {
+	private string DisplayMessage { get; set; } = string.Empty;
+	private int LastDisplayedSecond { get; set; }
+
+	public override void Tick()
+	{
+		if ( RaceGame.Instance.State != GameState.Racing || !Player.Local.Racing )
+			return;
+
+		var countdown = RaceGame.RaceCountdownDuration - RaceGame.Instance.TimeSinceStateStarted;
+		var currentSecond = (int)MathF.Ceiling( countdown );
+
+		if ( currentSecond != LastDisplayedSecond )
+		{
+			LastDisplayedSecond = currentSecond;
+			UpdateDisplayForSecond( currentSecond );
+		}
+	}
+
+	private void ClearDisplay()
+	{
+		DisplayMessage = string.Empty;
+		LastDisplayedSecond = -1;
+	}
+
+	private void UpdateDisplayForSecond( float second )
+	{
+		if ( second < -1 )
+			return;
+
+		if ( second > 0 )
+		{
+			DisplayMessage = $"{(int)second}";
+			Sound.Play( "race_beep" );
+		}
+		else if ( second == 0 )
+		{
+			DisplayMessage = RaceMap.Instance.Type == MapType.Race ? "RACE!" : "FIGHT!";
+			Sound.Play( "race_beep" );
+		}
+		else
+		{
+			ClearDisplay();
+		}
+	}
+
+	protected override int BuildHash()
+	{
+		return HashCode.Combine( DisplayMessage );
+	}
+
+}

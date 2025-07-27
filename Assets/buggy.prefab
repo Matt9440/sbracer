@@ -15,6 +15,153 @@
     "OwnerTransfer": 1,
     "Components": [
       {
+        "__type": "SBRacer.Car.CarController",
+        "__guid": "c95e8e0e-50f5-4c32-bed4-e2576eedd19d",
+        "__enabled": true,
+        "BackLeftWheel": {
+          "_type": "component",
+          "component_id": "e15bb0e6-23f2-4698-9f97-e0bbd2b09f75",
+          "go": "d6f735a3-101f-4f47-ba20-fc76146b6970",
+          "component_type": "CarWheel"
+        },
+        "BackRightWheel": {
+          "_type": "component",
+          "component_id": "fe285aec-e62b-423d-ad4b-e4e6243a0676",
+          "go": "8db84d3f-18cc-45bf-9247-04bc129590c5",
+          "component_type": "CarWheel"
+        },
+        "BrakeSound": null,
+        "BrakeStrength": 50,
+        "CameraLookAt": {
+          "_type": "gameobject",
+          "go": "a6c0a009-c383-4c28-948b-c694688f5495"
+        },
+        "DriveType": "FrontWheelDrive",
+        "EngineSound": "sounds/engine/69c/69c_fourth_cruise_loop2.sound",
+        "FinalDriveRatio": 4,
+        "FrontLeftWheel": {
+          "_type": "component",
+          "component_id": "c16069c4-a011-472a-a372-34daaff81040",
+          "go": "b8d76430-1d39-4440-8010-1d4a7c875cda",
+          "component_type": "CarWheel"
+        },
+        "FrontRightWheel": {
+          "_type": "component",
+          "component_id": "85ffe15d-b939-4cb3-bc70-f4c9ce8f11d2",
+          "go": "7647c57b-4f20-4713-a2a6-d8c21156a35c",
+          "component_type": "CarWheel"
+        },
+        "GearRatios": [
+          7,
+          3.2,
+          2,
+          1.3,
+          0.8
+        ],
+        "HandBrakeGripFactor": 0.3,
+        "HandBrakeStrength": 320,
+        "HighlightColor": "1,1,1,1",
+        "IdleSound": "sounds/engine/69c/69c_idle_loop1.sound",
+        "IkLeftHand": {
+          "_type": "gameobject",
+          "go": "31614972-7f79-447c-9fa6-37a22ea4300e"
+        },
+        "IkRightFoot": {
+          "_type": "gameobject",
+          "go": "e5d0a711-85e3-4b9c-8104-3e7dbe96d6a6"
+        },
+        "IkRightHand": {
+          "_type": "gameobject",
+          "go": "5db30f53-6ff9-4e40-a629-8ffd82a81913"
+        },
+        "MaxRpm": 6000,
+        "MaxSpeed": 200,
+        "MaxSteerAngle": 30,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "ReverseGearRatio": 5,
+        "Rigidbody": {
+          "_type": "component",
+          "component_id": "47627205-992c-4765-8837-d8d5db68537f",
+          "go": "d164c21b-3f2c-401b-8fad-5e76d284b220",
+          "component_type": "Rigidbody"
+        },
+        "SeatedTransform": {
+          "_type": "gameobject",
+          "go": "c18e9bae-7c2a-449c-9646-f7075614fa26"
+        },
+        "ShiftDownRpm": 3000,
+        "ShiftSound": null,
+        "ShiftUpRpm": 4000,
+        "SkidSound": "sounds/engine/69c/69c_skid_normalfriction_nostartdelay.sound",
+        "StartSound": "sounds/engine/69c/69c_start_loop1.sound",
+        "SteeringEffectivenessCurve": {
+          "rangey": "0.6,0.7877778",
+          "frames": [
+            {
+              "x": 0,
+              "y": 0,
+              "in": 0,
+              "out": 0,
+              "mode": "Linear"
+            },
+            {
+              "x": 1,
+              "y": 0.9940829,
+              "in": 0,
+              "out": 0,
+              "mode": "Linear"
+            }
+          ]
+        },
+        "SteeringSpeed": 50,
+        "SteeringWheel": {
+          "_type": "gameobject",
+          "go": "09b033b2-1a5d-4be2-9a0c-103bd9c2a223"
+        },
+        "StopSound": "sounds/engine/69c/69c_stop1.sound",
+        "SuspensionDamping": 16,
+        "SuspensionHeight": 10,
+        "SuspensionStrength": 165,
+        "TorqueCurve": {
+          "rangey": "0.3,1",
+          "frames": [
+            {
+              "x": 0,
+              "y": 0.28571427,
+              "in": 0,
+              "out": 0,
+              "mode": "Mirrored"
+            },
+            {
+              "x": 0.4015625,
+              "y": 1,
+              "in": 0,
+              "out": 0,
+              "mode": "Mirrored"
+            },
+            {
+              "x": 0.6984375,
+              "y": 1,
+              "in": 0,
+              "out": 0,
+              "mode": "Mirrored"
+            },
+            {
+              "x": 1,
+              "y": -0.003968307,
+              "in": 0,
+              "out": 0,
+              "mode": "Mirrored"
+            }
+          ]
+        }
+      },
+      {
         "__type": "Sandbox.ModelRenderer",
         "__guid": "799272b4-f7ad-46ca-a5dd-c4a792d426f7",
         "__enabled": true,
@@ -89,146 +236,6 @@
         "OverrideMassCenter": true,
         "RigidbodyFlags": 0,
         "StartAsleep": false
-      },
-      {
-        "__type": "SBRacer.Car.CarController",
-        "__guid": "c95e8e0e-50f5-4c32-bed4-e2576eedd19d",
-        "__enabled": true,
-        "BackLeftWheel": {
-          "_type": "component",
-          "component_id": "e15bb0e6-23f2-4698-9f97-e0bbd2b09f75",
-          "go": "d6f735a3-101f-4f47-ba20-fc76146b6970",
-          "component_type": "CarWheel"
-        },
-        "BackRightWheel": {
-          "_type": "component",
-          "component_id": "fe285aec-e62b-423d-ad4b-e4e6243a0676",
-          "go": "8db84d3f-18cc-45bf-9247-04bc129590c5",
-          "component_type": "CarWheel"
-        },
-        "BrakeStrength": 50,
-        "CameraLookAt": {
-          "_type": "gameobject",
-          "go": "a6c0a009-c383-4c28-948b-c694688f5495"
-        },
-        "DriveType": "FrontWheelDrive",
-        "FinalDriveRatio": 4,
-        "FrontLeftWheel": {
-          "_type": "component",
-          "component_id": "c16069c4-a011-472a-a372-34daaff81040",
-          "go": "b8d76430-1d39-4440-8010-1d4a7c875cda",
-          "component_type": "CarWheel"
-        },
-        "FrontRightWheel": {
-          "_type": "component",
-          "component_id": "85ffe15d-b939-4cb3-bc70-f4c9ce8f11d2",
-          "go": "7647c57b-4f20-4713-a2a6-d8c21156a35c",
-          "component_type": "CarWheel"
-        },
-        "GearRatios": [
-          7,
-          3.2,
-          2,
-          1.3,
-          0.8
-        ],
-        "HandBrakeGripFactor": 0.3,
-        "HandBrakeStrength": 120,
-        "HighlightColor": "1,1,1,1",
-        "IkLeftHand": {
-          "_type": "gameobject",
-          "go": "31614972-7f79-447c-9fa6-37a22ea4300e"
-        },
-        "IkRightFoot": {
-          "_type": "gameobject",
-          "go": "e5d0a711-85e3-4b9c-8104-3e7dbe96d6a6"
-        },
-        "IkRightHand": {
-          "_type": "gameobject",
-          "go": "5db30f53-6ff9-4e40-a629-8ffd82a81913"
-        },
-        "MaxRpm": 6000,
-        "MaxSpeed": 200,
-        "MaxSteerAngle": 30,
-        "OnComponentDestroy": null,
-        "OnComponentDisabled": null,
-        "OnComponentEnabled": null,
-        "OnComponentFixedUpdate": null,
-        "OnComponentStart": null,
-        "OnComponentUpdate": null,
-        "ReverseGearRatio": 5,
-        "Rigidbody": {
-          "_type": "component",
-          "component_id": "47627205-992c-4765-8837-d8d5db68537f",
-          "go": "d164c21b-3f2c-401b-8fad-5e76d284b220",
-          "component_type": "Rigidbody"
-        },
-        "SeatedTransform": {
-          "_type": "gameobject",
-          "go": "c18e9bae-7c2a-449c-9646-f7075614fa26"
-        },
-        "ShiftDownRpm": 3000,
-        "ShiftUpRpm": 4000,
-        "SteeringEffectivenessCurve": {
-          "rangey": "0.6,0.7877778",
-          "frames": [
-            {
-              "x": 0,
-              "y": 0,
-              "in": 0,
-              "out": 0,
-              "mode": "Linear"
-            },
-            {
-              "x": 1,
-              "y": 0.9940829,
-              "in": 0,
-              "out": 0,
-              "mode": "Linear"
-            }
-          ]
-        },
-        "SteeringSpeed": 50,
-        "SteeringWheel": {
-          "_type": "gameobject",
-          "go": "09b033b2-1a5d-4be2-9a0c-103bd9c2a223"
-        },
-        "SuspensionDamping": 16,
-        "SuspensionHeight": 10,
-        "SuspensionStrength": 165,
-        "TorqueCurve": {
-          "rangey": "0.3,1",
-          "frames": [
-            {
-              "x": 0,
-              "y": 0.28571427,
-              "in": 0,
-              "out": 0,
-              "mode": "Mirrored"
-            },
-            {
-              "x": 0.4015625,
-              "y": 1,
-              "in": 0,
-              "out": 0,
-              "mode": "Mirrored"
-            },
-            {
-              "x": 0.6984375,
-              "y": 1,
-              "in": 0,
-              "out": 0,
-              "mode": "Mirrored"
-            },
-            {
-              "x": 1,
-              "y": -0.003968307,
-              "in": 0,
-              "out": 0,
-              "mode": "Mirrored"
-            }
-          ]
-        }
       }
     ],
     "Children": [

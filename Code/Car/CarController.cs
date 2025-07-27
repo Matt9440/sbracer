@@ -3,6 +3,10 @@ namespace SBRacer.Car;
 [Category( "SB Racer" ), Title( "Car Controller" ), Icon( "toys" )]
 public class CarController : EnterExitInteractable
 {
+	private SoundHandle brakeHandle;
+	private SoundHandle engineHandle;
+	private SoundHandle skidHandle;
+	private float soundNormalizedRpm;
 	public static CarController Local { get; set; }
 
 	[Property, Category( "References" )] public Rigidbody Rigidbody { get; set; }
@@ -41,6 +45,12 @@ public class CarController : EnterExitInteractable
 	[Property, Category( "Gearing" )] public float MaxRpm { get; set; } = 6000f;
 	[Property, Category( "Gearing" )] public float ShiftUpRpm { get; set; } = 4000f;
 	[Property, Category( "Gearing" )] public float ShiftDownRpm { get; set; } = 2500f;
+
+	[Property, Category( "Sounds" )] public SoundEvent StartSound { get; set; }
+	[Property, Category( "Sounds" )] public SoundEvent StopSound { get; set; }
+	[Property, Category( "Sounds" )] public SoundEvent EngineSound { get; set; }
+	[Property, Category( "Sounds" )] public SoundEvent SkidSound { get; set; }
+	[Property, Category( "Sounds" )] public SoundEvent BrakeSound { get; set; }
 
 	public float CurrentRpm { get; private set; }
 	public int CurrentGear { get; private set; } = 1;
@@ -104,6 +114,9 @@ public class CarController : EnterExitInteractable
 		player.AnimationHelper.IkRightHand = IkRightHand;
 		player.AnimationHelper.IkLeftHand = IkLeftHand;
 		player.AnimationHelper.IkRightFoot = IkRightFoot;
+
+		if ( StartSound.IsValid() )
+			StartSound.BroadcastFrom( GameObject );
 	}
 
 	public override void ExitInteract( Player player )
@@ -127,6 +140,16 @@ public class CarController : EnterExitInteractable
 
 		player.GameObject.Parent = null;
 		player.WorldTransform = FindSafeExitPoint();
+
+		if ( StopSound.IsValid() )
+			StopSound.BroadcastFrom( GameObject );
+
+		engineHandle?.Stop();
+		engineHandle = null;
+		skidHandle?.Stop();
+		skidHandle = null;
+		brakeHandle?.Stop();
+		brakeHandle = null;
 	}
 
 	protected override void OnStart()
@@ -182,8 +205,16 @@ public class CarController : EnterExitInteractable
 				break;
 		}
 
-		if ( !DrivenBy.IsValid() )
+		if ( !DrivenBy.IsValid() || (Player.Local.Racing && RaceGame.Instance.IsRaceStarting) )
+		{
+			engineHandle?.Stop();
+			skidHandle?.Stop();
+			brakeHandle?.Stop();
+
 			return;
+		}
+
+		var accelerationInput = Input.AnalogMove.x;
 
 		UpdateGearing();
 
@@ -200,9 +231,73 @@ public class CarController : EnterExitInteractable
 
 		Steer();
 
+		// Handle sounds
+		HandleSounds( accelerationInput );
+
 		Gizmo.Draw.IgnoreDepth = true;
 		Gizmo.Draw.ScreenText( $"Gear {CurrentGear}, rpm {CurrentRpm:F0}, Speed {DisplaySpeed:F0} mph",
 			Scene.Camera.PointToScreenPixels( WorldPosition ) );
+	}
+
+	private void HandleSounds( float accelerationInput )
+	{
+		// Engine sound
+		if ( EngineSound.IsValid() )
+		{
+			if ( !engineHandle.IsValid() || engineHandle.IsStopped )
+			{
+				engineHandle = EngineSound.PlayFrom( GameObject );
+			}
+
+			if ( engineHandle.IsValid() )
+			{
+				var targetNormalizedRpm = MathF.Abs( accelerationInput ) > 0 ? CurrentRpm / MaxRpm : 0.1f;
+				soundNormalizedRpm =
+					soundNormalizedRpm.Approach( targetNormalizedRpm, 5f * Time.Delta ); // Adjust lerp speed as needed
+				engineHandle.Pitch = 0.4f + soundNormalizedRpm * 1f;
+				engineHandle.Volume = 0.2f + MathF.Abs( accelerationInput ) * 0.5f;
+			}
+		}
+
+		// Skid sound for handbrake
+		var velocityLength = Rigidbody.Velocity.Length;
+
+		if ( Input.Down( "Jump" ) && velocityLength > 10f && SkidSound != null )
+		{
+			if ( skidHandle == null || skidHandle.IsStopped )
+			{
+				skidHandle = SkidSound.PlayFrom( GameObject );
+			}
+
+			if ( skidHandle.IsValid() )
+			{
+				skidHandle.Volume = (velocityLength / MaxSpeed).Clamp( 0f, 1f );
+			}
+		}
+		else
+		{
+			skidHandle?.Stop();
+			skidHandle = null;
+		}
+
+		// Brake sound
+		if ( accelerationInput < 0 && velocityLength > 10f && BrakeSound != null )
+		{
+			if ( brakeHandle == null || brakeHandle.IsStopped )
+			{
+				brakeHandle = BrakeSound.PlayFrom( GameObject );
+			}
+
+			if ( brakeHandle.IsValid() )
+			{
+				brakeHandle.Volume = MathF.Abs( accelerationInput ) * (velocityLength / MaxSpeed).Clamp( 0f, 1f );
+			}
+		}
+		else
+		{
+			brakeHandle?.Stop();
+			brakeHandle = null;
+		}
 	}
 
 	private float AverageDrivenWheelRadius()
@@ -244,6 +339,8 @@ public class CarController : EnterExitInteractable
 
 		var accelerationInput = Input.AnalogMove.x;
 
+		var oldGear = CurrentGear;
+
 		if ( accelerationInput > 0 && CurrentGear > 0 )
 		{
 			if ( CurrentRpm > ShiftUpRpm && CurrentGear < GearRatios.Length )
@@ -255,8 +352,7 @@ public class CarController : EnterExitInteractable
 				CurrentGear--;
 			}
 		}
-		else if
-			( accelerationInput < 0 ) // Engage reverse
+		else if ( accelerationInput < 0 ) // Engage reverse
 		{
 			CurrentGear = -1;
 		}
@@ -370,6 +466,21 @@ public class CarController : EnterExitInteractable
 
 		// Fallback to original position if all else fails
 		return WorldTransform.WithPosition( WorldPosition + Vector3.Up * 12f + WorldRotation.Left * 32f );
+	}
+
+	/// <summary>
+	///     Clear velocity and teleport vehicle
+	/// </summary>
+	/// <param name="transform"></param>
+	[Rpc.Owner]
+	public void TeleportTo( Transform transform )
+	{
+		Rigidbody.Velocity = Vector3.Zero;
+		WorldTransform = transform;
+		Network.ClearInterpolation();
+
+		if ( StartSound.IsValid() )
+			StartSound.BroadcastFrom( GameObject );
 	}
 }
 

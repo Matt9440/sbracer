@@ -33,14 +33,14 @@ public class CarWheel : Component
 		endPos += WheelTraceInwardOffset;
 
 		// Rotate cylinder 90 degrees to align axis with axle
-		WheelTrace = WheelTrace = Scene.Trace.Cylinder( WheelWidth, WheelRadius, startPos, endPos )
+		WheelTrace = Scene.Trace.Cylinder( WheelWidth, WheelRadius, startPos, endPos )
 			.Rotated( Rotation.LookAt( WorldRotation.Down, WheelModel.WorldRotation.Right ) )
 			.WithoutTags( "wheel", "car" )
 			.IgnoreGameObjectHierarchy( Car.GameObject )
 			.Run();
 
-		// This is great, but only supported on staging for now.
-		// DebugOverlay.Trace( WheelTrace );
+		// This is great, but only supported on staging for now
+		// DebugOverlay.Trace(WheelTrace);
 	}
 
 	/// <summary>
@@ -48,8 +48,6 @@ public class CarWheel : Component
 	/// </summary>
 	private void HandleWallCollisions()
 	{
-		//Gizmo.Draw.IgnoreDepth = true;
-
 		var wallTrace = Scene.Trace
 			.Ray( WheelTrace.EndPosition - WheelTraceInwardOffset,
 				WheelTrace.EndPosition - WheelTraceInwardOffset + WheelForward * WheelWidth / 2 )
@@ -58,8 +56,6 @@ public class CarWheel : Component
 
 		if ( wallTrace.Hit )
 		{
-			//Gizmo.Draw.Line( wallTrace.EndPosition, wallTrace.EndPosition + wallTrace.Normal * 10 );
-
 			var impulseStrength = 1f;
 			var normal = wallTrace.Normal;
 			var vel = Car.Rigidbody.GetVelocityAtPoint( WorldPosition );
@@ -71,9 +67,6 @@ public class CarWheel : Component
 
 			Car.Rigidbody.ApplyImpulseAt( WorldPosition, impulse );
 		}
-
-		//Gizmo.Draw.LineThickness = 5f;
-		//Gizmo.Draw.Line( wallTrace.StartPosition, wallTrace.EndPosition );
 	}
 
 	protected override void OnFixedUpdate()
@@ -171,7 +164,14 @@ public class CarWheel : Component
 			return;
 
 		var accelerationDirection = WorldTransform.Left;
-		var accelerationInput = Car.DrivenBy.IsValid() ? Input.AnalogMove.x : 0;
+
+		var accelerationInput = Car.DrivenBy.IsValid()
+			? Input.AnalogMove.x
+			: 0;
+
+		// Cars can't move when the race is starting
+		if ( RaceGame.Instance.IsRaceStarting && Player.Local.Racing )
+			accelerationInput = 0;
 
 		var directionMultiplier = Car.CurrentGear >= 0 ? 1f : -1f; // Reverse direction in reverse gear
 
@@ -238,17 +238,17 @@ public class CarWheel : Component
 		Gizmo.Transform = global::Transform.Zero;
 
 		/*Gizmo.Draw.Color = Color.Green;
-		Gizmo.Draw.Line( WorldPosition,
-			WorldPosition + (FlipWheelSpinRotation ? WorldRotation.Backward : WorldRotation.Forward) * 10f );
+		Gizmo.Draw.Line(WorldPosition,
+		    WorldPosition + (FlipWheelSpinRotation ? WorldRotation.Backward : WorldRotation.Forward) * 10f);
 
 		Gizmo.Draw.Color = Color.Blue;
-		Gizmo.Draw.Line( WorldPosition, WorldPosition + WorldRotation.Left * 10f );
+		Gizmo.Draw.Line(WorldPosition, WorldPosition + WorldRotation.Left * 10f);
 
 		Gizmo.Draw.Color = Color.Red;
-		Gizmo.Draw.Line( WorldPosition, WorldPosition + WorldRotation.Up * 10f );
+		Gizmo.Draw.Line(WorldPosition, WorldPosition + WorldRotation.Up * 10f);
 
 		Gizmo.Draw.Color = Color.White;
-		Gizmo.Draw.Line( WheelTrace.StartPosition, WheelTrace.EndPosition );
-		Gizmo.Draw.SolidSphere( WheelTrace.EndPosition, 1f );*/
+		Gizmo.Draw.Line(WheelTrace.StartPosition, WheelTrace.EndPosition);
+		Gizmo.Draw.SolidSphere(WheelTrace.EndPosition, 1f);*/
 	}
 }

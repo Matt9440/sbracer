@@ -2,11 +2,11 @@ namespace SBRacer.MapEntities;
 
 public class RaceMap : Component
 {
-	public static RaceMap Instance { get; set; }
+	public static RaceMap Instance { get; private set; }
 
-	[Property] public string MapName { get; set; } = "SBRacer Map";
+	[Property] public string MapName { get; private set; } = "SBRacer Map";
 
-	[Property] private MapType Type { get; set; } = MapType.Race;
+	[Property] public MapType Type { get; private set; } = MapType.Race;
 
 	/// <summary>
 	///     How many laps should the players race for?
