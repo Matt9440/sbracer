@@ -3,10 +3,6 @@ namespace SBRacer.Car;
 [Category( "SB Racer" ), Title( "Car Controller" ), Icon( "toys" )]
 public class CarController : EnterExitInteractable
 {
-	private SoundHandle brakeHandle;
-	private SoundHandle engineHandle;
-	private SoundHandle skidHandle;
-	private float soundNormalizedRpm;
 	public static CarController Local { get; set; }
 
 	[Property, Category( "References" )] public Rigidbody Rigidbody { get; set; }
@@ -76,6 +72,11 @@ public class CarController : EnterExitInteractable
 	[Sync( SyncFlags.FromHost )] public Player Owner { get; private set; }
 	[Sync] public Player DrivenBy { get; private set; }
 
+	private SoundHandle BrakeHandle { get; set; }
+	private SoundHandle EngineHandle { get; set; }
+	private SoundHandle SkidHandle { get; set; }
+	private float SoundNormalizedRpm { get; set; }
+
 	public override string InteractionDisplayName =>
 		Owner.IsValid() ? $"Drive {Owner.Network.Owner.DisplayName}'s car" : "Drive";
 
@@ -144,12 +145,18 @@ public class CarController : EnterExitInteractable
 		if ( StopSound.IsValid() )
 			StopSound.BroadcastFrom( GameObject );
 
-		engineHandle?.Stop();
-		engineHandle = null;
-		skidHandle?.Stop();
-		skidHandle = null;
-		brakeHandle?.Stop();
-		brakeHandle = null;
+		EngineHandle?.Stop();
+		EngineHandle?.Dispose();
+		EngineHandle = null;
+
+
+		SkidHandle?.Stop();
+		SkidHandle?.Dispose();
+		SkidHandle = null;
+
+		BrakeHandle?.Stop();
+		BrakeHandle?.Dispose();
+		BrakeHandle = null;
 	}
 
 	protected override void OnStart()
@@ -207,9 +214,9 @@ public class CarController : EnterExitInteractable
 
 		if ( !DrivenBy.IsValid() || (Player.Local.Racing && RaceGame.Instance.IsRaceStarting) )
 		{
-			engineHandle?.Stop();
-			skidHandle?.Stop();
-			brakeHandle?.Stop();
+			EngineHandle?.Stop();
+			SkidHandle?.Stop();
+			BrakeHandle?.Stop();
 
 			return;
 		}
@@ -244,18 +251,16 @@ public class CarController : EnterExitInteractable
 		// Engine sound
 		if ( EngineSound.IsValid() )
 		{
-			if ( !engineHandle.IsValid() || engineHandle.IsStopped )
-			{
-				engineHandle = EngineSound.PlayFrom( GameObject );
-			}
+			if ( !EngineHandle.IsValid() || EngineHandle.IsStopped )
+				EngineHandle = EngineSound.PlayFrom( GameObject );
 
-			if ( engineHandle.IsValid() )
+			if ( EngineHandle.IsValid() )
 			{
 				var targetNormalizedRpm = MathF.Abs( accelerationInput ) > 0 ? CurrentRpm / MaxRpm : 0.1f;
-				soundNormalizedRpm =
-					soundNormalizedRpm.Approach( targetNormalizedRpm, 5f * Time.Delta ); // Adjust lerp speed as needed
-				engineHandle.Pitch = 0.4f + soundNormalizedRpm * 1f;
-				engineHandle.Volume = 0.2f + MathF.Abs( accelerationInput ) * 0.5f;
+
+				SoundNormalizedRpm = SoundNormalizedRpm.Approach( targetNormalizedRpm, 5f * Time.Delta );
+				EngineHandle.Pitch = 0.4f + SoundNormalizedRpm * 1f;
+				EngineHandle.Volume = 0.2f + MathF.Abs( accelerationInput ) * 0.5f;
 			}
 		}
 
@@ -264,39 +269,33 @@ public class CarController : EnterExitInteractable
 
 		if ( Input.Down( "Jump" ) && velocityLength > 10f && SkidSound != null )
 		{
-			if ( skidHandle == null || skidHandle.IsStopped )
-			{
-				skidHandle = SkidSound.PlayFrom( GameObject );
-			}
+			if ( !SkidHandle.IsValid() || SkidHandle.IsStopped )
+				SkidHandle = SkidSound.PlayFrom( GameObject );
 
-			if ( skidHandle.IsValid() )
-			{
-				skidHandle.Volume = (velocityLength / MaxSpeed).Clamp( 0f, 1f );
-			}
+			if ( SkidHandle.IsValid() )
+				SkidHandle.Volume = (velocityLength / MaxSpeed).Clamp( 0f, 1f );
 		}
 		else
 		{
-			skidHandle?.Stop();
-			skidHandle = null;
+			SkidHandle?.Stop();
+			SkidHandle?.Dispose();
+			SkidHandle = null;
 		}
 
 		// Brake sound
 		if ( accelerationInput < 0 && velocityLength > 10f && BrakeSound != null )
 		{
-			if ( brakeHandle == null || brakeHandle.IsStopped )
-			{
-				brakeHandle = BrakeSound.PlayFrom( GameObject );
-			}
+			if ( !BrakeHandle.IsValid() || BrakeHandle.IsStopped )
+				BrakeHandle = BrakeSound.PlayFrom( GameObject );
 
-			if ( brakeHandle.IsValid() )
-			{
-				brakeHandle.Volume = MathF.Abs( accelerationInput ) * (velocityLength / MaxSpeed).Clamp( 0f, 1f );
-			}
+			if ( BrakeHandle.IsValid() )
+				BrakeHandle.Volume = MathF.Abs( accelerationInput ) * (velocityLength / MaxSpeed).Clamp( 0f, 1f );
 		}
 		else
 		{
-			brakeHandle?.Stop();
-			brakeHandle = null;
+			BrakeHandle?.Stop();
+			BrakeHandle?.Dispose();
+			BrakeHandle = null;
 		}
 	}
 
@@ -338,7 +337,6 @@ public class CarController : EnterExitInteractable
 		CurrentRpm = Math.Clamp( CurrentRpm, 0, MaxRpm );
 
 		var accelerationInput = Input.AnalogMove.x;
-
 		var oldGear = CurrentGear;
 
 		if ( accelerationInput > 0 && CurrentGear > 0 )
