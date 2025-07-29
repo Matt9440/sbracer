@@ -117,7 +117,7 @@ public class CarController : EnterExitInteractable
 		player.AnimationHelper.IkRightFoot = IkRightFoot;
 
 		if ( StartSound.IsValid() )
-			StartSound.BroadcastFrom( GameObject );
+			StartSound.BroadcastFrom( GameObject, "Vehicles" );
 	}
 
 	public override void ExitInteract( Player player )
@@ -143,20 +143,19 @@ public class CarController : EnterExitInteractable
 		player.WorldTransform = FindSafeExitPoint();
 
 		if ( StopSound.IsValid() )
-			StopSound.BroadcastFrom( GameObject );
+			StopSound.BroadcastFrom( GameObject, "Vehicles" );
 
 		EngineHandle?.Stop();
 		EngineHandle?.Dispose();
 		EngineHandle = null;
-
-
 		SkidHandle?.Stop();
 		SkidHandle?.Dispose();
 		SkidHandle = null;
-
 		BrakeHandle?.Stop();
 		BrakeHandle?.Dispose();
 		BrakeHandle = null;
+
+		GameObject.Clone( WorldTransform );
 	}
 
 	protected override void OnStart()
@@ -252,7 +251,7 @@ public class CarController : EnterExitInteractable
 		if ( EngineSound.IsValid() )
 		{
 			if ( !EngineHandle.IsValid() || EngineHandle.IsStopped )
-				EngineHandle = EngineSound.PlayFrom( GameObject );
+				EngineHandle = EngineSound.PlayFrom( GameObject, "Vehicles" );
 
 			if ( EngineHandle.IsValid() )
 			{
@@ -270,7 +269,7 @@ public class CarController : EnterExitInteractable
 		if ( Input.Down( "Jump" ) && velocityLength > 10f && SkidSound != null )
 		{
 			if ( !SkidHandle.IsValid() || SkidHandle.IsStopped )
-				SkidHandle = SkidSound.PlayFrom( GameObject );
+				SkidHandle = SkidSound.PlayFrom( GameObject, "Vehicles" );
 
 			if ( SkidHandle.IsValid() )
 				SkidHandle.Volume = (velocityLength / MaxSpeed).Clamp( 0f, 1f );
@@ -286,7 +285,7 @@ public class CarController : EnterExitInteractable
 		if ( accelerationInput < 0 && velocityLength > 10f && BrakeSound != null )
 		{
 			if ( !BrakeHandle.IsValid() || BrakeHandle.IsStopped )
-				BrakeHandle = BrakeSound.PlayFrom( GameObject );
+				BrakeHandle = BrakeSound.PlayFrom( GameObject, "Vehicles" );
 
 			if ( BrakeHandle.IsValid() )
 				BrakeHandle.Volume = MathF.Abs( accelerationInput ) * (velocityLength / MaxSpeed).Clamp( 0f, 1f );
@@ -478,7 +477,7 @@ public class CarController : EnterExitInteractable
 		Network.ClearInterpolation();
 
 		if ( StartSound.IsValid() )
-			StartSound.BroadcastFrom( GameObject );
+			StartSound.BroadcastFrom( GameObject, "Vehicles" );
 	}
 }
 

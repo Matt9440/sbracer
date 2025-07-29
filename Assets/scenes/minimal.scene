@@ -153,38 +153,6 @@
               "Type": "Component",
               "IdValue": "4caffa18-0962-4aa8-b4cd-0ea5d6c5ea3e"
             },
-            "Property": "IkLeftHand",
-            "Value": null
-          },
-          {
-            "Target": {
-              "Type": "Component",
-              "IdValue": "4caffa18-0962-4aa8-b4cd-0ea5d6c5ea3e"
-            },
-            "Property": "IkRightFoot",
-            "Value": null
-          },
-          {
-            "Target": {
-              "Type": "Component",
-              "IdValue": "4caffa18-0962-4aa8-b4cd-0ea5d6c5ea3e"
-            },
-            "Property": "IkRightHand",
-            "Value": null
-          },
-          {
-            "Target": {
-              "Type": "Component",
-              "IdValue": "4caffa18-0962-4aa8-b4cd-0ea5d6c5ea3e"
-            },
-            "Property": "SeatedTransform",
-            "Value": null
-          },
-          {
-            "Target": {
-              "Type": "Component",
-              "IdValue": "4caffa18-0962-4aa8-b4cd-0ea5d6c5ea3e"
-            },
             "Property": "SteeringEffectivenessCurve",
             "Value": {
               "rangey": "0.6,1",
@@ -220,14 +188,6 @@
             },
             "Property": "SteeringSpeed",
             "Value": 40
-          },
-          {
-            "Target": {
-              "Type": "Component",
-              "IdValue": "4caffa18-0962-4aa8-b4cd-0ea5d6c5ea3e"
-            },
-            "Property": "SteeringWheel",
-            "Value": null
           },
           {
             "Target": {
@@ -552,7 +512,7 @@
       "__version": 1,
       "Flags": 0,
       "Name": "RacingSpawns",
-      "Position": "-3392,685.9561,857.8616",
+      "Position": "-3392,685.9561,889.7863",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "",
