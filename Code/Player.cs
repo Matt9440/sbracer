@@ -18,6 +18,12 @@ public class Player : Component
 
 	[Sync] public CarController Driving { get; set; }
 
+	[Sync( SyncFlags.FromHost )] public int NextCheckpointIndex { get; set; }
+	[Sync( SyncFlags.FromHost )] public int CurrentLap { get; set; } = 1;
+	[Sync( SyncFlags.FromHost )] public float LapStartTime { get; set; }
+	[Sync( SyncFlags.FromHost )] public float LastCheckpointTime { get; set; }
+	[Sync( SyncFlags.FromHost )] public NetList<float> LapTimes { get; set; } = new();
+
 	/// <summary>
 	///     Is this player queued to race?
 	/// </summary>
@@ -28,10 +34,17 @@ public class Player : Component
 	/// </summary>
 	public bool Racing => RaceGame.Instance.RacingPlayers.Contains( this );
 
+	public Action<int, float> LapCompleted { get; set; } // Lap Count, Lap Time
+	public Action<int> CheckpointPassed { get; set; } // Checkpoint Index
+
+	public string CurrentLapTime => (Time.Now - LapStartTime).AsTimeFormatted( true );
+
 	protected override void OnStart()
 	{
 		if ( !IsProxy )
 			Local = this;
+
+		LapCompleted += OnLapCompleted;
 	}
 
 	protected override void OnUpdate()
@@ -44,6 +57,24 @@ public class Player : Component
 
 		if ( Input.Released( "reload" ) )
 			RaceGame.Instance.QueuePlayer( this, !Queued );
+	}
+
+	public void OnLapCompleted( int lapIndex, float lapTime )
+	{
+		if ( IsProxy )
+			return;
+
+		var finalLapIndex = RaceMap.Instance.MaxLaps;
+		var isFinalLap = lapIndex >= finalLapIndex;
+
+		if ( isFinalLap )
+		{
+			Log.Info( $"Race completed in {LapTimes.Sum().AsTimeFormatted( true )}" );
+		}
+		else
+		{
+			Log.Info( $"Lap {lapIndex} completed in {lapTime.AsTimeFormatted( true )}" );
+		}
 	}
 
 	[Rpc.Host]

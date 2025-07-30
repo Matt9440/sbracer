@@ -154,8 +154,6 @@ public class CarController : EnterExitInteractable
 		BrakeHandle?.Stop();
 		BrakeHandle?.Dispose();
 		BrakeHandle = null;
-
-		GameObject.Clone( WorldTransform );
 	}
 
 	protected override void OnStart()

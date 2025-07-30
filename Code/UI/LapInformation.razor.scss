@@ -1,0 +1,27 @@
+@import "./Base.scss";
+
+LapInformation {
+	position: absolute;
+	top: 50px;
+	right: 60px;
+	font-family: $heading-font;
+	font-size: 20px;
+	text-shadow: 0px 0px 2px black;
+	flex-direction: column;
+	width: 280px;
+	align-items: center;
+
+	.lap-timer {
+		width: 100%;
+		font-size: 80px;
+		justify-content: flex-end;
+	}
+
+	.lap-count {
+		font-size: 28px;
+		width: 100%;
+		justify-content: flex-end;
+		letter-spacing: 2px;
+		margin-bottom: -10px;
+	}
+}

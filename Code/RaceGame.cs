@@ -1,3 +1,5 @@
+using Sandbox.Diagnostics;
+
 namespace SBRacer;
 
 public sealed class RaceGame : Component, Component.INetworkListener
@@ -174,6 +176,13 @@ public sealed class RaceGame : Component, Component.INetworkListener
 
 	private void TickRacingState()
 	{
+		// Clear lap start times whilst IsRaceStarting
+		if ( IsRaceStarting )
+		{
+			foreach ( var player in RacingPlayers )
+				player.LapStartTime = Time.Now;
+		}
+
 		// Nobody is racing, revert to waiting state.
 		if ( RacingPlayers.Count == 0 )
 			SetState( GameState.Waiting );
@@ -182,6 +191,8 @@ public sealed class RaceGame : Component, Component.INetworkListener
 	[Rpc.Host]
 	public void QueuePlayer( Player player, bool queued )
 	{
+		Assert.True( Networking.IsHost );
+
 		if ( queued )
 			QueuedPlayers.Add( player );
 		else

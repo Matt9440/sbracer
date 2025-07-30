@@ -1,0 +1,22 @@
+@inherits Panel
+@namespace SBRacer.Ui
+
+<root>
+	@if ( Player.Local.Racing )
+	{
+		<div class="lap-count">@( $"LAP {LapsCompleted} OF {LapCount}" )</div>
+		<div class="lap-timer">@LapTime</div>
+	}
+</root>
+
+@code {
+	private string LapTime => Player.Local.CurrentLapTime;
+	private int LapsCompleted => Player.Local.CurrentLap;
+	private int LapCount => RaceMap.Instance.MaxLaps;
+
+	protected override int BuildHash()
+	{
+		return HashCode.Combine( LapTime, LapsCompleted );
+	}
+
+}
