@@ -878,7 +878,7 @@
       "__version": 1,
       "Flags": 0,
       "Name": "WaitingSpawns",
-      "Position": "-3082.16,642.225,398.4021",
+      "Position": "-2466.924,2250.947,398.4021",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "",
@@ -1427,7 +1427,7 @@
               "IdValue": "d164c21b-3f2c-401b-8fad-5e76d284b220"
             },
             "Property": "Position",
-            "Value": "-2777.593,521.2201,185.8716"
+            "Value": "-2162.357,2129.942,185.8716"
           }
         ],
         "MovedObjects": []

@@ -9,21 +9,48 @@
 </root>
 
 @code {
+	private const float GoDisplayDuration = 2.0f;
+
 	private string DisplayMessage { get; set; } = string.Empty;
-	private int LastDisplayedSecond { get; set; }
+	private int LastDisplayedSecond { get; set; } = -1;
 
 	public override void Tick()
 	{
-		if ( RaceGame.Instance.State != GameState.Racing || !Player.Local.Racing )
-			return;
-
-		var countdown = RaceGame.RaceCountdownDuration - RaceGame.Instance.TimeSinceStateStarted;
-		var currentSecond = (int)MathF.Ceiling( countdown );
-
-		if ( currentSecond != LastDisplayedSecond )
+		if ( !Player.Local.Racing )
 		{
-			LastDisplayedSecond = currentSecond;
-			UpdateDisplayForSecond( currentSecond );
+			ClearDisplay();
+			return;
+		}
+
+		var state = RaceGame.Instance.State;
+
+		if ( state == GameState.RaceCountdown )
+		{
+			var countdown = RaceGame.RaceCountdownDuration - RaceGame.Instance.TimeSinceStateStarted;
+			var currentSecond = (int)MathF.Ceiling( countdown );
+
+			if ( currentSecond != LastDisplayedSecond )
+			{
+				LastDisplayedSecond = currentSecond;
+				UpdateDisplayForSecond( currentSecond );
+			}
+		}
+		else
+		{
+			var timeSinceStateStarted = RaceGame.Instance.TimeSinceStateStarted;
+
+			if ( timeSinceStateStarted < GoDisplayDuration )
+			{
+				if ( LastDisplayedSecond != 0 )
+				{
+					LastDisplayedSecond = 0;
+					UpdateDisplayForSecond( 0 );
+				}
+			}
+			else
+			{
+				ClearDisplay();
+			}
 		}
 	}
 
@@ -33,24 +60,17 @@
 		LastDisplayedSecond = -1;
 	}
 
-	private void UpdateDisplayForSecond( float second )
+	private void UpdateDisplayForSecond( int second )
 	{
-		if ( second < -1 )
-			return;
-
 		if ( second > 0 )
 		{
-			DisplayMessage = $"{(int)second}";
-			Sound.Play( "race_beep" );
-		}
-		else if ( second == 0 )
-		{
-			DisplayMessage = RaceMap.Instance.Type == MapType.Race ? "RACE!" : "FIGHT!";
+			DisplayMessage = $"{second}";
 			Sound.Play( "race_beep" );
 		}
 		else
 		{
-			ClearDisplay();
+			DisplayMessage = RaceMap.Instance.Type == MapType.Race ? "RACE!" : "FIGHT!";
+			Sound.Play( "race_beep" );
 		}
 	}
 

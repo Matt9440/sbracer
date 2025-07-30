@@ -7,7 +7,11 @@
 		{
 			<Speedometer/>
 			<RaceCountdown/>
-			<LapInformation/>
+			
+			if ( RaceGame.Instance.State == GameState.Racing )
+			{
+				<LapInformation/>
+			}
 		}
 
 		if ( !Player.Local.Racing && RaceGame.Instance.State is GameState.Waiting )

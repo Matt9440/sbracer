@@ -38,13 +38,12 @@ public class Player : Component
 	public Action<int> CheckpointPassed { get; set; } // Checkpoint Index
 
 	public string CurrentLapTime => (Time.Now - LapStartTime).AsTimeFormatted( true );
+	public string TotalRaceTime => LapTimes.Sum().AsTimeFormatted( true );
 
 	protected override void OnStart()
 	{
 		if ( !IsProxy )
 			Local = this;
-
-		LapCompleted += OnLapCompleted;
 	}
 
 	protected override void OnUpdate()
@@ -59,24 +58,6 @@ public class Player : Component
 			RaceGame.Instance.QueuePlayer( this, !Queued );
 	}
 
-	public void OnLapCompleted( int lapIndex, float lapTime )
-	{
-		if ( IsProxy )
-			return;
-
-		var finalLapIndex = RaceMap.Instance.MaxLaps;
-		var isFinalLap = lapIndex >= finalLapIndex;
-
-		if ( isFinalLap )
-		{
-			Log.Info( $"Race completed in {LapTimes.Sum().AsTimeFormatted( true )}" );
-		}
-		else
-		{
-			Log.Info( $"Lap {lapIndex} completed in {lapTime.AsTimeFormatted( true )}" );
-		}
-	}
-
 	[Rpc.Host]
 	public void LockMovement( bool locked )
 	{
@@ -88,9 +69,9 @@ public class Player : Component
 	/// <summary>
 	///     Called on all clients as a result of changes to MovementLocked
 	/// </summary>
-	/// <param name="wasLocked"></param>
+	/// <param name="_"></param>
 	/// <param name="isLocked"></param>
-	public void OnMovementLocked( bool wasLocked, bool isLocked )
+	public void OnMovementLocked( bool _, bool isLocked )
 	{
 		if ( IsProxy )
 			return;

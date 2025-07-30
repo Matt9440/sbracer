@@ -53,18 +53,19 @@ public class Checkpoint : Component, Component.ITriggerListener
 			// Increment checkpoint index
 			player.NextCheckpointIndex++;
 
-			OnCheckpointPassed( player, CheckpointIndex );
+			RaceGame.Instance.OnCheckpointPassed( player, CheckpointIndex );
 
 			if ( IsFinishLine )
 			{
 				// Calculate lap time
 				var lapTime = checkpointTime - player.LapStartTime;
+
 				player.LapTimes.Add( lapTime );
 				player.CurrentLap++;
 				player.LapStartTime = checkpointTime; // Reset for next lap
 				player.NextCheckpointIndex = 0; // Reset to first checkpoint
 
-				OnLapCompleted( player, player.CurrentLap - 1, lapTime );
+				RaceGame.Instance.OnLapCompleted( player, player.CurrentLap - 1, lapTime );
 			}
 		}
 		else
@@ -72,35 +73,6 @@ public class Checkpoint : Component, Component.ITriggerListener
 			// Player is travelling the wrong way, tell them?
 			Log.Info( "Wrong way!" );
 		}
-	}
-
-	/// <summary>
-	///     Let all clients know a player has completed a lap
-	/// </summary>
-	/// <param name="player"></param>
-	/// <param name="lapIndex"></param>
-	/// <param name="lapTime"></param>
-	[Rpc.Broadcast]
-	private void OnLapCompleted( Player player, int lapIndex, float lapTime )
-	{
-		if ( !player.IsValid() )
-			return;
-
-		player.LapCompleted?.Invoke( lapIndex, lapTime );
-	}
-
-	/// <summary>
-	///     Let all clients know a player has passed a checkpoint
-	/// </summary>
-	/// <param name="player"></param>
-	/// <param name="checkpointIndex"></param>
-	[Rpc.Broadcast]
-	private void OnCheckpointPassed( Player player, int checkpointIndex )
-	{
-		if ( !player.IsValid() )
-			return;
-
-		player.CheckpointPassed?.Invoke( checkpointIndex );
 	}
 
 	protected override void OnUpdate()
