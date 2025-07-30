@@ -1,0 +1,51 @@
+@inherits PanelComponent
+@namespace Sandbox
+
+<root>
+	@{
+		var racingPlayers = RaceGame.Instance.RacingPlayers;
+		var removedPlayers = RaceGame.Instance.RemovedPlayers;
+
+		var allPlayers = new List<Player>();
+		allPlayers.AddRange( racingPlayers );
+		allPlayers.AddRange( removedPlayers );
+
+		var topPlayers = allPlayers.Take( 3 );
+		var otherPlayers = allPlayers.Except( topPlayers );
+	}
+
+	@if ( !allPlayers.Any() )
+	{
+		<div class="no-results">NO RESULTS YET</div>
+	}
+	else
+	{
+		<div class="title">RACE RESULTS</div>
+		<div class="top-entries">
+			@foreach ( var player in topPlayers )
+			{
+				<div class="entry">
+					<div class="name">@player.Network.Owner.DisplayName</div>
+					<div class="time">@player.TotalRaceTime</div>
+				</div>
+			}
+		</div>
+		<div class="other-entries">
+			@foreach ( var player in otherPlayers )
+			{
+				<div class="entry">
+					<div class="name">@player.Network.Owner.DisplayName</div>
+					<div class="time">@player.TotalRaceTime</div>
+				</div>
+			}
+		</div>
+	}
+</root>
+
+@code
+{
+	protected override int BuildHash()
+	{
+		return HashCode.Combine( Time.Now );
+	}
+}

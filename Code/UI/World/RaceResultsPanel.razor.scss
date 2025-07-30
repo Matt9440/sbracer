@@ -1,0 +1,96 @@
+@import "../Base.scss";
+
+RaceResultsPanel {
+	width: 100%;
+	height: 100%;
+	background-color: rgb(39, 39, 39);
+	color: white;
+	flex-direction: column;
+	padding: 120px;
+
+	.title {
+		font-size: 120px;
+		font-family: $heading-font;
+		width: 100%;
+		height: 50px;
+		align-items: center;
+		margin-bottom: 85px;
+	}
+
+	.no-results {
+		width: 100%;
+		height: 100%;
+		font-size: 180px;
+		font-family: $heading-font;
+		align-items: center;
+		justify-content: center;
+		color: rgba(0, 0, 0, 0.1);
+	}
+
+	.top-entries {
+		width: 100%;
+		height: 400px;
+		flex-direction: row;
+		font-size: 48px;
+		gap: 30px;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+		flex-shrink: 0;
+		margin-bottom: 80px;
+
+		.entry {
+			width: 100%;
+			padding: 10px 50px;
+			font-weight: bold;
+			flex-shrink: 1;
+			flex-grow: 1;
+			transform: skewX(-3deg);
+			justify-content: space-between;
+
+			&:nth-child(1) {
+				font-size: 84px;
+				background-color: #ffb700;
+			}
+
+			&:nth-child(2) {
+				font-size: 74px;
+				background-color: #a8a8a8;
+			}
+
+			&:nth-child(3) {
+				font-size: 64px;
+				background-color: #8e6129;
+			}
+		}
+	}
+
+	.other-entries {
+		width: 100%;
+		height: 100%;
+		flex-direction: row;
+		font-size: 48px;
+		gap: 10px;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+
+		.entry {
+			width: 29.6%;
+			padding: 20px 50px;
+			font-weight: bold;
+			flex-shrink: 1;
+			flex-grow: 1;
+			transform: skewX(-3deg);
+			justify-content: space-between;
+
+			&:nth-child(even) {
+				background-color: rgba(0, 0, 0, 0.5);
+			}
+
+			&:nth-child(odd) {
+				background-color: rgba(255, 255, 255, 0.05);
+			}
+		}
+	}
+}

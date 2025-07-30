@@ -38,7 +38,10 @@ public class Player : Component
 	public Action<int> CheckpointPassed { get; set; } // Checkpoint Index
 
 	public string CurrentLapTime => (Time.Now - LapStartTime).AsTimeFormatted( true );
-	public string TotalRaceTime => LapTimes.Sum().AsTimeFormatted( true );
+
+	public string TotalRaceTime => Racing
+		? (Time.Now - LapStartTime + LapTimes.Sum()).AsTimeFormatted( true )
+		: LapTimes.Sum().AsTimeFormatted( true );
 
 	protected override void OnStart()
 	{
