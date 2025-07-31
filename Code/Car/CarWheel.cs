@@ -40,7 +40,7 @@ public class CarWheel : Component
 			.IgnoreGameObjectHierarchy( Car.GameObject )
 			.Run();
 
-		DebugOverlay.Trace( WheelTrace );
+		// DebugOverlay.Trace( WheelTrace );
 	}
 
 	/// <summary>

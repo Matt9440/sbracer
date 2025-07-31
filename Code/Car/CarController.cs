@@ -218,9 +218,9 @@ public class CarController : EnterExitInteractable
 		// Handle sounds
 		HandleSounds( accelerationInput );
 
-		Gizmo.Draw.IgnoreDepth = true;
-		Gizmo.Draw.ScreenText( $"Gear {CurrentGear}, rpm {CurrentRpm:F0}, Speed {DisplaySpeed:F0} mph",
-			Scene.Camera.PointToScreenPixels( WorldPosition ) );
+		//Gizmo.Draw.IgnoreDepth = true;
+		//Gizmo.Draw.ScreenText( $"Gear {CurrentGear}, rpm {CurrentRpm:F0}, Speed {DisplaySpeed:F0} mph",
+		//Scene.Camera.PointToScreenPixels( WorldPosition ) );
 	}
 
 	private void HandleSounds( float accelerationInput )
@@ -435,7 +435,10 @@ public class CarController : EnterExitInteractable
 
 				// Adjust to ground level
 				if ( groundTrace.Hit )
-					return testTransform.WithPosition( groundTrace.HitPosition + Vector3.Up * 2f );
+				{
+					return testTransform.WithPosition( groundTrace.HitPosition + Vector3.Up * 2f )
+						.WithRotation( Rotation.Identity );
+				}
 			}
 		}
 

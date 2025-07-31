@@ -200,7 +200,10 @@ public sealed class RaceGame : Component, Component.INetworkListener
 		if ( TimeSinceStateStarted < WaitingDuration )
 			return;
 
-		SetState( GameState.RaceCountdown );
+		if ( QueuedPlayers.Any() )
+			SetState( GameState.RaceCountdown );
+		else
+			SetState( GameState.Waiting );
 	}
 
 	private void TickRaceCountdownState()
