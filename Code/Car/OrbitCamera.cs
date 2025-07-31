@@ -16,17 +16,12 @@ public sealed class OrbitCamera : Component
 
 	protected override void OnFixedUpdate()
 	{
-		if ( Scene.IsEditor )
-		{
-			return;
-		}
+		var car = Player.Local?.Driving;
 
-		if ( !CarController.Local.IsValid() )
-		{
+		if ( !car.IsValid() )
 			return;
-		}
 
-		var target = CarController.Local.CameraLookAt;
+		var target = car.CameraLookAt;
 
 		// Analog look
 		var analogLook = Input.AnalogLook;

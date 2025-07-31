@@ -1,5 +1,4 @@
 using Sandbox.Citizen;
-using Sandbox.Diagnostics;
 
 namespace SBRacer;
 
@@ -11,12 +10,11 @@ public class Player : Component
 	[Property] public Interactor Interactor { get; set; }
 	[Property] public CitizenAnimationHelper AnimationHelper { get; set; }
 
-	[Sync( SyncFlags.FromHost ), Change( "OnMovementLocked" )]
-	public bool MovementLocked { get; set; }
+	[Sync( SyncFlags.FromHost )] public bool MovementLocked { get; set; }
 
 	[Sync( SyncFlags.FromHost )] public int Money { get; set; }
 
-	[Sync] public CarController Driving { get; set; }
+	[Sync, Change] public CarController Driving { get; set; }
 
 	[Sync( SyncFlags.FromHost )] public int NextCheckpointIndex { get; set; }
 	[Sync( SyncFlags.FromHost )] public int CurrentLap { get; set; } = 1;
@@ -61,30 +59,52 @@ public class Player : Component
 			RaceGame.Instance.QueuePlayer( this, !Queued );
 	}
 
-	[Rpc.Host]
+	[Rpc.Broadcast]
 	public void LockMovement( bool locked )
 	{
-		Assert.True( Networking.IsHost );
+		if ( !IsProxy )
+		{
+			if ( locked )
+				PlayerController.WishVelocity = Vector3.Zero;
 
-		MovementLocked = locked;
+			PlayerController.UseCameraControls = !locked;
+			PlayerController.UseInputControls = !locked;
+			PlayerController.UseLookControls = !locked;
+		}
+
+		if ( Networking.IsHost )
+			MovementLocked = locked;
+
+		PlayerController.UseAnimatorControls = !locked;
 	}
 
 	/// <summary>
-	///     Called on all clients as a result of changes to MovementLocked
+	///     Called on all clients when the Driving property changes
 	/// </summary>
 	/// <param name="_"></param>
-	/// <param name="isLocked"></param>
-	public void OnMovementLocked( bool _, bool isLocked )
+	/// <param name="driving"></param>
+	public void OnDrivingChanged( CarController _, CarController driving )
 	{
-		if ( IsProxy )
-			return;
+		if ( driving.IsValid() )
+		{
+			AnimationHelper.Sitting = CitizenAnimationHelper.SittingStyle.Chair;
+			AnimationHelper.SittingOffsetHeight = -4.304f;
 
-		if ( isLocked )
-			PlayerController.WishVelocity = Vector3.Zero;
+			AnimationHelper.IkRightHand = driving.IkRightHand;
+			AnimationHelper.IkLeftHand = driving.IkLeftHand;
+			AnimationHelper.IkRightFoot = driving.IkRightFoot;
 
-		PlayerController.UseCameraControls = !isLocked;
-		PlayerController.UseInputControls = !isLocked;
-		PlayerController.UseLookControls = !isLocked;
-		PlayerController.UseAnimatorControls = !isLocked;
+			Tags.Add( "no_collide" );
+		}
+		else
+		{
+			AnimationHelper.Sitting = CitizenAnimationHelper.SittingStyle.None;
+
+			AnimationHelper.IkRightHand = null;
+			AnimationHelper.IkLeftHand = null;
+			AnimationHelper.IkRightFoot = null;
+
+			Tags.Remove( "no_collide" );
+		}
 	}
 }

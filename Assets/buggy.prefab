@@ -250,7 +250,7 @@
         "NetworkMode": 1,
         "NetworkInterpolation": true,
         "NetworkOrphaned": 0,
-        "OwnerTransfer": 1,
+        "OwnerTransfer": 0,
         "Components": [],
         "Children": [
           {
@@ -266,7 +266,7 @@
             "NetworkMode": 1,
             "NetworkInterpolation": true,
             "NetworkOrphaned": 0,
-            "OwnerTransfer": 1,
+            "OwnerTransfer": 0,
             "Components": [
               {
                 "__type": "SBRacer.Car.CarWheel",
@@ -301,7 +301,7 @@
                 "NetworkMode": 1,
                 "NetworkInterpolation": true,
                 "NetworkOrphaned": 0,
-                "OwnerTransfer": 1,
+                "OwnerTransfer": 0,
                 "Components": [
                   {
                     "__type": "Sandbox.ModelRenderer",
@@ -346,7 +346,7 @@
             "NetworkMode": 1,
             "NetworkInterpolation": true,
             "NetworkOrphaned": 0,
-            "OwnerTransfer": 1,
+            "OwnerTransfer": 0,
             "Components": [
               {
                 "__type": "SBRacer.Car.CarWheel",
@@ -381,7 +381,7 @@
                 "NetworkMode": 1,
                 "NetworkInterpolation": true,
                 "NetworkOrphaned": 0,
-                "OwnerTransfer": 1,
+                "OwnerTransfer": 0,
                 "Components": [
                   {
                     "__type": "Sandbox.ModelRenderer",
@@ -428,7 +428,7 @@
         "NetworkMode": 1,
         "NetworkInterpolation": true,
         "NetworkOrphaned": 0,
-        "OwnerTransfer": 1,
+        "OwnerTransfer": 0,
         "Components": [],
         "Children": [
           {
@@ -444,7 +444,7 @@
             "NetworkMode": 1,
             "NetworkInterpolation": true,
             "NetworkOrphaned": 0,
-            "OwnerTransfer": 1,
+            "OwnerTransfer": 0,
             "Components": [
               {
                 "__type": "SBRacer.Car.CarWheel",
@@ -479,7 +479,7 @@
                 "NetworkMode": 1,
                 "NetworkInterpolation": true,
                 "NetworkOrphaned": 0,
-                "OwnerTransfer": 1,
+                "OwnerTransfer": 0,
                 "Components": [
                   {
                     "__type": "Sandbox.ModelRenderer",
@@ -524,7 +524,7 @@
             "NetworkMode": 1,
             "NetworkInterpolation": true,
             "NetworkOrphaned": 0,
-            "OwnerTransfer": 1,
+            "OwnerTransfer": 0,
             "Components": [
               {
                 "__type": "SBRacer.Car.CarWheel",
@@ -559,7 +559,7 @@
                 "NetworkMode": 1,
                 "NetworkInterpolation": true,
                 "NetworkOrphaned": 0,
-                "OwnerTransfer": 1,
+                "OwnerTransfer": 0,
                 "Components": [
                   {
                     "__type": "Sandbox.ModelRenderer",
@@ -606,7 +606,7 @@
         "NetworkMode": 1,
         "NetworkInterpolation": true,
         "NetworkOrphaned": 0,
-        "OwnerTransfer": 1,
+        "OwnerTransfer": 0,
         "Components": [],
         "Children": []
       },
@@ -623,7 +623,7 @@
         "NetworkMode": 1,
         "NetworkInterpolation": true,
         "NetworkOrphaned": 0,
-        "OwnerTransfer": 1,
+        "OwnerTransfer": 0,
         "Components": [],
         "Children": []
       },
@@ -640,7 +640,7 @@
         "NetworkMode": 1,
         "NetworkInterpolation": true,
         "NetworkOrphaned": 0,
-        "OwnerTransfer": 1,
+        "OwnerTransfer": 0,
         "Components": [],
         "Children": []
       },
@@ -657,7 +657,7 @@
         "NetworkMode": 1,
         "NetworkInterpolation": true,
         "NetworkOrphaned": 0,
-        "OwnerTransfer": 1,
+        "OwnerTransfer": 0,
         "Components": [
           {
             "__type": "Sandbox.ModelRenderer",
@@ -699,7 +699,7 @@
             "NetworkMode": 1,
             "NetworkInterpolation": true,
             "NetworkOrphaned": 0,
-            "OwnerTransfer": 1,
+            "OwnerTransfer": 0,
             "Components": [],
             "Children": []
           },
@@ -716,7 +716,7 @@
             "NetworkMode": 1,
             "NetworkInterpolation": true,
             "NetworkOrphaned": 0,
-            "OwnerTransfer": 1,
+            "OwnerTransfer": 0,
             "Components": [],
             "Children": []
           }

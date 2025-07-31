@@ -223,6 +223,14 @@
           },
           {
             "Target": {
+              "Type": "Component",
+              "IdValue": "c2587777-5461-402c-8c13-0df8f0911188"
+            },
+            "Property": "Car",
+            "Value": null
+          },
+          {
+            "Target": {
               "Type": "GameObject",
               "IdValue": "8c6814da-a3a5-4445-b60d-2f84a742ae2d"
             },
@@ -236,6 +244,14 @@
             },
             "Property": "Enabled",
             "Value": true
+          },
+          {
+            "Target": {
+              "Type": "Component",
+              "IdValue": "ec6807e1-46ca-46b8-a4ac-40623d2d660d"
+            },
+            "Property": "Car",
+            "Value": null
           },
           {
             "Target": {
@@ -255,11 +271,27 @@
           },
           {
             "Target": {
+              "Type": "Component",
+              "IdValue": "06a0c480-61dc-4496-a65b-8fe9c69f1bc8"
+            },
+            "Property": "Car",
+            "Value": null
+          },
+          {
+            "Target": {
               "Type": "GameObject",
               "IdValue": "8af6576c-0bc6-497f-a9ca-ea74d00719cd"
             },
             "Property": "Enabled",
             "Value": true
+          },
+          {
+            "Target": {
+              "Type": "Component",
+              "IdValue": "8cec4c48-39c5-42a5-8b87-5c527d123cab"
+            },
+            "Property": "Car",
+            "Value": null
           },
           {
             "Target": {
@@ -1428,6 +1460,58 @@
             },
             "Property": "Position",
             "Value": "-2162.357,2129.942,185.8716"
+          },
+          {
+            "Target": {
+              "Type": "Component",
+              "IdValue": "85ffe15d-b939-4cb3-bc70-f4c9ce8f11d2"
+            },
+            "Property": "Car",
+            "Value": {
+              "_type": "component",
+              "component_id": "c95e8e0e-50f5-4c32-bed4-e2576eedd19d",
+              "go": "d164c21b-3f2c-401b-8fad-5e76d284b220",
+              "component_type": "CarController"
+            }
+          },
+          {
+            "Target": {
+              "Type": "Component",
+              "IdValue": "c16069c4-a011-472a-a372-34daaff81040"
+            },
+            "Property": "Car",
+            "Value": {
+              "_type": "component",
+              "component_id": "c95e8e0e-50f5-4c32-bed4-e2576eedd19d",
+              "go": "d164c21b-3f2c-401b-8fad-5e76d284b220",
+              "component_type": "CarController"
+            }
+          },
+          {
+            "Target": {
+              "Type": "Component",
+              "IdValue": "fe285aec-e62b-423d-ad4b-e4e6243a0676"
+            },
+            "Property": "Car",
+            "Value": {
+              "_type": "component",
+              "component_id": "c95e8e0e-50f5-4c32-bed4-e2576eedd19d",
+              "go": "d164c21b-3f2c-401b-8fad-5e76d284b220",
+              "component_type": "CarController"
+            }
+          },
+          {
+            "Target": {
+              "Type": "Component",
+              "IdValue": "e15bb0e6-23f2-4698-9f97-e0bbd2b09f75"
+            },
+            "Property": "Car",
+            "Value": {
+              "_type": "component",
+              "component_id": "c95e8e0e-50f5-4c32-bed4-e2576eedd19d",
+              "go": "d164c21b-3f2c-401b-8fad-5e76d284b220",
+              "component_type": "CarController"
+            }
           }
         ],
         "MovedObjects": []

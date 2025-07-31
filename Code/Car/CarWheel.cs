@@ -10,11 +10,12 @@ public class CarWheel : Component
 	public float WheelRadius => WheelModel.Model.Bounds.Size.z * WheelModel.WorldScale.z / 2;
 	private float WheelWidth => WheelModel.Model.Bounds.Size.y * WheelModel.WorldScale.y;
 	private Vector3 WheelForward => FlipWheelSpinRotation ? WorldRotation.Backward : WorldRotation.Forward;
-	private float CarryingMass => CarController.Local.Rigidbody.Mass / 4;
 
 	public bool HandbrakeApplied { get; set; }
 	private Vector3 WheelTraceInwardOffset { get; set; }
-	private CarController Car => CarController.Local;
+
+	private CarController Car => Components.GetInAncestors<CarController>();
+	private float CarryingMass => Car.Rigidbody.Mass / 4;
 
 	protected override void OnUpdate()
 	{
@@ -39,8 +40,7 @@ public class CarWheel : Component
 			.IgnoreGameObjectHierarchy( Car.GameObject )
 			.Run();
 
-		// This is great, but only supported on staging for now
-		// DebugOverlay.Trace(WheelTrace);
+		DebugOverlay.Trace( WheelTrace );
 	}
 
 	/// <summary>

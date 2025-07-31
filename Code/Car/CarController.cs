@@ -3,8 +3,6 @@ namespace SBRacer.Car;
 [Category( "SB Racer" ), Title( "Car Controller" ), Icon( "toys" )]
 public class CarController : EnterExitInteractable
 {
-	public static CarController Local { get; set; }
-
 	[Property, Category( "References" )] public Rigidbody Rigidbody { get; set; }
 	[Property, Category( "References" )] public GameObject SteeringWheel { get; set; }
 	[Property, Category( "References" )] public CarWheel FrontLeftWheel { get; set; }
@@ -98,23 +96,15 @@ public class CarController : EnterExitInteractable
 	public override void OnInteract( Player player )
 	{
 		// Give network ownership of this car to the interactor
-		GameObject.Network.TakeOwnership();
+		GameObject.Network.TakeOwnershipRecursive();
 		DrivenBy = player;
 
 		player.LockMovement( true );
 		player.Driving = this;
-		player.Tags.Add( "no_collide" );
 
 		player.GameObject.Parent = SeatedTransform;
 		player.WorldTransform = SeatedTransform.WorldTransform;
-
 		player.PlayerController.Renderer.LocalRotation = Rotation.Identity;
-		player.PlayerController.Renderer.Set( "sit", 1 );
-		player.PlayerController.Renderer.Set( "sit_height_offset", -4.301f );
-
-		player.AnimationHelper.IkRightHand = IkRightHand;
-		player.AnimationHelper.IkLeftHand = IkLeftHand;
-		player.AnimationHelper.IkRightFoot = IkRightFoot;
 
 		if ( StartSound.IsValid() )
 			StartSound.BroadcastFrom( GameObject, "Vehicles" );
@@ -124,15 +114,8 @@ public class CarController : EnterExitInteractable
 	{
 		DrivenBy = null;
 
-		player.PlayerController.Renderer.Set( "sit", 0 );
-
-		player.LockMovement( false );
 		player.Driving = null;
-		player.Tags.Remove( "no_collide" );
-
-		player.AnimationHelper.IkRightHand = null;
-		player.AnimationHelper.IkLeftHand = null;
-		player.AnimationHelper.IkRightFoot = null;
+		player.LockMovement( false );
 
 		player.GameObject.Parent = null;
 		player.WorldTransform = FindSafeExitPoint();
@@ -151,17 +134,14 @@ public class CarController : EnterExitInteractable
 		BrakeHandle = null;
 
 		if ( Owner.IsValid() )
-			GameObject.Network.AssignOwnership( Owner.Network.Owner );
+			GameObject.Network.AssignOwnershipRecursive( Owner.Network.Owner );
 		else
-			GameObject.Network.DropOwnership();
+			GameObject.Network.DropOwnershipRecursive();
 	}
 
 	protected override void OnStart()
 	{
 		base.OnStart();
-
-		if ( !IsProxy )
-			Local = this;
 
 		if ( Networking.IsHost )
 			Owner = Network.Owner.GetPlayer();

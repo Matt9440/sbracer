@@ -35,15 +35,13 @@
 {
 	public Panel Needle { get; set; }
 
-	public float Speed => CarController.Local?.DisplaySpeed ?? 0;
-	public float MaxSpeed => CarController.Local?.MaxSpeed ?? 0;
+	public float Speed => Player.Local?.Driving?.DisplaySpeed ?? 0;
+	public float MaxSpeed => Player.Local?.Driving?.MaxSpeed ?? 0;
 
 	public override void Tick()
 	{
 		if ( !Needle.IsValid() )
-		{
 			return;
-		}
 
 		var normalized = Math.Clamp( Speed / MaxSpeed, 0f, 1f );
 		var angle = -90f + normalized * 180f;
