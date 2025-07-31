@@ -49,7 +49,7 @@ public sealed class Interactor : Component
 			interactTrace = Scene.Trace.Sphere( 12f, traceFrom, traceTo ).IgnoreGameObjectHierarchy( GameObject ).Run();
 		}
 
-		Gizmo.Draw.Line( interactTrace.StartPosition, interactTrace.EndPosition );
+		// Gizmo.Draw.Line( interactTrace.StartPosition, interactTrace.EndPosition );
 
 		var hasInteractTag = interactTrace.Tags.Contains( "interactable" );
 

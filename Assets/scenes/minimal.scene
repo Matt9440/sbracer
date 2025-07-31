@@ -370,6 +370,57 @@
       "Children": []
     },
     {
+      "__guid": "d77066a4-993a-4637-9a35-686a2f6fe9b7",
+      "__version": 1,
+      "Flags": 0,
+      "Name": "Manager",
+      "Position": "-3282.364,1563.105,541.3321",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "NetworkInterpolation": true,
+      "NetworkOrphaned": 1,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "SBRacer.RaceGame",
+          "__guid": "336ca438-6bee-48a6-98a0-5affcb1b2695",
+          "__enabled": true,
+          "BuggyPrefab": {
+            "_type": "gameobject",
+            "prefab": "buggy.prefab"
+          },
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "PlayerPrefab": {
+            "_type": "gameobject",
+            "prefab": "player.prefab"
+          }
+        },
+        {
+          "__type": "SBRacer.MapEntities.RaceMap",
+          "__guid": "011be429-1217-4302-b714-f02ffcc73694",
+          "__enabled": true,
+          "MapName": "Speedway",
+          "MaxLaps": 1,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Type": "Race"
+        }
+      ],
+      "Children": []
+    },
+    {
       "__guid": "c04320e6-76e8-4537-954c-e158b36883ca",
       "__version": 1,
       "Flags": 0,
@@ -381,7 +432,7 @@
       "Enabled": true,
       "NetworkMode": 2,
       "NetworkInterpolation": true,
-      "NetworkOrphaned": 0,
+      "NetworkOrphaned": 1,
       "OwnerTransfer": 1,
       "Components": [
         {
@@ -452,57 +503,6 @@
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null
-        }
-      ],
-      "Children": []
-    },
-    {
-      "__guid": "d77066a4-993a-4637-9a35-686a2f6fe9b7",
-      "__version": 1,
-      "Flags": 0,
-      "Name": "Manager",
-      "Position": "-3282.364,1563.105,541.3321",
-      "Rotation": "0,0,0,1",
-      "Scale": "1,1,1",
-      "Tags": "",
-      "Enabled": true,
-      "NetworkMode": 2,
-      "NetworkInterpolation": true,
-      "NetworkOrphaned": 0,
-      "OwnerTransfer": 1,
-      "Components": [
-        {
-          "__type": "SBRacer.RaceGame",
-          "__guid": "336ca438-6bee-48a6-98a0-5affcb1b2695",
-          "__enabled": true,
-          "BuggyPrefab": {
-            "_type": "gameobject",
-            "prefab": "buggy.prefab"
-          },
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "PlayerPrefab": {
-            "_type": "gameobject",
-            "prefab": "player.prefab"
-          }
-        },
-        {
-          "__type": "SBRacer.MapEntities.RaceMap",
-          "__guid": "011be429-1217-4302-b714-f02ffcc73694",
-          "__enabled": true,
-          "MapName": "Speedway",
-          "MaxLaps": 1,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "Type": "Race"
         }
       ],
       "Children": []
@@ -1699,7 +1699,6 @@
           "__type": "Sandbox.RaceResultsPanel",
           "__guid": "f4cd0852-1fee-4d50-af92-37fb7ad6d267",
           "__enabled": true,
-          "MyStringValue": "Hello World!",
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,

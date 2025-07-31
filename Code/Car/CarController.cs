@@ -122,11 +122,6 @@ public class CarController : EnterExitInteractable
 
 	public override void ExitInteract( Player player )
 	{
-		if ( Owner.IsValid() )
-			GameObject.Network.AssignOwnership( Owner.Network.Owner );
-		else
-			GameObject.Network.DropOwnership();
-
 		DrivenBy = null;
 
 		player.PlayerController.Renderer.Set( "sit", 0 );
@@ -154,6 +149,11 @@ public class CarController : EnterExitInteractable
 		BrakeHandle?.Stop();
 		BrakeHandle?.Dispose();
 		BrakeHandle = null;
+
+		if ( Owner.IsValid() )
+			GameObject.Network.AssignOwnership( Owner.Network.Owner );
+		else
+			GameObject.Network.DropOwnership();
 	}
 
 	protected override void OnStart()

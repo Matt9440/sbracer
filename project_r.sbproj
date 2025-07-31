@@ -1,8 +1,8 @@
 {
-  "Title": "project_r",
+  "Title": "SB Racer",
   "Type": "game",
-  "Org": "local",
-  "Ident": "project_r",
+  "Org": "slamdunk",
+  "Ident": "sbracer",
   "Schema": 1,
   "IncludeSourceFiles": false,
   "Resources": null,
