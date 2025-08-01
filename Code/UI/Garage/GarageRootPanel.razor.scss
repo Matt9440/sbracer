@@ -1,0 +1,67 @@
+@import "../Base.scss";
+
+GarageRootPanel {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	font-family: $heading-font;
+	color: white;
+	pointer-events: all;
+	
+	.platform-rotation 
+	{
+		position: absolute;
+		bottom: 70px;
+		right: 380px;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		width: 350px;
+		height: 60px;
+		
+		.direction-prompt {
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			height: 60px;
+			width: 80px;
+			opacity: 0.2;
+			transition: all 0.2s ease;
+			
+			&.input-down {
+				opacity: 1;
+			}
+			
+			.input-prompt 
+			{
+				width: 50px;
+				height: 50px;
+				background-size: contain;
+				background-position: center;
+				background-repeat: no-repeat;
+			}
+			
+			.input-direction
+			{
+				width: 50px;
+				height: 60px;
+				font-family: "Material Icons";
+				font-size: 32px;
+				align-items: center;
+
+				&.back {
+					transform: rotate(180deg);
+				}
+			}
+		}
+		
+		.title {
+			width: 140px;
+			align-items: center;
+			justify-content: center;
+			height: 70px;
+			font-size: 40px;
+			margin-top: 12px;
+		}
+	}
+}
