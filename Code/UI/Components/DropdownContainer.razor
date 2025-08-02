@@ -1,0 +1,28 @@
+@inherits Panel
+@namespace SBRacer.Ui
+
+<root>
+	<DropdownTab></DropdownTab>
+	<DropdownTab></DropdownTab>
+	<DropdownTab></DropdownTab>
+</root>
+
+@code {
+	public DropdownTab ExpandedTab { get; set; }
+
+	protected override void OnAfterTreeRender( bool firstTime )
+	{
+		base.OnAfterTreeRender(firstTime);
+
+		// Make sure we have one tab extended by default
+		if ( ExpandedTab.IsValid() )
+			return;
+		
+		var firstChild = Children.FirstOrDefault() as DropdownTab;
+
+		if ( !firstChild.IsValid() )
+			return;
+		
+		firstChild.Expand();
+	}
+}

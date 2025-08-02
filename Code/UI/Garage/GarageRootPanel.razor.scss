@@ -8,6 +8,26 @@ GarageRootPanel {
 	color: white;
 	pointer-events: all;
 	
+	.item-list-container {
+		position: absolute;
+		flex-direction: column;
+		left: 100px;
+		top: 80px;
+		
+		.container-title {
+			font-size: 60px;
+			text-transform: uppercase;
+			padding-left: 20px;
+			padding-bottom: 20px;
+		}
+
+		.item-list {
+			width: 600px;
+			height: 800px;
+		}
+	}
+	
+	
 	.platform-rotation 
 	{
 		position: absolute;
