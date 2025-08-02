@@ -13,7 +13,7 @@ DropdownTab {
 		width: 100%;
 		flex-shrink: 0;
 		padding: 15px 20px 10px 20px;
-		background-color: rgba(0,0,0,0.5);
+		background-color: rgba(0,0,0,0.3);
 		border-radius: 12px;
 		
 		&:hover {
@@ -29,10 +29,11 @@ DropdownTab {
 		.title {
 			border-bottom-left-radius: 0px;
 			border-bottom-right-radius: 0px;
+			background-color: rgba(0,0,0,0.7);
 
 			&:hover {
 				cursor: default;
-				background-color: rgba(0,0,0,0.5);
+				background-color: rgba(0,0,0,0.7);
 			}
 		}
 		
@@ -48,15 +49,14 @@ DropdownTab {
 		flex-direction: row;
 		flex-wrap: wrap;
 		gap: 10px;
-		padding: 20px;
-		padding-top: 0px;
+		padding: 10px;
 		opacity: 0;
 		align-items: center;
 
 		.item {
-			width: 80px;
-			height: 80px;
-			background-color: rgba(0,0,0,0.5);
+			width: 84px;
+			height: 84px;
+			background-color: rgba(0,0,0,0.45);
 			align-items: center;
 			justify-content: center;
 			transition: all 0.2s ease;
