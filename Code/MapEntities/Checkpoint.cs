@@ -3,12 +3,9 @@ namespace SBRacer.MapEntities;
 public class Checkpoint : Component, Component.ITriggerListener
 {
 	[Property] public int CheckpointIndex { get; set; } = 0;
-
 	[Property, RequireComponent] public BoxCollider CheckpointTrigger { get; set; }
 
-	[Property] public bool IsFinishLine { get; set; } = false;
-
-	[Property] public GameObject NextCheckpoint { get; set; }
+	public int CheckpointCount => Scene.GetAll<Checkpoint>().Count( c => c.IsValid() );
 
 	/// <summary>
 	///     Triggers checkpoint logic on the server only
@@ -44,42 +41,44 @@ public class Checkpoint : Component, Component.ITriggerListener
 
 	private void HandleCheckpoint( Player player )
 	{
-		if ( player.NextCheckpointIndex == CheckpointIndex )
+		var expectedCheckpointIndex = player.NextCheckpointIndex;
+
+		if ( expectedCheckpointIndex == CheckpointIndex )
 		{
+			// Passed a checkpoint
+			player.NextCheckpointIndex++;
+
 			// Record checkpoint time
 			var checkpointTime = Time.Now;
 			player.LastCheckpointTime = checkpointTime;
 
-			// Increment checkpoint index
-			player.NextCheckpointIndex++;
-
 			RaceGame.Instance.OnCheckpointPassed( player, CheckpointIndex );
+		}
+		else
+		{
+			//Log.Info( $"Failed checkpoint {CheckpointIndex}. Expected {Player.Local.NextCheckpointIndex}" );
 
-			if ( IsFinishLine )
+			// Completed a lap
+			if ( expectedCheckpointIndex == CheckpointCount )
 			{
 				// Calculate lap time
+				var checkpointTime = Time.Now;
 				var lapTime = checkpointTime - player.LapStartTime;
 
 				player.LapTimes.Add( lapTime );
 				player.CurrentLap++;
 				player.LapStartTime = checkpointTime; // Reset for next lap
-				player.NextCheckpointIndex = 0; // Reset to first checkpoint
+				player.NextCheckpointIndex = 1; // Reset to first checkpoint
 
 				RaceGame.Instance.OnLapCompleted( player, player.CurrentLap - 1, lapTime );
 			}
-		}
-		else
-		{
-			// Player is travelling the wrong way, tell them?
-			Log.Info( "Wrong way!" );
 		}
 	}
 
 	protected override void OnUpdate()
 	{
-		//base.OnUpdate();
-		Gizmo.Draw.Color = Color.White.WithAlpha( 0.4f );
-		Gizmo.Draw.SolidBox( BBox.FromPositionAndSize( CheckpointTrigger.WorldPosition, CheckpointTrigger.Scale ) );
+		//Gizmo.Draw.Color = Color.White.WithAlpha( 0.4f );
+		//Gizmo.Draw.SolidBox( BBox.FromPositionAndSize( CheckpointTrigger.WorldPosition, CheckpointTrigger.Scale ) );
 	}
 
 	protected override void DrawGizmos()

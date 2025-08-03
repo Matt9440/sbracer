@@ -223,14 +223,6 @@
           },
           {
             "Target": {
-              "Type": "Component",
-              "IdValue": "c2587777-5461-402c-8c13-0df8f0911188"
-            },
-            "Property": "Car",
-            "Value": null
-          },
-          {
-            "Target": {
               "Type": "GameObject",
               "IdValue": "8c6814da-a3a5-4445-b60d-2f84a742ae2d"
             },
@@ -244,14 +236,6 @@
             },
             "Property": "Enabled",
             "Value": true
-          },
-          {
-            "Target": {
-              "Type": "Component",
-              "IdValue": "ec6807e1-46ca-46b8-a4ac-40623d2d660d"
-            },
-            "Property": "Car",
-            "Value": null
           },
           {
             "Target": {
@@ -271,27 +255,11 @@
           },
           {
             "Target": {
-              "Type": "Component",
-              "IdValue": "06a0c480-61dc-4496-a65b-8fe9c69f1bc8"
-            },
-            "Property": "Car",
-            "Value": null
-          },
-          {
-            "Target": {
               "Type": "GameObject",
               "IdValue": "8af6576c-0bc6-497f-a9ca-ea74d00719cd"
             },
             "Property": "Enabled",
             "Value": true
-          },
-          {
-            "Target": {
-              "Type": "Component",
-              "IdValue": "8cec4c48-39c5-42a5-8b87-5c527d123cab"
-            },
-            "Property": "Car",
-            "Value": null
           },
           {
             "Target": {
@@ -440,7 +408,7 @@
           "__guid": "011be429-1217-4302-b714-f02ffcc73694",
           "__enabled": true,
           "MapName": "Speedway",
-          "MaxLaps": 1,
+          "MaxLaps": 3,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
@@ -1460,58 +1428,6 @@
             },
             "Property": "Position",
             "Value": "-2162.357,2129.942,185.8716"
-          },
-          {
-            "Target": {
-              "Type": "Component",
-              "IdValue": "85ffe15d-b939-4cb3-bc70-f4c9ce8f11d2"
-            },
-            "Property": "Car",
-            "Value": {
-              "_type": "component",
-              "component_id": "c95e8e0e-50f5-4c32-bed4-e2576eedd19d",
-              "go": "d164c21b-3f2c-401b-8fad-5e76d284b220",
-              "component_type": "CarController"
-            }
-          },
-          {
-            "Target": {
-              "Type": "Component",
-              "IdValue": "c16069c4-a011-472a-a372-34daaff81040"
-            },
-            "Property": "Car",
-            "Value": {
-              "_type": "component",
-              "component_id": "c95e8e0e-50f5-4c32-bed4-e2576eedd19d",
-              "go": "d164c21b-3f2c-401b-8fad-5e76d284b220",
-              "component_type": "CarController"
-            }
-          },
-          {
-            "Target": {
-              "Type": "Component",
-              "IdValue": "fe285aec-e62b-423d-ad4b-e4e6243a0676"
-            },
-            "Property": "Car",
-            "Value": {
-              "_type": "component",
-              "component_id": "c95e8e0e-50f5-4c32-bed4-e2576eedd19d",
-              "go": "d164c21b-3f2c-401b-8fad-5e76d284b220",
-              "component_type": "CarController"
-            }
-          },
-          {
-            "Target": {
-              "Type": "Component",
-              "IdValue": "e15bb0e6-23f2-4698-9f97-e0bbd2b09f75"
-            },
-            "Property": "Car",
-            "Value": {
-              "_type": "component",
-              "component_id": "c95e8e0e-50f5-4c32-bed4-e2576eedd19d",
-              "go": "d164c21b-3f2c-401b-8fad-5e76d284b220",
-              "component_type": "CarController"
-            }
           }
         ],
         "MovedObjects": []
@@ -1550,11 +1466,11 @@
       }
     },
     {
-      "__guid": "d6fdb155-4ef2-4f67-a16f-9c798da38bd1",
+      "__guid": "f052ff50-f274-4a98-a717-0ecd5d84dd5a",
       "__version": 1,
       "Flags": 0,
-      "Name": "checkpoint",
-      "Position": "-1845.63,632.9011,191.0236",
+      "Name": "Checkpoints",
+      "Position": "-3792.56,516.5845,1008.32",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "",
@@ -1563,183 +1479,399 @@
       "NetworkInterpolation": true,
       "NetworkOrphaned": 0,
       "OwnerTransfer": 1,
-      "Components": [
+      "Components": [],
+      "Children": [
         {
-          "__type": "SBRacer.MapEntities.Checkpoint",
-          "__guid": "0cb888a4-b8b6-43f3-bed6-40a541feea0e",
-          "__enabled": true,
-          "CheckpointIndex": 0,
-          "CheckpointTrigger": {
-            "_type": "component",
-            "component_id": "530ad596-386f-426f-a4c0-ddde0be2bcfb",
-            "go": "d6fdb155-4ef2-4f67-a16f-9c798da38bd1",
-            "component_type": "BoxCollider"
-          },
-          "IsFinishLine": false,
-          "NextCheckpoint": {
-            "_type": "gameobject",
-            "go": "ed289655-bcb6-4fa7-8e95-24f924c60c02"
-          },
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null
+          "__guid": "d6fdb155-4ef2-4f67-a16f-9c798da38bd1",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "1",
+          "Position": "1719.422,116.3167,-817.2968",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "SBRacer.MapEntities.Checkpoint",
+              "__guid": "0cb888a4-b8b6-43f3-bed6-40a541feea0e",
+              "__enabled": true,
+              "CheckpointIndex": 0,
+              "CheckpointTrigger": {
+                "_type": "component",
+                "component_id": "530ad596-386f-426f-a4c0-ddde0be2bcfb",
+                "go": "d6fdb155-4ef2-4f67-a16f-9c798da38bd1",
+                "component_type": "BoxCollider"
+              },
+              "IsFinishLine": true,
+              "NextCheckpoint": {
+                "_type": "gameobject",
+                "go": "ed289655-bcb6-4fa7-8e95-24f924c60c02"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            },
+            {
+              "__type": "Sandbox.BoxCollider",
+              "__guid": "530ad596-386f-426f-a4c0-ddde0be2bcfb",
+              "__enabled": true,
+              "Center": "-41.62615,15.60248,0",
+              "Elasticity": null,
+              "Friction": null,
+              "IsTrigger": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "OnObjectTriggerEnter": null,
+              "OnObjectTriggerExit": null,
+              "OnTriggerEnter": null,
+              "OnTriggerExit": null,
+              "RollingResistance": null,
+              "Scale": "133.2523,1197.264,50",
+              "Static": false,
+              "Surface": null,
+              "SurfaceVelocity": "0,0,0"
+            }
+          ],
+          "Children": []
         },
         {
-          "__type": "Sandbox.BoxCollider",
-          "__guid": "530ad596-386f-426f-a4c0-ddde0be2bcfb",
-          "__enabled": true,
-          "Center": "-41.62615,15.60248,0",
-          "Elasticity": null,
-          "Friction": null,
-          "IsTrigger": true,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "OnObjectTriggerEnter": null,
-          "OnObjectTriggerExit": null,
-          "OnTriggerEnter": null,
-          "OnTriggerExit": null,
-          "RollingResistance": null,
-          "Scale": "133.2523,1197.264,50",
-          "Static": false,
-          "Surface": null,
-          "SurfaceVelocity": "0,0,0"
-        }
-      ],
-      "Children": []
-    },
-    {
-      "__guid": "ed289655-bcb6-4fa7-8e95-24f924c60c02",
-      "__version": 1,
-      "Flags": 0,
-      "Name": "checkpoint (1)",
-      "Position": "-1169.376,632.9011,191.0236",
-      "Rotation": "0,0,0,1",
-      "Scale": "1,1,1",
-      "Tags": "",
-      "Enabled": true,
-      "NetworkMode": 2,
-      "NetworkInterpolation": true,
-      "NetworkOrphaned": 0,
-      "OwnerTransfer": 1,
-      "Components": [
-        {
-          "__type": "SBRacer.MapEntities.Checkpoint",
-          "__guid": "49853cf1-925b-4999-b0d5-df72b0c00000",
-          "__enabled": true,
-          "CheckpointIndex": 1,
-          "CheckpointTrigger": {
-            "_type": "component",
-            "component_id": "158365df-fd78-461e-b8c8-f18e09a1a29b",
-            "go": "ed289655-bcb6-4fa7-8e95-24f924c60c02",
-            "component_type": "BoxCollider"
-          },
-          "IsFinishLine": false,
-          "NextCheckpoint": {
-            "_type": "gameobject",
-            "go": "a288c82f-e277-415d-8251-2695a18d8c9d"
-          },
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null
+          "__guid": "ed289655-bcb6-4fa7-8e95-24f924c60c02",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "2",
+          "Position": "3692.231,116.3167,-817.2968",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "SBRacer.MapEntities.Checkpoint",
+              "__guid": "49853cf1-925b-4999-b0d5-df72b0c00000",
+              "__enabled": true,
+              "CheckpointIndex": 1,
+              "CheckpointTrigger": {
+                "_type": "component",
+                "component_id": "158365df-fd78-461e-b8c8-f18e09a1a29b",
+                "go": "ed289655-bcb6-4fa7-8e95-24f924c60c02",
+                "component_type": "BoxCollider"
+              },
+              "IsFinishLine": false,
+              "NextCheckpoint": {
+                "_type": "gameobject",
+                "go": "100b4ac9-f98d-4feb-aca5-6cc10bede4e9"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            },
+            {
+              "__type": "Sandbox.BoxCollider",
+              "__guid": "158365df-fd78-461e-b8c8-f18e09a1a29b",
+              "__enabled": true,
+              "Center": "-41.62615,15.60248,0",
+              "Elasticity": null,
+              "Friction": null,
+              "IsTrigger": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "OnObjectTriggerEnter": null,
+              "OnObjectTriggerExit": null,
+              "OnTriggerEnter": null,
+              "OnTriggerExit": null,
+              "RollingResistance": null,
+              "Scale": "133.2523,1197.264,50",
+              "Static": false,
+              "Surface": null,
+              "SurfaceVelocity": "0,0,0"
+            }
+          ],
+          "Children": []
         },
         {
-          "__type": "Sandbox.BoxCollider",
-          "__guid": "158365df-fd78-461e-b8c8-f18e09a1a29b",
-          "__enabled": true,
-          "Center": "-41.62615,15.60248,0",
-          "Elasticity": null,
-          "Friction": null,
-          "IsTrigger": true,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "OnObjectTriggerEnter": null,
-          "OnObjectTriggerExit": null,
-          "OnTriggerEnter": null,
-          "OnTriggerExit": null,
-          "RollingResistance": null,
-          "Scale": "133.2523,1197.264,50",
-          "Static": false,
-          "Surface": null,
-          "SurfaceVelocity": "0,0,0"
-        }
-      ],
-      "Children": []
-    },
-    {
-      "__guid": "a288c82f-e277-415d-8251-2695a18d8c9d",
-      "__version": 1,
-      "Flags": 0,
-      "Name": "checkpoint (2)",
-      "Position": "-401.2387,632.9011,191.0236",
-      "Rotation": "0,0,0,1",
-      "Scale": "1,1,1",
-      "Tags": "",
-      "Enabled": true,
-      "NetworkMode": 2,
-      "NetworkInterpolation": true,
-      "NetworkOrphaned": 0,
-      "OwnerTransfer": 1,
-      "Components": [
-        {
-          "__type": "SBRacer.MapEntities.Checkpoint",
-          "__guid": "cfb072ef-d02c-47e6-b62f-4317de545d5c",
-          "__enabled": true,
-          "CheckpointIndex": 2,
-          "CheckpointTrigger": {
-            "_type": "component",
-            "component_id": "55bb2d8e-dff3-4a6d-a5e1-a0d9282c9e47",
-            "go": "a288c82f-e277-415d-8251-2695a18d8c9d",
-            "component_type": "BoxCollider"
-          },
-          "IsFinishLine": true,
-          "NextCheckpoint": null,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null
+          "__guid": "100b4ac9-f98d-4feb-aca5-6cc10bede4e9",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "3",
+          "Position": "3692.231,3095.02,-817.2968",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "SBRacer.MapEntities.Checkpoint",
+              "__guid": "ee3b5fcf-f42c-42db-818f-25fe82f0bf24",
+              "__enabled": true,
+              "CheckpointIndex": 2,
+              "CheckpointTrigger": {
+                "_type": "component",
+                "component_id": "92e24da1-222e-4edd-9c90-7412ba992d59",
+                "go": "100b4ac9-f98d-4feb-aca5-6cc10bede4e9",
+                "component_type": "BoxCollider"
+              },
+              "IsFinishLine": false,
+              "NextCheckpoint": {
+                "_type": "gameobject",
+                "go": "b55f62c2-eacd-4e8d-a619-be189bf79f91"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            },
+            {
+              "__type": "Sandbox.BoxCollider",
+              "__guid": "92e24da1-222e-4edd-9c90-7412ba992d59",
+              "__enabled": true,
+              "Center": "-41.62615,15.60248,0",
+              "Elasticity": null,
+              "Friction": null,
+              "IsTrigger": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "OnObjectTriggerEnter": null,
+              "OnObjectTriggerExit": null,
+              "OnTriggerEnter": null,
+              "OnTriggerExit": null,
+              "RollingResistance": null,
+              "Scale": "133.2523,1197.264,50",
+              "Static": false,
+              "Surface": null,
+              "SurfaceVelocity": "0,0,0"
+            }
+          ],
+          "Children": []
         },
         {
-          "__type": "Sandbox.BoxCollider",
-          "__guid": "55bb2d8e-dff3-4a6d-a5e1-a0d9282c9e47",
-          "__enabled": true,
-          "Center": "-41.62615,15.60248,0",
-          "Elasticity": null,
-          "Friction": null,
-          "IsTrigger": true,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "OnObjectTriggerEnter": null,
-          "OnObjectTriggerExit": null,
-          "OnTriggerEnter": null,
-          "OnTriggerExit": null,
-          "RollingResistance": null,
-          "Scale": "133.2523,1197.264,50",
-          "Static": false,
-          "Surface": null,
-          "SurfaceVelocity": "0,0,0"
+          "__guid": "b55f62c2-eacd-4e8d-a619-be189bf79f91",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "4",
+          "Position": "1719.422,3079.865,-817.2968",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "SBRacer.MapEntities.Checkpoint",
+              "__guid": "785a5e55-c9fe-4622-a547-73859063bb77",
+              "__enabled": true,
+              "CheckpointIndex": 3,
+              "CheckpointTrigger": {
+                "_type": "component",
+                "component_id": "77936499-d14e-4dfc-99e9-430f681e9e58",
+                "go": "b55f62c2-eacd-4e8d-a619-be189bf79f91",
+                "component_type": "BoxCollider"
+              },
+              "IsFinishLine": false,
+              "NextCheckpoint": {
+                "_type": "gameobject",
+                "go": "ee3b85f9-b45c-4fc4-9b0a-fb332c56f91f"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            },
+            {
+              "__type": "Sandbox.BoxCollider",
+              "__guid": "77936499-d14e-4dfc-99e9-430f681e9e58",
+              "__enabled": true,
+              "Center": "-41.62615,15.60248,0",
+              "Elasticity": null,
+              "Friction": null,
+              "IsTrigger": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "OnObjectTriggerEnter": null,
+              "OnObjectTriggerExit": null,
+              "OnTriggerEnter": null,
+              "OnTriggerExit": null,
+              "RollingResistance": null,
+              "Scale": "133.2523,1197.264,50",
+              "Static": false,
+              "Surface": null,
+              "SurfaceVelocity": "0,0,0"
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "ee3b85f9-b45c-4fc4-9b0a-fb332c56f91f",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "5",
+          "Position": "-565.043,3079.865,-817.2968",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "SBRacer.MapEntities.Checkpoint",
+              "__guid": "ac033361-fc31-49e7-8ca1-11464970f89a",
+              "__enabled": true,
+              "CheckpointIndex": 4,
+              "CheckpointTrigger": {
+                "_type": "component",
+                "component_id": "658487ac-4dc8-4969-b0a6-fc59059595bf",
+                "go": "ee3b85f9-b45c-4fc4-9b0a-fb332c56f91f",
+                "component_type": "BoxCollider"
+              },
+              "IsFinishLine": false,
+              "NextCheckpoint": {
+                "_type": "gameobject",
+                "go": "5c19b49b-12a2-4600-ba8f-a930c4fd3572"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            },
+            {
+              "__type": "Sandbox.BoxCollider",
+              "__guid": "658487ac-4dc8-4969-b0a6-fc59059595bf",
+              "__enabled": true,
+              "Center": "-41.62615,15.60248,0",
+              "Elasticity": null,
+              "Friction": null,
+              "IsTrigger": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "OnObjectTriggerEnter": null,
+              "OnObjectTriggerExit": null,
+              "OnTriggerEnter": null,
+              "OnTriggerExit": null,
+              "RollingResistance": null,
+              "Scale": "133.2523,1197.264,50",
+              "Static": false,
+              "Surface": null,
+              "SurfaceVelocity": "0,0,0"
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "5c19b49b-12a2-4600-ba8f-a930c4fd3572",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "6",
+          "Position": "-565.043,131.1825,-817.2968",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "SBRacer.MapEntities.Checkpoint",
+              "__guid": "afae7618-7434-48e4-8d7f-7b9c148d783f",
+              "__enabled": true,
+              "CheckpointIndex": 5,
+              "CheckpointTrigger": {
+                "_type": "component",
+                "component_id": "b45c38ad-6398-4848-9355-8dc0a57c9bfd",
+                "go": "5c19b49b-12a2-4600-ba8f-a930c4fd3572",
+                "component_type": "BoxCollider"
+              },
+              "IsFinishLine": false,
+              "NextCheckpoint": {
+                "_type": "gameobject",
+                "go": "d6fdb155-4ef2-4f67-a16f-9c798da38bd1"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            },
+            {
+              "__type": "Sandbox.BoxCollider",
+              "__guid": "b45c38ad-6398-4848-9355-8dc0a57c9bfd",
+              "__enabled": true,
+              "Center": "-41.62615,15.60248,0",
+              "Elasticity": null,
+              "Friction": null,
+              "IsTrigger": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "OnObjectTriggerEnter": null,
+              "OnObjectTriggerExit": null,
+              "OnTriggerEnter": null,
+              "OnTriggerExit": null,
+              "RollingResistance": null,
+              "Scale": "133.2523,1197.264,50",
+              "Static": false,
+              "Surface": null,
+              "SurfaceVelocity": "0,0,0"
+            }
+          ],
+          "Children": []
         }
-      ],
-      "Children": []
+      ]
     },
     {
       "__guid": "6e2512df-f9e1-4e86-933e-009732fe3610",

@@ -3,257 +3,260 @@ namespace SBRacer.Car;
 [Category( "SB Racer" ), Title( "Car Wheel" ), Icon( "adjust" )]
 public class CarWheel : Component
 {
-    [Property] public ModelRenderer WheelModel { get; set; }
-    [Property] public bool FlipWheelSpinRotation { get; set; } = false;
+	[Property] public ModelRenderer WheelModel { get; set; }
+	[Property] public bool FlipWheelSpinRotation { get; set; } = false;
 
-    public Vector3 GroundVelocity { get; set; }
-    
-    private SceneTraceResult WheelTrace { get; set; }
-    public float WheelRadius => WheelModel.Model.Bounds.Size.z * WheelModel.WorldScale.z / 2;
-    private float WheelWidth => WheelModel.Model.Bounds.Size.y * WheelModel.WorldScale.y;
-    private Vector3 WheelForward => FlipWheelSpinRotation ? WorldRotation.Backward : WorldRotation.Forward;
+	public Vector3 GroundVelocity { get; set; }
 
-    public bool HandbrakeApplied { get; set; }
-    private Vector3 WheelTraceInwardOffset { get; set; }
+	private SceneTraceResult WheelTrace { get; set; }
+	public float WheelRadius => WheelModel.Model.Bounds.Size.z * WheelModel.WorldScale.z / 2;
+	private float WheelWidth => WheelModel.Model.Bounds.Size.y * WheelModel.WorldScale.y;
+	private Vector3 WheelForward => FlipWheelSpinRotation ? WorldRotation.Backward : WorldRotation.Forward;
 
-    private CarController Car => Components.GetInAncestors<CarController>();
-    private float CarryingMass => Car.Rigidbody.Mass / 4;
+	public bool HandbrakeApplied { get; set; }
+	private Vector3 WheelTraceInwardOffset { get; set; }
 
-    protected override void OnUpdate()
-    {
-       //DrawGizmos();
-    }
+	private CarController Car => Components.GetInAncestors<CarController>();
+	private float CarryingMass => Car.Rigidbody.Mass / 4;
 
-    private void RunWheelTrace( float inwardOffset = 0 )
-    {
-       var traceDist = WheelRadius / 2;
-       var startPos = WorldPosition;
-       var endPos = WorldPosition + WorldRotation.Down * traceDist;
-       var inwardDirection = -WheelForward;
+	protected override void OnUpdate()
+	{
+		//DrawGizmos();
+	}
 
-       WheelTraceInwardOffset = inwardDirection * inwardOffset;
-       startPos += WheelTraceInwardOffset;
-       endPos += WheelTraceInwardOffset;
+	private void RunWheelTrace( float inwardOffset = 0 )
+	{
+		var traceDist = WheelRadius / 2;
+		var startPos = WorldPosition;
+		var endPos = WorldPosition + WorldRotation.Down * traceDist;
+		var inwardDirection = -WheelForward;
 
-       // Rotate cylinder 90 degrees to align axis with axle
-       WheelTrace = Scene.Trace.Cylinder( WheelWidth, WheelRadius, startPos, endPos )
-          .Rotated( Rotation.LookAt( WorldRotation.Down, WheelModel.WorldRotation.Right ) )
-          .WithoutTags( "wheel", "car" )
-          .IgnoreGameObjectHierarchy( Car.GameObject )
-          .Run();
+		WheelTraceInwardOffset = inwardDirection * inwardOffset;
+		startPos += WheelTraceInwardOffset;
+		endPos += WheelTraceInwardOffset;
 
-       // DebugOverlay.Trace( WheelTrace );
-    }
+		// Rotate cylinder 90 degrees to align axis with axle
+		WheelTrace = Scene.Trace.Cylinder( WheelWidth, WheelRadius, startPos, endPos )
+			.Rotated( Rotation.LookAt( WorldRotation.Down, WheelModel.WorldRotation.Right ) )
+			.WithoutTags( "wheel", "car" )
+			.IgnoreGameObjectHierarchy( Car.GameObject )
+			.Run();
 
-    /// <summary>
-    ///     Run a trace in the direction the wheel is facing, apply forces to stop the wheel from clipping through the wall.
-    /// </summary>
-    private void HandleWallCollisions()
-    {
-       var wallTrace = Scene.Trace
-          .Ray( WheelTrace.EndPosition - WheelTraceInwardOffset,
-             WheelTrace.EndPosition - WheelTraceInwardOffset + WheelForward * WheelWidth / 2 )
-          .IgnoreGameObjectHierarchy( Car.GameObject )
-          .Run();
+		// DebugOverlay.Trace( WheelTrace );
+	}
 
-       if ( wallTrace.Hit )
-       {
-          var impulseStrength = 1f;
-          var normal = wallTrace.Normal;
-          var vel = Car.Rigidbody.GetVelocityAtPoint( WorldPosition );
-          var relativeNormalVel = Vector3.Dot( vel, normal );
+	/// <summary>
+	///     Run a trace in the direction the wheel is facing, apply forces to stop the wheel from clipping through the wall.
+	/// </summary>
+	private void HandleWallCollisions()
+	{
+		var wallTrace = Scene.Trace
+			.Ray( WheelTrace.EndPosition - WheelTraceInwardOffset,
+				WheelTrace.EndPosition - WheelTraceInwardOffset + WheelForward * WheelWidth / 2 )
+			.IgnoreGameObjectHierarchy( Car.GameObject )
+			.Run();
 
-          var speedInto = -relativeNormalVel;
-          var impulse =
-             normal * speedInto * Car.Rigidbody.Mass * impulseStrength;
+		if ( wallTrace.Hit )
+		{
+			var impulseStrength = 1f;
+			var normal = wallTrace.Normal;
+			var vel = Car.Rigidbody.GetVelocityAtPoint( WorldPosition );
+			var relativeNormalVel = Vector3.Dot( vel, normal );
 
-          Car.Rigidbody.ApplyImpulseAt( WorldPosition, impulse );
-       }
-    }
+			var speedInto = -relativeNormalVel;
+			var impulse =
+				normal * speedInto * Car.Rigidbody.Mass * impulseStrength;
 
-    protected override void OnFixedUpdate()
-    {
-       if ( IsProxy )
-          return;
+			Car.Rigidbody.ApplyImpulseAt( WorldPosition, impulse );
+		}
+	}
 
-       RunWheelTrace();
+	protected override void OnFixedUpdate()
+	{
+		if ( IsProxy )
+			return;
 
-       // If the cylinder trace has started solid it's probably in a wall, move it inwards towards the body of the car.
-       if ( WheelTrace.StartedSolid )
-       {
-          var maxInwardOffset = 10f; // Maximum distance to move inward 
-          var stepSize = 1f; // Incremental step size for inward movement
+		RunWheelTrace();
 
-          // Try moving inward until not solid or max offset reached
-          for ( var inwardOffset = stepSize; inwardOffset <= maxInwardOffset; inwardOffset += stepSize )
-          {
-             RunWheelTrace( inwardOffset );
+		// If the cylinder trace has started solid it's probably in a wall, move it inwards towards the body of the car.
+		if ( WheelTrace.StartedSolid )
+		{
+			var maxInwardOffset = 10f; // Maximum distance to move inward 
+			var stepSize = 1f; // Incremental step size for inward movement
 
-             if ( !WheelTrace.StartedSolid )
-                break;
-          }
-       }
+			// Try moving inward until not solid or max offset reached
+			for ( var inwardOffset = stepSize; inwardOffset <= maxInwardOffset; inwardOffset += stepSize )
+			{
+				RunWheelTrace( inwardOffset );
 
-       HandleWallCollisions();
-       
-       GroundVelocity = WheelTrace.Body?.GetVelocityAtPoint(WheelTrace.EndPosition) ?? Vector3.Zero;
+				if ( !WheelTrace.StartedSolid )
+					break;
+			}
+		}
 
-       if ( !WheelTrace.Hit )
-          return;
+		HandleWallCollisions();
 
-       var springDirection = WheelTrace.Normal;
-       var wheelOffset = Car.SuspensionHeight - WheelTrace.Distance;
+		GroundVelocity = WheelTrace.Body?.GetVelocityAtPoint( WheelTrace.EndPosition ) ?? Vector3.Zero;
 
-       var wheelWorldVelocity = Car.Rigidbody.GetVelocityAtPoint( WorldPosition ) - GroundVelocity;
-       var wheelVelocity = Vector3.Dot( springDirection, wheelWorldVelocity );
+		if ( !WheelTrace.Hit )
+			return;
 
-       var wheelForce = wheelOffset * (Car.SuspensionStrength * CarryingMass) - wheelVelocity *
-          (Car.SuspensionDamping * CarryingMass);
+		var springDirection = WheelTrace.Normal;
+		var wheelOffset = Car.SuspensionHeight - WheelTrace.Distance;
 
-       wheelForce = MathF.Max( 0f, wheelForce );
+		var wheelWorldVelocity = Car.Rigidbody.GetVelocityAtPoint( WorldPosition ) - GroundVelocity;
+		var wheelVelocity = Vector3.Dot( springDirection, wheelWorldVelocity );
 
-       Car.Rigidbody.ApplyForceAt( WorldPosition, springDirection * wheelForce );
-       BlockSliding( wheelForce );
+		var wheelForce = wheelOffset * (Car.SuspensionStrength * CarryingMass) - wheelVelocity *
+			(Car.SuspensionDamping * CarryingMass);
 
-       // Position wheel models
-       if ( WheelModel.IsValid() )
-       {
-          WheelModel.WorldPosition = WheelTrace.EndPosition - WheelTraceInwardOffset;
+		wheelForce = MathF.Max( 0f, wheelForce );
 
-          if ( HandbrakeApplied )
-             return;
+		Car.Rigidbody.ApplyForceAt( WorldPosition, springDirection * wheelForce );
+		BlockSliding( wheelForce );
 
-          if ( WheelTrace.Hit ) // Only rotate if grounded
-          {
-             var wheelVelocityModel = Car.Rigidbody.GetVelocityAtPoint( WheelModel.WorldPosition ) - GroundVelocity;
+		// Position wheel models
+		if ( WheelModel.IsValid() )
+		{
+			WheelModel.WorldPosition = WheelTrace.EndPosition - WheelTraceInwardOffset;
 
-             // Calculate signed velocity along the wheel's forward direction
-             var forwardDirection = WorldTransform.Left;
-             var signedSpeed = Vector3.Dot( wheelVelocityModel, forwardDirection );
+			if ( HandbrakeApplied )
+				return;
 
-             if ( MathF.Abs( signedSpeed ) > 0.1f ) // Threshold to prevent spinning at rest
-             {
-                WheelModel.LocalRotation *=
-                   Rotation.From( signedSpeed * Time.Delta * (FlipWheelSpinRotation ? 1f : -1f), 0, 0 );
-             }
-          }
-       }
-    }
+			if ( WheelTrace.Hit ) // Only rotate if grounded
+			{
+				var wheelVelocityModel = Car.Rigidbody.GetVelocityAtPoint( WheelModel.WorldPosition ) - GroundVelocity;
 
-    private void BlockSliding( float wheelForce )
-    {
-       if ( wheelForce <= 0f )
-          return;
+				// Calculate signed velocity along the wheel's forward direction
+				var forwardDirection = WorldTransform.Left;
+				var signedSpeed = Vector3.Dot( wheelVelocityModel, forwardDirection );
 
-       var steeringDirection = WheelForward;
+				if ( MathF.Abs( signedSpeed ) > 0.1f ) // Threshold to prevent spinning at rest
+				{
+					WheelModel.LocalRotation *=
+						Rotation.From( signedSpeed * Time.Delta * (FlipWheelSpinRotation ? 1f : -1f), 0, 0 );
+				}
+			}
+		}
+	}
 
-       var wheelVelocity = Car.Rigidbody.GetVelocityAtPoint( WorldPosition ) - GroundVelocity;
-       var steeringVelocity = Vector3.Dot( steeringDirection, wheelVelocity );
+	private void BlockSliding( float wheelForce )
+	{
+		if ( wheelForce <= 0f )
+			return;
 
-       var gripFactor = Input.Down( "jump" ) ? Car.HandBrakeGripFactor : 1f;
-       var wishVelocityChange = -steeringVelocity * gripFactor;
-       var wishAcceleration = wishVelocityChange / Time.Delta;
-       var desiredForce = CarryingMass * wishAcceleration;
+		var steeringDirection = WheelForward;
 
-       var muLateral = 1.5f;
-       var maxForceMag = muLateral * gripFactor * wheelForce;
-       var appliedForce = Math.Clamp( desiredForce, -maxForceMag, maxForceMag );
+		var wheelVelocity = Car.Rigidbody.GetVelocityAtPoint( WorldPosition ) - GroundVelocity;
+		var steeringVelocity = Vector3.Dot( steeringDirection, wheelVelocity );
 
-       Car.Rigidbody.ApplyForceAt( WorldPosition, steeringDirection * appliedForce );
-    }
+		var gripFactor = Input.Down( "jump" ) ? Car.HandBrakeGripFactor : 1f;
+		var wishVelocityChange = -steeringVelocity * gripFactor;
+		var wishAcceleration = wishVelocityChange / Time.Delta;
+		var desiredForce = CarryingMass * wishAcceleration;
 
-    public void Accelerate( float distribution )
-    {
-       if ( !WheelTrace.Hit || Vector3.Dot( WheelTrace.Normal, WorldRotation.Up ) <= 0.7f )
-          return;
+		var muLateral = 1.5f;
+		var maxForceMag = muLateral * gripFactor * wheelForce;
+		var appliedForce = Math.Clamp( desiredForce, -maxForceMag, maxForceMag );
 
-       var accelerationDirection = WorldTransform.Left;
+		Car.Rigidbody.ApplyForceAt( WorldPosition, steeringDirection * appliedForce );
+	}
 
-       var accelerationInput = Car.DrivenBy.IsValid()
-          ? Input.AnalogMove.x
-          : 0;
+	public void Accelerate( float distribution )
+	{
+		if ( !WheelTrace.Hit || Vector3.Dot( WheelTrace.Normal, WorldRotation.Up ) <= 0.7f )
+			return;
 
-       // Cars can't move when the race is starting
-       if ( (RaceGame.Instance?.IsRaceStarting ?? false) && (Player.Local?.Racing ?? false) )
-          accelerationInput = 0;
+		var accelerationDirection = WorldTransform.Left;
 
-       var directionMultiplier = Car.CurrentGear >= 0 ? 1f : -1f; // Reverse direction in reverse gear
+		var accelerationInput = Car.DrivenBy.IsValid()
+			? Input.AnalogMove.x
+			: 0;
 
-       if ( accelerationInput > 0 )
-       {
-          var normalizedRpm = Car.CurrentRpm / Car.MaxRpm;
-          var availableTorque = Car.TorqueCurve.Evaluate( normalizedRpm ) * accelerationInput * distribution;
+		// Cars can't move when the race is starting
+		if ( (RaceGame.Instance?.IsRaceStarting ?? false) && (Player.Local?.Racing ?? false) )
+			accelerationInput = 0;
 
-          availableTorque *= Car.CurrentGearRatio * Car.FinalDriveRatio;
+		var directionMultiplier = Car.CurrentGear >= 0 ? 1f : -1f; // Reverse direction in reverse gear
 
-          Car.Rigidbody.ApplyForceAt( WorldPosition,
-             accelerationDirection * availableTorque * CarryingMass * 45f * directionMultiplier );
-       }
+		if ( accelerationInput > 0 )
+		{
+			var normalizedRpm = Car.CurrentRpm / Car.MaxRpm;
+			var availableTorque = Car.TorqueCurve.Evaluate( normalizedRpm ) * accelerationInput * distribution;
 
-       if ( accelerationInput < 0 || accelerationInput == 0 )
-       {
-          var relVel = Car.Rigidbody.GetVelocityAtPoint( WorldPosition ) - GroundVelocity;
-          var localSpeed = Vector3.Dot( accelerationDirection, relVel );
-          var brakeDir = -accelerationDirection.Normal * MathF.Sign( localSpeed );
+			availableTorque *= Car.CurrentGearRatio * Car.FinalDriveRatio;
 
-          if ( accelerationInput == 0 )
-          {
-             var dragCoeff = 0.5f;
-             var rollingFriction = 20f * CarryingMass; // Constant friction to stop at low speeds
-             var dragForce = MathF.Abs( localSpeed ) * CarryingMass * dragCoeff + rollingFriction;
-             Car.Rigidbody.ApplyForceAt( WorldPosition, brakeDir * dragForce );
+			Car.Rigidbody.ApplyForceAt( WorldPosition,
+				accelerationDirection * availableTorque * CarryingMass * 45f * directionMultiplier );
+		}
 
-             return;
-          }
+		if ( accelerationInput < 0 || accelerationInput == 0 )
+		{
+			var relVel = Car.Rigidbody.GetVelocityAtPoint( WorldPosition ) - GroundVelocity;
+			var localSpeed = Vector3.Dot( accelerationDirection, relVel );
+			var brakeDir = -accelerationDirection.Normal * MathF.Sign( localSpeed );
 
-          var brakeInput = MathF.Abs( accelerationInput );
-          var brakeForce = brakeInput * Car.BrakeStrength * Car.Rigidbody.Mass * distribution;
+			if ( accelerationInput == 0 )
+			{
+				if ( MathF.Abs( localSpeed ) < 0.1f )
+					return;
 
-          Car.Rigidbody.ApplyForceAt( WorldPosition, brakeDir * brakeForce );
-       }
-    }
+				var dragCoeff = 0.5f;
+				var rollingFriction = 20f * CarryingMass; // Constant friction to stop at low speeds
+				var dragForce = MathF.Abs( localSpeed ) * CarryingMass * dragCoeff + rollingFriction;
+				Car.Rigidbody.ApplyForceAt( WorldPosition, brakeDir * dragForce );
 
-    public void HandBrake( float distribution )
-    {
-       if ( !WheelTrace.Hit || Vector3.Dot( WheelTrace.Normal, WorldRotation.Up ) <= 0.7f )
-          return;
+				return;
+			}
 
-       HandbrakeApplied = true;
+			var brakeInput = MathF.Abs( accelerationInput );
+			var brakeForce = brakeInput * Car.BrakeStrength * Car.Rigidbody.Mass * distribution;
 
-       var accelerationDirection = WorldTransform.Left;
-       var relVel = Car.Rigidbody.GetVelocityAtPoint( WorldPosition ) - GroundVelocity;
-       var localSpeed = Vector3.Dot( accelerationDirection, relVel );
+			Car.Rigidbody.ApplyForceAt( WorldPosition, -accelerationDirection * brakeForce );
+		}
+	}
 
-       if ( MathF.Abs( localSpeed ) < 0.1f )
-          return;
+	public void HandBrake( float distribution )
+	{
+		if ( !WheelTrace.Hit || Vector3.Dot( WheelTrace.Normal, WorldRotation.Up ) <= 0.7f )
+			return;
 
-       var brakeDir = -accelerationDirection.Normal * MathF.Sign( localSpeed );
-       var brakeForce = Car.HandBrakeStrength * distribution * Car.Rigidbody.Mass;
+		HandbrakeApplied = true;
 
-       Car.Rigidbody.ApplyForceAt( WorldPosition, brakeDir * brakeForce );
-    }
+		var accelerationDirection = WorldTransform.Left;
+		var relVel = Car.Rigidbody.GetVelocityAtPoint( WorldPosition ) - GroundVelocity;
+		var localSpeed = Vector3.Dot( accelerationDirection, relVel );
 
-    protected override void DrawGizmos()
-    {
-       base.DrawGizmos();
+		if ( MathF.Abs( localSpeed ) < 0.1f )
+			return;
 
-       Gizmo.Draw.IgnoreDepth = true;
-       Gizmo.Draw.LineThickness = 2f;
+		var brakeDir = -accelerationDirection.Normal * MathF.Sign( localSpeed );
+		var brakeForce = Car.HandBrakeStrength * distribution * Car.Rigidbody.Mass;
 
-       Gizmo.Transform = global::Transform.Zero;
+		Car.Rigidbody.ApplyForceAt( WorldPosition, brakeDir * brakeForce );
+	}
 
-       /*Gizmo.Draw.Color = Color.Green;
-       Gizmo.Draw.Line(WorldPosition,
-           WorldPosition + (FlipWheelSpinRotation ? WorldRotation.Backward : WorldRotation.Forward) * 10f);
+	protected override void DrawGizmos()
+	{
+		base.DrawGizmos();
 
-       Gizmo.Draw.Color = Color.Blue;
-       Gizmo.Draw.Line(WorldPosition, WorldPosition + WorldRotation.Left * 10f);
+		Gizmo.Draw.IgnoreDepth = true;
+		Gizmo.Draw.LineThickness = 2f;
 
-       Gizmo.Draw.Color = Color.Red;
-       Gizmo.Draw.Line(WorldPosition, WorldPosition + WorldRotation.Up * 10f);
+		Gizmo.Transform = global::Transform.Zero;
 
-       Gizmo.Draw.Color = Color.White;
-       Gizmo.Draw.Line(WheelTrace.StartPosition, WheelTrace.EndPosition);
-       Gizmo.Draw.SolidSphere(WheelTrace.EndPosition, 1f);*/
-    }
+		/*Gizmo.Draw.Color = Color.Green;
+		Gizmo.Draw.Line(WorldPosition,
+		    WorldPosition + (FlipWheelSpinRotation ? WorldRotation.Backward : WorldRotation.Forward) * 10f);
+
+		Gizmo.Draw.Color = Color.Blue;
+		Gizmo.Draw.Line(WorldPosition, WorldPosition + WorldRotation.Left * 10f);
+
+		Gizmo.Draw.Color = Color.Red;
+		Gizmo.Draw.Line(WorldPosition, WorldPosition + WorldRotation.Up * 10f);
+
+		Gizmo.Draw.Color = Color.White;
+		Gizmo.Draw.Line(WheelTrace.StartPosition, WheelTrace.EndPosition);
+		Gizmo.Draw.SolidSphere(WheelTrace.EndPosition, 1f);*/
+	}
 }

@@ -14,7 +14,8 @@
       "Mounts": null,
       "IsStandaloneOnly": false,
       "Metadata": {
-        "SingleAssetSource": "maps/sbr_speedway/sbr_speedway.vmap"
+        "SingleAssetSource": "maps/sbr_speedway/sbr_speedway.vmap",
+        "ParentPackage": "slamdunk.sbracer"
       }
     }
   }
