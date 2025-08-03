@@ -2,7 +2,10 @@
 @namespace SBRacer.Ui
 
 <root>
-	<div class="title" onclick=@Expand>Tab title</div>
+	<div class="header" onclick=@Expand>
+		@Title
+		<div class="expand-icon">@( Expanded ? "expand_less" : "expand_more" )</div>
+	</div>
 	<div class="items">
 		<div class="item">Hi</div>
 		<div class="item">Hi</div>
@@ -19,8 +22,18 @@
 </root>
 
 @code {
-	public DropdownContainer DropdownParent => Parent as DropdownContainer;
-	
+	private DropdownContainer DropdownParent => Parent as DropdownContainer;
+	private bool Expanded { get; set; }
+
+	public string Title { get; set; } = "Title";
+
+	protected override void OnAfterTreeRender( bool firstTime )
+	{
+		base.OnAfterTreeRender(firstTime);
+		
+		BindClass( "active", () => Expanded );
+	}
+
 	public void Expand()
 	{
 		if ( !DropdownParent.IsValid() )
@@ -29,11 +42,17 @@
 		DropdownParent.ExpandedTab?.Collapse();
 		DropdownParent.ExpandedTab = this;
 		
-		SetClass("active", true  );
+		Expanded = true;
 	}
 
 	public void Collapse()
 	{
-		SetClass("active", false  );
+		Expanded = false;
 	}
+
+	protected override int BuildHash()
+	{
+		return HashCode.Combine( Expanded );
+	}
+
 }

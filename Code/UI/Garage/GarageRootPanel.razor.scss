@@ -7,12 +7,24 @@ GarageRootPanel {
 	font-family: $heading-font;
 	color: white;
 	pointer-events: all;
+
+	.money {
+		position: absolute;
+		right: 150px;
+		top: 140px;
+		font-family: $heading-font;
+		flex-direction: column;
+		text-transform: uppercase;
+		font-size: 38px;
+		text-shadow: 0px 0px 2px black;
+		letter-spacing: 2px;
+	}
 	
 	.item-list-container {
 		position: absolute;
 		flex-direction: column;
-		left: 100px;
-		top: 80px;
+		left: 150px;
+		top: 140px;
 		
 		.container-title {
 			font-size: 60px;
@@ -23,10 +35,8 @@ GarageRootPanel {
 
 		.item-list {
 			width: 600px;
-			height: 800px;
 		}
 	}
-	
 	
 	.platform-rotation 
 	{

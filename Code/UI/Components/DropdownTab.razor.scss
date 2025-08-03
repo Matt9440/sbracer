@@ -6,15 +6,20 @@ DropdownTab {
 	flex-direction: column;
 	overflow: hidden;
 	
-	
-	.title {
+	.header {
 		font-family: $heading-font;
-		text-transform: uppercase;
 		width: 100%;
 		flex-shrink: 0;
 		padding: 15px 20px 10px 20px;
 		background-color: rgba(0,0,0,0.3);
 		border-radius: 12px;
+		justify-content: space-between;
+		text-transform: uppercase;
+		
+		.expand-icon {
+			text-transform: none;
+			font-family: "Material Icons";
+		}
 		
 		&:hover {
 			cursor: pointer;
@@ -26,7 +31,7 @@ DropdownTab {
 		height: auto;
 		transition: all 0.2s ease;
 		
-		.title {
+		.header {
 			border-bottom-left-radius: 0px;
 			border-bottom-right-radius: 0px;
 			background-color: rgba(0,0,0,0.7);

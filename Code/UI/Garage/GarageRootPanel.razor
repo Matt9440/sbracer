@@ -2,25 +2,28 @@
 @namespace SBRacer.Ui
 
 <root>
+	<div class="money">
+		$0
+	</div>
 	<div class="platform-rotation">
 		@{
 			var rotationDirection = Input.AnalogMove.y;
 			var rotatingLeft = rotationDirection == 1;
 			var rotatingRight = rotationDirection == -1;
 		}
-		<div class="direction-prompt @(rotatingLeft ? "input-down" : "")">
+		<div class="direction-prompt @( rotatingLeft ? "input-down" : "" )">
 			<div class="input-direction back">forward</div>
 			<Image class="input-prompt" Texture="@Input.GetGlyph( "left", InputGlyphSize.Small, GlyphStyle.Knockout )"/>
 		</div>
 		<div class="title">ROTATE</div>
-		<div class="direction-prompt @(rotatingRight ? "input-down" : "")">
+		<div class="direction-prompt @( rotatingRight ? "input-down" : "" )">
 			<Image class="input-prompt" Texture="@Input.GetGlyph( "right", InputGlyphSize.Small, GlyphStyle.Knockout )"/>
 			<div class="input-direction">forward</div>
 		</div>
 	</div>
 	<div class="item-list-container">
 		<div class="container-title">UPGRADES</div>
-		<DropdownContainer class="item-list"></DropdownContainer>
+		<UpgradeContainer class="item-list"></UpgradeContainer>
 	</div>
 </root>
 
@@ -28,6 +31,6 @@
 {
 	protected override int BuildHash()
 	{
-		return HashCode.Combine( Input.AnalogMove.y );
+		return HashCode.Combine( Player.Local?.Money, Input.AnalogMove.y );
 	}
 }
