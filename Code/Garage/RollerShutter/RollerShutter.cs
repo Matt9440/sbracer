@@ -4,6 +4,7 @@ public class RollerShutter : Component
 {
 	[Property] public GameObject ShutterGameObject { get; set; }
 	[Property] public BoxCollider EntranceTrigger { get; set; }
+	[Property] public BoxCollider GarageTrigger { get; set; }
 	[Property] public float OpenSpeed { get; set; } = 2f;
     
 	private int VehiclesInEntranceTrigger { get; set; } = 0;
@@ -13,6 +14,8 @@ public class RollerShutter : Component
 
 	protected override void OnStart()
 	{
+		GarageTrigger.OnObjectTriggerEnter += OnGarageTriggerEnter;
+		
 		if ( !Networking.IsHost )
 			return;
 
@@ -41,6 +44,17 @@ public class RollerShutter : Component
 			return;
        
 		VehiclesInEntranceTrigger--;
+	}
+
+	public void OnGarageTriggerEnter( GameObject gameObject )
+	{
+		var car = gameObject.Components.GetInDescendantsOrSelf<CarController>();
+
+		if ( !car.IsValid() )
+			return;
+		
+		FadeToBlack.ForSeconds( 1.5f );
+		_ = GaragePanel.ShowAfter( 1.5f );
 	}
 
 	protected override void OnFixedUpdate()

@@ -503,6 +503,17 @@
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null
+        },
+        {
+          "__type": "SBRacer.Ui.FadeToBlack",
+          "__guid": "dbb1be83-e0b3-433c-afbc-78252fc9bd6f",
+          "__enabled": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
         }
       ],
       "Children": []
@@ -1427,7 +1438,7 @@
               "IdValue": "d164c21b-3f2c-401b-8fad-5e76d284b220"
             },
             "Property": "Position",
-            "Value": "-2162.357,2129.942,185.8716"
+            "Value": "-2162.357,1928,185.8716"
           }
         ],
         "MovedObjects": []
@@ -1920,12 +1931,19 @@
             "go": "86fe4332-c365-4193-8ed6-6043a67662ab",
             "component_type": "BoxCollider"
           },
+          "GarageTrigger": {
+            "_type": "component",
+            "component_id": "ddc58b71-4886-4e8a-925c-c9657b4dbc36",
+            "go": "7217152c-4fe0-43c2-96ef-27ffd99d5137",
+            "component_type": "BoxCollider"
+          },
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
+          "OpenSpeed": 2,
           "ShutterGameObject": {
             "_type": "gameobject",
             "go": "27314f00-0bc5-41c8-a3cf-dd61789c7923"
@@ -2364,6 +2382,48 @@
               "OnTriggerExit": null,
               "RollingResistance": null,
               "Scale": "50,159.2265,159.2751",
+              "Static": true,
+              "Surface": null,
+              "SurfaceVelocity": "0,0,0"
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "7217152c-4fe0-43c2-96ef-27ffd99d5137",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "garage_trigger",
+          "Position": "101.9996,82,407.9999",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Sandbox.BoxCollider",
+              "__guid": "ddc58b71-4886-4e8a-925c-c9657b4dbc36",
+              "__enabled": true,
+              "Center": "0,5.419792,-130.231",
+              "Elasticity": null,
+              "Friction": null,
+              "IsTrigger": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "OnObjectTriggerEnter": null,
+              "OnObjectTriggerExit": null,
+              "OnTriggerEnter": null,
+              "OnTriggerExit": null,
+              "RollingResistance": null,
+              "Scale": "50,159.2265,310.462",
               "Static": true,
               "Surface": null,
               "SurfaceVelocity": "0,0,0"

@@ -7,6 +7,11 @@ GaragePanel {
 	font-family: $heading-font;
 	color: white;
 	pointer-events: all;
+	opacity: 0;
+	
+	&.visible {
+		opacity: 1;
+	}
 	
 	ScenePanel {
 		position: absolute;
@@ -40,7 +45,7 @@ GaragePanel {
 		}
 
 		.item-list {
-			width: 605px;
+			width: 620px;
 		}
 	}
 

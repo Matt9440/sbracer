@@ -29,8 +29,16 @@
 </root>
 
 @code {
+	private static GaragePanel Instance { get; set; }
+	
 	private Panel ScenePanelParent { get; set; }
 	private ScenePanel ScenePanel { get; set; }
+	private bool Visible { get; set; }
+
+	public GaragePanel()
+	{
+		Instance = this;
+	}
 
 	protected override void OnAfterTreeRender( bool firstTime )
 	{
@@ -38,10 +46,24 @@
 		
 		ScenePanel ??= new ScenePanel( "scenes/car_garage.scene" );
 		ScenePanelParent.AddChild( ScenePanel );
+		
+		BindClass( "visible", () => Visible );
 	}
 	
 	protected override int BuildHash()
 	{
 		return HashCode.Combine( Player.Local?.Money, Input.AnalogMove.y );
+	}
+
+	public static void Show()
+	{
+		Instance.Visible = true;
+	}
+
+	public static async Task ShowAfter(float seconds)
+	{
+		await GameTask.DelayRealtimeSeconds( seconds );
+
+		Show();
 	}
 }

@@ -1,0 +1,25 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+@namespace SBRacer.Ui
+
+<root></root>
+
+@code
+{
+	private static FadeToBlack Instance { get; set; }
+	
+	private RealTimeUntil TimeUntilHidden { get; set; }
+
+	protected override void OnStart()
+	{
+		Instance = this;
+		
+		BindClass("visible", () => TimeUntilHidden > 0  );
+	}
+
+	public static void ForSeconds( float seconds )
+	{
+		Instance.TimeUntilHidden = seconds;
+	}
+}
