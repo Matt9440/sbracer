@@ -10,5 +10,7 @@ public class CarPlatform : Component
 
 		var input = Input.AnalogMove;
 		PlatformRigidbody.AngularVelocity = new(0,0, -input.y * 1);
+		
+		//ScenePanel
 	}
 }

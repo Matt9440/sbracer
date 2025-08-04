@@ -29,7 +29,7 @@ DropdownTab {
 
 	&.active {
 		height: auto;
-		transition: all 0.2s ease;
+		margin-bottom: 5px;
 		
 		.header {
 			border-bottom-left-radius: 0px;

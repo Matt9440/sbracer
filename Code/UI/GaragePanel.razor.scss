@@ -1,12 +1,18 @@
-@import "../Base.scss";
+@import "./Base.scss";
 
-GarageRootPanel {
+GaragePanel {
 	position: absolute;
 	width: 100%;
 	height: 100%;
 	font-family: $heading-font;
 	color: white;
 	pointer-events: all;
+	
+	ScenePanel {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+	}
 
 	.money {
 		position: absolute;
@@ -19,13 +25,13 @@ GarageRootPanel {
 		text-shadow: 0px 0px 2px black;
 		letter-spacing: 2px;
 	}
-	
+
 	.item-list-container {
 		position: absolute;
 		flex-direction: column;
 		left: 150px;
-		top: 140px;
-		
+		top: 130px;
+
 		.container-title {
 			font-size: 60px;
 			text-transform: uppercase;
@@ -34,11 +40,11 @@ GarageRootPanel {
 		}
 
 		.item-list {
-			width: 600px;
+			width: 605px;
 		}
 	}
-	
-	.platform-rotation 
+
+	.platform-rotation
 	{
 		position: absolute;
 		bottom: 70px;
@@ -48,7 +54,7 @@ GarageRootPanel {
 		justify-content: space-between;
 		width: 350px;
 		height: 60px;
-		
+
 		.direction-prompt {
 			flex-direction: row;
 			align-items: center;
@@ -57,12 +63,12 @@ GarageRootPanel {
 			width: 80px;
 			opacity: 0.2;
 			transition: all 0.2s ease;
-			
+
 			&.input-down {
 				opacity: 1;
 			}
-			
-			.input-prompt 
+
+			.input-prompt
 			{
 				width: 50px;
 				height: 50px;
@@ -70,7 +76,7 @@ GarageRootPanel {
 				background-position: center;
 				background-repeat: no-repeat;
 			}
-			
+
 			.input-direction
 			{
 				width: 50px;
@@ -84,7 +90,7 @@ GarageRootPanel {
 				}
 			}
 		}
-		
+
 		.title {
 			width: 140px;
 			align-items: center;

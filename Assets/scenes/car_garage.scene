@@ -572,7 +572,7 @@
             },
             {
               "__type": "Sandbox.ModelRenderer",
-              "__guid": "669d96da-32c2-4cb5-9eef-16439c70d5fd",
+              "__guid": "1c6e42fc-5c49-4f2b-a65a-a7d9fcaed981",
               "__enabled": true,
               "BodyGroups": 18446744073709551615,
               "CreateAttachments": false,
@@ -597,7 +597,7 @@
             },
             {
               "__type": "Sandbox.ModelCollider",
-              "__guid": "9d96691f-8699-4f1c-8015-b8d05b4bfd08",
+              "__guid": "47e84bbc-36ff-4dc7-88f6-a2924350ed3c",
               "__enabled": true,
               "Elasticity": null,
               "Friction": null,
@@ -620,7 +620,7 @@
             },
             {
               "__type": "Sandbox.Rigidbody",
-              "__guid": "cd0ff229-f31d-4ea5-b035-b4ec9773f2fe",
+              "__guid": "90bb805e-54e6-4bb5-9893-1930cbd2b487",
               "__enabled": true,
               "AngularDamping": 0,
               "Gravity": true,
@@ -686,7 +686,7 @@
             },
             {
               "__type": "Sandbox.ModelRenderer",
-              "__guid": "deaa0e13-4319-42e1-bbf0-f8bd3fb2ebae",
+              "__guid": "3c3b4ae3-a9f5-47ac-9ae6-2c5e30a14fec",
               "__enabled": true,
               "BodyGroups": 18446744073709551615,
               "CreateAttachments": false,
@@ -711,7 +711,7 @@
             },
             {
               "__type": "Sandbox.ModelCollider",
-              "__guid": "f0bc8f66-eb41-4d6e-9322-1b2367d620bd",
+              "__guid": "c38d8334-7f26-4421-9385-a9f1a6c22743",
               "__enabled": true,
               "Elasticity": null,
               "Friction": null,
@@ -734,7 +734,7 @@
             },
             {
               "__type": "Sandbox.Rigidbody",
-              "__guid": "db3d529e-9289-44dc-918c-8dad99b63928",
+              "__guid": "a9cf3a03-da10-43f2-8867-9462a369cfad",
               "__enabled": true,
               "AngularDamping": 0,
               "Gravity": true,
@@ -816,7 +816,7 @@
                 },
                 {
                   "__type": "Sandbox.SkinnedModelRenderer",
-                  "__guid": "cd03ff40-1c21-4582-965e-77c427e25c87",
+                  "__guid": "c1499ff7-862a-48a8-ba26-ccc557292bc9",
                   "__enabled": true,
                   "AnimationGraph": null,
                   "BodyGroups": 18446744073709551615,
@@ -859,7 +859,7 @@
                 },
                 {
                   "__type": "Sandbox.ModelPhysics",
-                  "__guid": "4b2b7ec1-ce26-45c7-b457-9a4583fadbe1",
+                  "__guid": "9122ad0b-0e18-48d2-81b1-3928e691ee7d",
                   "__enabled": true,
                   "IgnoreRoot": false,
                   "Locking": {
@@ -880,7 +880,7 @@
                   "OnComponentUpdate": null,
                   "Renderer": {
                     "_type": "component",
-                    "component_id": "cd03ff40-1c21-4582-965e-77c427e25c87",
+                    "component_id": "c1499ff7-862a-48a8-ba26-ccc557292bc9",
                     "go": "a58c695f-f2f2-43cf-afc8-0627d8b4a785",
                     "component_type": "SkinnedModelRenderer"
                   },
@@ -927,7 +927,7 @@
                 },
                 {
                   "__type": "Sandbox.ModelRenderer",
-                  "__guid": "d85f6cec-517c-4ce1-addd-69f64935336c",
+                  "__guid": "d857ed87-28ff-4ddd-ad8b-87c831a20ba8",
                   "__enabled": true,
                   "BodyGroups": 18446744073709551615,
                   "CreateAttachments": false,
@@ -952,7 +952,7 @@
                 },
                 {
                   "__type": "Sandbox.ModelCollider",
-                  "__guid": "bf323fce-a2aa-47a3-8f53-21d0ef199fe0",
+                  "__guid": "cad4eb52-91b3-403f-957f-284a42f761b3",
                   "__enabled": true,
                   "Elasticity": null,
                   "Friction": null,
@@ -975,7 +975,7 @@
                 },
                 {
                   "__type": "Sandbox.Rigidbody",
-                  "__guid": "3319b4c4-46de-44c8-8414-f6f3bcb4ccab",
+                  "__guid": "f374c414-3f6d-4eb7-93b7-6bbbf44977e1",
                   "__enabled": true,
                   "AngularDamping": 0,
                   "Gravity": true,
@@ -1041,7 +1041,7 @@
                 },
                 {
                   "__type": "Sandbox.ModelRenderer",
-                  "__guid": "24a60fb7-c3e3-4cd1-841b-8a0ac58bd185",
+                  "__guid": "36bd44b1-bc1a-468f-853c-af4af6424db2",
                   "__enabled": true,
                   "BodyGroups": 18446744073709551615,
                   "CreateAttachments": false,
@@ -1066,7 +1066,7 @@
                 },
                 {
                   "__type": "Sandbox.ModelCollider",
-                  "__guid": "378dbc62-ddc0-48af-9194-c2668579cc9c",
+                  "__guid": "45f13870-9f1d-42b9-a6c2-01b38417e091",
                   "__enabled": true,
                   "Elasticity": null,
                   "Friction": null,
@@ -1089,7 +1089,7 @@
                 },
                 {
                   "__type": "Sandbox.Rigidbody",
-                  "__guid": "da9f0fe1-753b-47bb-87fe-c1dcecb066fc",
+                  "__guid": "2b849c1f-0eac-4651-b32e-2c0955220a01",
                   "__enabled": true,
                   "AngularDamping": 0,
                   "Gravity": true,
@@ -1155,7 +1155,7 @@
                 },
                 {
                   "__type": "Sandbox.ModelRenderer",
-                  "__guid": "731bf96a-72fe-4656-a88c-8a660c2da75d",
+                  "__guid": "1ee0aefe-40d4-47bb-a7c0-5f8e1b08074a",
                   "__enabled": true,
                   "BodyGroups": 18446744073709551615,
                   "CreateAttachments": false,
@@ -1180,7 +1180,7 @@
                 },
                 {
                   "__type": "Sandbox.ModelCollider",
-                  "__guid": "578b4d7a-859d-404b-ae8d-cf6090f818eb",
+                  "__guid": "406098c1-cfb3-49ca-904e-585af824bd1c",
                   "__enabled": true,
                   "Elasticity": null,
                   "Friction": null,
@@ -1203,7 +1203,7 @@
                 },
                 {
                   "__type": "Sandbox.Rigidbody",
-                  "__guid": "d2ce4475-6e55-482a-b28b-4de1135a8b24",
+                  "__guid": "5845f170-4326-4dc0-8bcb-2e8d374d9c08",
                   "__enabled": true,
                   "AngularDamping": 0,
                   "Gravity": true,
@@ -1314,7 +1314,7 @@
             },
             {
               "__type": "Sandbox.ModelRenderer",
-              "__guid": "4e6272f7-8a10-442e-a52c-8d879f20df34",
+              "__guid": "3dc7e917-4977-48ca-a58c-7ed93f38dcb6",
               "__enabled": true,
               "BodyGroups": 18446744073709551615,
               "CreateAttachments": false,
@@ -1339,7 +1339,7 @@
             },
             {
               "__type": "Sandbox.ModelCollider",
-              "__guid": "86dda3af-91b2-483a-9448-31f9f6cd0fa0",
+              "__guid": "6c6b76fb-ef7c-4efb-9b00-e07f71dc0ab7",
               "__enabled": true,
               "Elasticity": null,
               "Friction": null,
@@ -1362,7 +1362,7 @@
             },
             {
               "__type": "Sandbox.Rigidbody",
-              "__guid": "01b32de8-9b63-44f1-bcbd-864e5c9baf0b",
+              "__guid": "9339514c-6342-42fb-a539-34b91f1b4700",
               "__enabled": true,
               "AngularDamping": 0,
               "Gravity": true,
@@ -1428,7 +1428,7 @@
             },
             {
               "__type": "Sandbox.ModelRenderer",
-              "__guid": "87a5f444-58d3-4eac-a8d3-2d519d30c2c7",
+              "__guid": "f7956632-0873-414e-81f0-311bcb0e12ef",
               "__enabled": true,
               "BodyGroups": 18446744073709551615,
               "CreateAttachments": false,
@@ -1453,7 +1453,7 @@
             },
             {
               "__type": "Sandbox.ModelCollider",
-              "__guid": "a557b668-3663-496a-ba54-65e11ac53c7e",
+              "__guid": "66d53f13-daf7-4911-8bd4-4ef2694cad01",
               "__enabled": true,
               "Elasticity": null,
               "Friction": null,
@@ -1476,7 +1476,7 @@
             },
             {
               "__type": "Sandbox.Rigidbody",
-              "__guid": "af4b7316-8f72-40ff-a4f7-4927fecebcbf",
+              "__guid": "62b5dcdb-9198-487b-a1c1-398a6b84b1a4",
               "__enabled": true,
               "AngularDamping": 0,
               "Gravity": true,
@@ -1542,7 +1542,7 @@
             },
             {
               "__type": "Sandbox.ModelRenderer",
-              "__guid": "a7d65106-605d-4f06-b48b-025b28b5767e",
+              "__guid": "efab6a3a-4ce6-4e34-abe9-e6008cd599f0",
               "__enabled": true,
               "BodyGroups": 18446744073709551615,
               "CreateAttachments": false,
@@ -1567,7 +1567,7 @@
             },
             {
               "__type": "Sandbox.ModelCollider",
-              "__guid": "69336b24-8f25-4074-a98c-8ea57b60f7a3",
+              "__guid": "95688811-36d6-4d80-997a-6c2080298906",
               "__enabled": true,
               "Elasticity": null,
               "Friction": null,
@@ -1590,7 +1590,7 @@
             },
             {
               "__type": "Sandbox.Rigidbody",
-              "__guid": "83ad8d71-7383-4d6b-97c4-70ab21731232",
+              "__guid": "fb6f24ae-11b6-401f-90a9-e41504cb4a40",
               "__enabled": true,
               "AngularDamping": 0,
               "Gravity": true,
@@ -1656,7 +1656,7 @@
             },
             {
               "__type": "Sandbox.ModelRenderer",
-              "__guid": "cc523891-0ebb-4c45-95d2-d9a9e6ef08cf",
+              "__guid": "c5947417-bb32-497f-b3ca-e3e4e01f6814",
               "__enabled": true,
               "BodyGroups": 18446744073709551615,
               "CreateAttachments": false,
@@ -1681,7 +1681,7 @@
             },
             {
               "__type": "Sandbox.ModelCollider",
-              "__guid": "37651ea5-3715-4ba1-b685-63dbf24731b7",
+              "__guid": "40987f8f-a0c4-4f51-a856-73d14be71b8b",
               "__enabled": true,
               "Elasticity": null,
               "Friction": null,
@@ -1704,7 +1704,7 @@
             },
             {
               "__type": "Sandbox.Rigidbody",
-              "__guid": "3881b6bc-c591-4e00-99d4-119072de8c8c",
+              "__guid": "606df133-a68b-4768-809a-c8bbf08ea3e3",
               "__enabled": true,
               "AngularDamping": 0,
               "Gravity": true,
@@ -1770,7 +1770,7 @@
             },
             {
               "__type": "Sandbox.ModelRenderer",
-              "__guid": "5ff618a0-1cc2-4dd8-a22f-d152afc98998",
+              "__guid": "7aa550cc-d876-4f43-91f7-4b4302e3e93e",
               "__enabled": true,
               "BodyGroups": 18446744073709551615,
               "CreateAttachments": false,
@@ -1795,7 +1795,7 @@
             },
             {
               "__type": "Sandbox.ModelCollider",
-              "__guid": "42b05776-bca1-4b17-95d1-06f1bbd971ca",
+              "__guid": "7868c6fe-bf02-4043-85ae-01e82847eee2",
               "__enabled": true,
               "Elasticity": null,
               "Friction": null,
@@ -1818,7 +1818,7 @@
             },
             {
               "__type": "Sandbox.Rigidbody",
-              "__guid": "a164601d-3dfe-413e-83b9-6913b2b3edb4",
+              "__guid": "3a3ed3ab-6124-4019-8357-252041688c00",
               "__enabled": true,
               "AngularDamping": 0,
               "Gravity": true,
@@ -1884,7 +1884,7 @@
             },
             {
               "__type": "Sandbox.ModelRenderer",
-              "__guid": "9878e6b5-2fb7-45fe-9087-1a73f59e0e35",
+              "__guid": "e93d8d10-d16d-4a50-bb61-3186168bb93c",
               "__enabled": true,
               "BodyGroups": 18446744073709551615,
               "CreateAttachments": false,
@@ -1909,7 +1909,7 @@
             },
             {
               "__type": "Sandbox.ModelCollider",
-              "__guid": "682e9846-cbdd-48a5-831b-2418c2c78281",
+              "__guid": "79d604ae-264a-4fe9-813d-b95602eb8479",
               "__enabled": true,
               "Elasticity": null,
               "Friction": null,
@@ -1932,7 +1932,7 @@
             },
             {
               "__type": "Sandbox.Rigidbody",
-              "__guid": "059e121a-c5c9-44ff-ac68-0e8722c3eaf2",
+              "__guid": "4e380e7e-b29f-42c5-9dc0-5a71d42bb695",
               "__enabled": true,
               "AngularDamping": 0,
               "Gravity": true,
@@ -1998,7 +1998,7 @@
             },
             {
               "__type": "Sandbox.ModelRenderer",
-              "__guid": "aff80236-8890-40b8-9aba-d6a118dd9be7",
+              "__guid": "c35333f4-2f3d-4e85-b24e-5b315ac74d2c",
               "__enabled": true,
               "BodyGroups": 18446744073709551615,
               "CreateAttachments": false,
@@ -2023,7 +2023,7 @@
             },
             {
               "__type": "Sandbox.ModelCollider",
-              "__guid": "e683327b-92e9-488a-977f-54e0c3ba7f90",
+              "__guid": "d7263d57-32fe-4d70-858d-b5d8da038f71",
               "__enabled": true,
               "Elasticity": null,
               "Friction": null,
@@ -2046,7 +2046,7 @@
             },
             {
               "__type": "Sandbox.Rigidbody",
-              "__guid": "14961ae6-2e74-4c94-a00b-725bc66813f1",
+              "__guid": "5b8eb05d-6632-46d7-b4f9-4f2637eb3f4d",
               "__enabled": true,
               "AngularDamping": 0,
               "Gravity": true,
@@ -2112,7 +2112,7 @@
             },
             {
               "__type": "Sandbox.ModelRenderer",
-              "__guid": "8bc2995e-cf9a-4860-ad34-347bf348f8df",
+              "__guid": "3cf35f38-623a-4ec1-850f-71aa9a5d3c36",
               "__enabled": true,
               "BodyGroups": 18446744073709551615,
               "CreateAttachments": false,
@@ -2137,7 +2137,7 @@
             },
             {
               "__type": "Sandbox.ModelCollider",
-              "__guid": "0bbe4c12-bc51-486a-9ab9-ea48aff4727b",
+              "__guid": "0c92bfe7-1df9-465d-a4ac-52a43c0d8f6c",
               "__enabled": true,
               "Elasticity": null,
               "Friction": null,
@@ -2160,7 +2160,7 @@
             },
             {
               "__type": "Sandbox.Rigidbody",
-              "__guid": "81096276-84ce-4575-b054-a7f2e4ce7815",
+              "__guid": "c63ca876-93c6-4131-bb18-52f8100d5947",
               "__enabled": true,
               "AngularDamping": 0,
               "Gravity": true,
@@ -2226,7 +2226,7 @@
             },
             {
               "__type": "Sandbox.ModelRenderer",
-              "__guid": "b27a62bc-4c29-45ad-94fd-71bd21bbc515",
+              "__guid": "f32d0e22-d660-46d1-9451-810b395fd612",
               "__enabled": true,
               "BodyGroups": 18446744073709551615,
               "CreateAttachments": false,
@@ -2251,7 +2251,7 @@
             },
             {
               "__type": "Sandbox.ModelCollider",
-              "__guid": "b544892f-7c81-4a8f-b376-3b2432eb380c",
+              "__guid": "b1a3d870-5510-4bbd-91fd-503f9a40321a",
               "__enabled": true,
               "Elasticity": null,
               "Friction": null,
@@ -2274,7 +2274,7 @@
             },
             {
               "__type": "Sandbox.Rigidbody",
-              "__guid": "320aa5ec-2ca2-47c0-bca8-6cd47a539554",
+              "__guid": "8153fa4f-aaf6-41a0-b82e-b0450ece6df1",
               "__enabled": true,
               "AngularDamping": 0,
               "Gravity": true,
@@ -2472,7 +2472,7 @@
             },
             {
               "__type": "Sandbox.ModelRenderer",
-              "__guid": "1d254f3f-fa6f-4164-af64-1d6897a2728e",
+              "__guid": "d3aaa88a-13ee-4f2b-8d85-82df7b05b530",
               "__enabled": true,
               "BodyGroups": 18446744073709551615,
               "CreateAttachments": false,
@@ -2497,7 +2497,7 @@
             },
             {
               "__type": "Sandbox.ModelCollider",
-              "__guid": "e19bd2a6-bbe8-4cec-904e-8b656b0599ad",
+              "__guid": "007405b7-7cbb-4c3d-be3a-eb61d7dac28a",
               "__enabled": true,
               "Elasticity": null,
               "Friction": null,
@@ -2520,7 +2520,7 @@
             },
             {
               "__type": "Sandbox.Rigidbody",
-              "__guid": "aef893a1-d04e-47b3-a290-33a41f84078a",
+              "__guid": "38f6c343-eeda-49c9-8d40-fd7cec20681b",
               "__enabled": true,
               "AngularDamping": 0,
               "Gravity": true,
@@ -3030,52 +3030,6 @@
             "go": "f1b4287d-913f-4f72-a0ec-8336825d2b79",
             "component_type": "Rigidbody"
           }
-        }
-      ],
-      "Children": []
-    },
-    {
-      "__guid": "eadad4e8-a2c2-463e-822c-dbea0b1eec71",
-      "__version": 1,
-      "Flags": 0,
-      "Name": "UI",
-      "Position": "2096.871,-348.3656,437.1033",
-      "Rotation": "0,0,0,1",
-      "Scale": "1,1,1",
-      "Tags": "",
-      "Enabled": true,
-      "NetworkMode": 2,
-      "NetworkInterpolation": true,
-      "NetworkOrphaned": 0,
-      "OwnerTransfer": 1,
-      "Components": [
-        {
-          "__type": "Sandbox.ScreenPanel",
-          "__guid": "8a3ba8cc-c90d-46ae-afbb-468a8c7deb8c",
-          "__enabled": true,
-          "AutoScreenScale": true,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "Opacity": 1,
-          "Scale": 1,
-          "ScaleStrategy": "ConsistentHeight",
-          "TargetCamera": null,
-          "ZIndex": 100
-        },
-        {
-          "__type": "SBRacer.Ui.GarageRootPanel",
-          "__guid": "74c71ced-49ea-43a4-8e49-3a6a9c685844",
-          "__enabled": true,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null
         }
       ],
       "Children": []

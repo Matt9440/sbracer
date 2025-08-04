@@ -1,13 +1,14 @@
-@inherits PanelComponent
+@inherits Panel
 @namespace SBRacer.Ui
 
 <root>
+	<div class="scene" @ref=ScenePanelParent></div>
 	<div class="money">
 		$0
 	</div>
 	<div class="platform-rotation">
 		@{
-			var rotationDirection = Input.AnalogMove.y;
+			var rotationDirection = (int)Input.AnalogMove.y;
 			var rotatingLeft = rotationDirection == 1;
 			var rotatingRight = rotationDirection == -1;
 		}
@@ -27,8 +28,18 @@
 	</div>
 </root>
 
-@code
-{
+@code {
+	private Panel ScenePanelParent { get; set; }
+	private ScenePanel ScenePanel { get; set; }
+
+	protected override void OnAfterTreeRender( bool firstTime )
+	{
+		base.OnAfterTreeRender(firstTime);
+		
+		ScenePanel ??= new ScenePanel( "scenes/car_garage.scene" );
+		ScenePanelParent.AddChild( ScenePanel );
+	}
+	
 	protected override int BuildHash()
 	{
 		return HashCode.Combine( Player.Local?.Money, Input.AnalogMove.y );

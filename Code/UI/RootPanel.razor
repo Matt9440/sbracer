@@ -40,9 +40,11 @@
 				}
 			</div>
 			<div class="money">
-				<div>@( $"${Player.Local.Money}" )</div>
+				<div>@( $"${Player.Local?.Money}" )</div>
 			</div>
 		}
+		
+		<!--<GaragePanel />-->
 	}
 </root>
 
@@ -50,6 +52,6 @@
 {
 	protected override int BuildHash()
 	{
-		return HashCode.Combine( RaceGame.Instance?.QueuedPlayers, RaceGame.Instance?.RacingPlayers, RaceGame.Instance?.TimeSinceStateStarted.Relative );
+		return HashCode.Combine( Player.Local?.Money, RaceGame.Instance?.QueuedPlayers, RaceGame.Instance?.RacingPlayers, RaceGame.Instance?.TimeSinceStateStarted.Relative );
 	}
 }
